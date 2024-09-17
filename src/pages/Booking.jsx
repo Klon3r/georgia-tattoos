@@ -45,10 +45,10 @@ function Booking() {
     setDescTattoo("");
     setTattooColor("");
     setWorkAround("");
-    setMonday();
-    setTuesday();
-    setFriday();
-    setSaturday();
+    setMonday(false);
+    setTuesday(false);
+    setFriday(false);
+    setSaturday(false);
     setFiles();
     fileRef.current.value = "";
   }
@@ -124,6 +124,41 @@ function Booking() {
     localStorage.setItem(e.target.id, e.target.value);
   }
 
+  /**
+   * Handle the submit button with custom code
+   * @param {Submit} e
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const url = "http://localhost:3000/booking";
+
+    const booking = {
+      firstName: firstName,
+      lastName: lastName,
+      prefName: preferredName,
+      pronouns: pronouns,
+      email: email,
+      number: number,
+      instagram: instagram,
+      descTattoo: descTattoo,
+      availMonday: monday,
+      availTuesday: tuesday,
+      availFriday: friday,
+      availSaturday: saturday,
+      tatooColor: tattooColor,
+      workAround: workAround,
+    };
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({ booking }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+  };
+
   useEffect(() => {
     // Load data from local storage when component mounts
     loadLocalStorage();
@@ -132,7 +167,7 @@ function Booking() {
   return (
     <>
       <div className="booking-div">
-        <form>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           {/* Names */}
           <div className="booking-label">
             Name: <span className="required">*</span>
@@ -390,7 +425,7 @@ function Booking() {
             Upload a reference photos: <span className="required">*</span>
           </div>
           <div>
-            <input
+            {/* <input
               type="file"
               id="reference-files"
               name="reference-files"
@@ -399,7 +434,7 @@ function Booking() {
                 setFiles(e.target.files);
               }}
               multiple
-            />
+            /> */}
           </div>
           <div className="booking-button-div">
             <button
