@@ -14,8 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/booking", (req, res) => {
   console.log("Form Data: ", req.body);
+
   let data = req.body.booking;
   console.log("Name:", data.firstName);
+
+  // Send back the created status code
+  res.status(201).send();
 });
 
 app.listen(port, () => {

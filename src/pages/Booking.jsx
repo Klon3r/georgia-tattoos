@@ -150,12 +150,17 @@ function Booking() {
       workAround: workAround,
     };
 
+    // Send booking information to server
     fetch(url, {
       method: "POST",
       body: JSON.stringify({ booking }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
+    }).then((response) => {
+      if (response.status === 201) {
+        //window.location.hash = "#thank-you";
+      }
     });
   };
 
