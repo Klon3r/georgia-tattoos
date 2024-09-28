@@ -131,7 +131,7 @@ function Booking() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:3000/booking";
+    const url = "http://localhost:3000/booking"; //TODO: Change this on live server
 
     const booking = {
       firstName: firstName,

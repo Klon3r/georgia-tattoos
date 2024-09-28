@@ -9,7 +9,7 @@ const port = 3000;
 // Middleware
 app.use(helmet());
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "http://localhost:5173" })); //TODO: Change this on live deployment
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/booking", (req, res) => {
