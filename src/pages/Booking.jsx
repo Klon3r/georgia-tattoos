@@ -131,7 +131,7 @@ function Booking() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:3000/booking"; //TODO: Change this on live server
+    const url = "http://192.168.50.173:3000/booking"; //TODO: Change this on live server
 
     const booking = {
       firstName: firstName,
@@ -146,7 +146,7 @@ function Booking() {
       availTuesday: tuesday,
       availFriday: friday,
       availSaturday: saturday,
-      tatooColor: tattooColor,
+      tattooColor: tattooColor,
       workAround: workAround,
     };
 
@@ -158,8 +158,11 @@ function Booking() {
         "Content-type": "application/json; charset=UTF-8",
       },
     }).then((response) => {
+      // Handle the responses
       if (response.status === 201) {
-        //window.location.hash = "#thank-you";
+        window.location.hash = "#thank-you";
+      } else if (response.status === 500) {
+        window.location.hash = "#error";
       }
     });
   };
