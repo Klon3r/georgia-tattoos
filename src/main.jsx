@@ -7,6 +7,7 @@ import Homepage from "./pages/Homepage";
 import Booking from "./pages/Booking";
 import Aftercare from "./pages/Aftercare";
 import "./style.css";
+import ThankYou from "./pages/ThankYou";
 
 const router = createHashRouter([
   {
@@ -23,6 +24,11 @@ const router = createHashRouter([
     // Aftercare
     path: "aftercare",
     element: <Aftercare />,
+  },
+  {
+    // Thank You
+    path: "thank-you",
+    element: <ThankYou />,
   },
 ]);
 
