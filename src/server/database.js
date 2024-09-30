@@ -34,6 +34,8 @@ function createTable() {
     available_tuesday BOOLEAN DEFAULT FALSE,
     available_friday BOOLEAN DEFAULT FALSE,
     available_saturday BOOLEAN DEFAULT FALSE,
+    location_on_body TEXT NOT NULL,
+    size_of_tattoo VARCHAR(100) NOT NULL,
     tattoo_color VARCHAR(20) NOT NULL,
     work_around BOOLEAN NOT NULL
   );
@@ -98,6 +100,8 @@ export function insertBooking(
   availTue,
   availFri,
   availSat,
+  locationOnBody,
+  sizeTattoo,
   tattooColor,
   workAround
 ) {
@@ -121,8 +125,8 @@ export function insertBooking(
 
       const query = `
         INSERT INTO ${tableName} 
-        (first_name, last_name, preferred_name, pronouns, email, number, instagram, description_of_tattoo, available_monday, available_tuesday, available_friday, available_saturday, tattoo_color, work_around) 
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);
+        (first_name, last_name, preferred_name, pronouns, email, number, instagram, description_of_tattoo, available_monday, available_tuesday, available_friday, available_saturday, location_on_body, size_of_tattoo, tattoo_color, work_around) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
       `;
 
       const values = [
@@ -138,6 +142,8 @@ export function insertBooking(
         availTue,
         availFri,
         availSat,
+        locationOnBody,
+        sizeTattoo,
         tattooColor,
         workAround,
       ];
