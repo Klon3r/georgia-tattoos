@@ -9,6 +9,8 @@ function Booking() {
   const [number, setNumber] = useState("");
   const [instagram, setInstagram] = useState("");
   const [descTattoo, setDescTattoo] = useState("");
+  const [locationOnBody, setLocationOnBody] = useState("");
+  const [sizeTattoo, setSizeTattoo] = useState("");
   const [files, setFiles] = useState([]);
 
   const fileRef = useRef(null);
@@ -34,6 +36,7 @@ function Booking() {
     }
   };
 
+  // TODO: Add all values reset
   function resetValues() {
     setFirstName("");
     setLastName("");
@@ -105,6 +108,8 @@ function Booking() {
       tuesday: setTuesday,
       friday: setFriday,
       saturday: setSaturday,
+      locationOnBody: setLocationOnBody,
+      sizeTattoo: setSizeTattoo,
     };
 
     if (localStorage.length > 0) {
@@ -146,6 +151,8 @@ function Booking() {
       availTuesday: tuesday,
       availFriday: friday,
       availSaturday: saturday,
+      locationOnBody: locationOnBody,
+      sizeTattoo: sizeTattoo,
       tattooColor: tattooColor,
       workAround: workAround,
     };
@@ -385,6 +392,44 @@ function Booking() {
                 }}
               ></input>
             </div>
+          </div>
+          {/* Location on Body */}
+          <div className="booking-label">
+            Location on Body: <span className="required">*</span>
+          </div>
+          <div className="booking-inputs">
+            <textarea
+              id="locationOnBody"
+              title="locationBody"
+              name="Location on Body:"
+              rows="3"
+              cols="45"
+              required
+              value={locationOnBody}
+              onChange={(e) => {
+                setLocationOnBody(e.target.value);
+                storeValue(e);
+              }}
+            ></textarea>
+          </div>
+          {/* Preferred Name */}
+          <div className="booking-label">
+            Size in Centimeters: <span className="required">*</span>
+          </div>
+          <div className="booking-inputs">
+            <input
+              type="text"
+              id="sizeTattoo"
+              name="sizeTattoo"
+              title="sizeTattoo"
+              //placeholder="Size in cm eg. (10-20cm)"
+              value={sizeTattoo}
+              required
+              onChange={(e) => {
+                setSizeTattoo(e.target.value);
+                storeValue(e);
+              }}
+            ></input>
           </div>
           {/* Black & Grey or Color */}
           <div className="booking-label">
