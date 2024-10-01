@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 
-export function sendEmail(toEmail, bookingData) {
+export function sendEmail(toEmail, bookingData, files) {
   const availability = getAvailability(
     bookingData.availMonday,
     bookingData.availTuesday,
@@ -9,7 +9,7 @@ export function sendEmail(toEmail, bookingData) {
     bookingData.availSaturday
   );
 
-  //const nodemailer = require("nodemailer");
+  const instagramURL = convertInstagram(bookingData.instagram);
 
   dotenv.config({ path: "../../.env" });
 
@@ -69,9 +69,10 @@ export function sendEmail(toEmail, bookingData) {
       </tr>
       <tr style="background-color: #f0e9e9;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.instagram
-        }</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">
+          <a href="${instagramURL}">${bookingData.instagram}</a>
+        
+        </td>
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Description of Tattoo:</strong></td>
@@ -102,6 +103,11 @@ export function sendEmail(toEmail, bookingData) {
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
       </tr>   
     </table>`, // html body:
+    attachments: files.map((file) => ({
+      filename: file.originalname,
+      content: file.buffer,
+      contentType: file.minetype,
+    })),
   };
 
   const sendMail = async (transporter, mailOptions) => {
@@ -120,18 +126,24 @@ export function sendEmail(toEmail, bookingData) {
 function getAvailability(monday, tuesday, friday, saturday) {
   let availability = [];
 
-  if (monday === true) {
+  if (monday === "true") {
     availability.push("Monday");
   }
-  if (tuesday === true) {
+  if (tuesday === "true") {
     availability.push("Tuesday");
   }
-  if (friday === true) {
+  if (friday === "true") {
     availability.push("Friday");
   }
-  if (saturday === true) {
+  if (saturday === "true") {
     availability.push("Saturday");
   }
 
   return availability;
+}
+
+function convertInstagram(handle) {
+  const convertedHandle = handle.replace("@", "");
+  const instagramURL = `https://www.instagram.com/${convertedHandle}/?hl=en`;
+  return instagramURL;
 }
