@@ -138,32 +138,38 @@ function Booking() {
 
     const url = "http://192.168.50.173:3000/booking"; //TODO: Change this on live server
 
-    const booking = {
-      firstName: firstName,
-      lastName: lastName,
-      prefName: preferredName,
-      pronouns: pronouns,
-      email: email,
-      number: number,
-      instagram: instagram,
-      descTattoo: descTattoo,
-      availMonday: monday,
-      availTuesday: tuesday,
-      availFriday: friday,
-      availSaturday: saturday,
-      locationOnBody: locationOnBody,
-      sizeTattoo: sizeTattoo,
-      tattooColor: tattooColor,
-      workAround: workAround,
-    };
+    const formData = new FormData();
+
+    // Append all the data to formData
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("prefName", preferredName);
+    formData.append("pronouns", pronouns);
+    formData.append("email", email);
+    formData.append("number", number);
+    formData.append("instagram", instagram);
+    formData.append("descTattoo", descTattoo);
+    formData.append("availMonday", monday);
+    formData.append("availTuesday", tuesday);
+    formData.append("availFriday", friday);
+    formData.append("availSaturday", saturday);
+    formData.append("locationOnBody", locationOnBody);
+    formData.append("sizeTattoo", sizeTattoo);
+    formData.append("tattooColor", tattooColor);
+    formData.append("workAround", workAround);
+
+    // Handle the files
+    const files = fileRef.current.files;
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append("referenceFiles", files[i]);
+      }
+    }
 
     // Send booking information to server
     fetch(url, {
       method: "POST",
-      body: JSON.stringify({ booking }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
+      body: formData,
     }).then((response) => {
       // Handle the responses
       if (response.status === 201) {
@@ -478,7 +484,7 @@ function Booking() {
             Upload a reference photos: <span className="required">*</span>
           </div>
           <div>
-            {/* <input
+            <input
               type="file"
               id="reference-files"
               name="reference-files"
@@ -487,7 +493,7 @@ function Booking() {
                 setFiles(e.target.files);
               }}
               multiple
-            /> */}
+            />
           </div>
           <div className="booking-button-div">
             <button
