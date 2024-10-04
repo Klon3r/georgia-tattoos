@@ -11,6 +11,7 @@ function Booking() {
   const [descTattoo, setDescTattoo] = useState("");
   const [locationOnBody, setLocationOnBody] = useState("");
   const [sizeTattoo, setSizeTattoo] = useState("");
+  const [inputClass, setInputClass] = useState("");
   const [files, setFiles] = useState([]);
 
   const fileRef = useRef(null);
@@ -179,6 +180,25 @@ function Booking() {
       }
     });
   };
+
+  function checkFiles(files) {
+    let totalSize = 0;
+    // Check each file for size
+    for (let i = 0; i < files.length; i++) {
+      let sizeToMB = files[i].size / 1048576; // Convert from byte to Megabtye
+      totalSize += sizeToMB;
+    }
+
+    const roundedSize = Math.round(totalSize * 100) / 100;
+
+    // 25MB is the limit for Gmail attachments
+    if (roundedSize < 25) {
+      setFiles(files);
+      setInputClass(""); //reset class
+    } else {
+      setInputClass("error");
+    }
+  }
 
   useEffect(() => {
     // Load data from local storage when component mounts
@@ -484,13 +504,19 @@ function Booking() {
             Upload a reference photos: <span className="required">*</span>
           </div>
           <div>
+            {inputClass === "error" && (
+              <p className="error-message">
+                Please upload reference photos smaller than 25MB in total
+              </p>
+            )}
             <input
               type="file"
               id="reference-files"
               name="reference-files"
               ref={fileRef}
+              className={inputClass}
               onChange={(e) => {
-                setFiles(e.target.files);
+                checkFiles(e.target.files);
               }}
               multiple
             />

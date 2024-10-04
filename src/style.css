@@ -6,6 +6,7 @@
   --font-size: 1.1em;
   --input-font-size: 1em;
   --checkbox-size: 1.4;
+  --error-color: rgb(226, 46, 46);
 }
 
 * {
@@ -255,4 +256,17 @@ input[type="checkbox"] {
 
 .booking-button-div > button {
   width: 120px;
+}
+
+/* FILE INPUT */
+.error {
+  border: 2px solid var(--error-color);
+}
+
+.error-message {
+  font-size: 1em;
+  margin: 0px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: var(--error-color);
 }
