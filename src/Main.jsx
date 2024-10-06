@@ -1,5 +1,9 @@
 import React from "react";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import {
+  createHashRouter,
+  RouterProvider,
+  useLocation,
+} from "react-router-dom";
 import ReactDOM from "react-dom/client";
 
 import Logo from "./pages/Logo";
@@ -12,42 +16,77 @@ import Error403 from "./pages/Error403";
 
 import "./style.css";
 
+function Layout() {
+  const location = useLocation();
+
+  return <>{location.pathname !== "/studio" && <Logo />}</>;
+}
+
 const router = createHashRouter([
   {
     // Root
     path: "/",
-    element: <Homepage />,
+    element: (
+      <>
+        <Layout />
+        <Homepage />
+      </>
+    ),
   },
   {
     // Booking
     path: "booking",
-    element: <Booking />,
+    element: (
+      <>
+        <Layout />
+        <Booking />
+      </>
+    ),
   },
   {
     // Aftercare
     path: "aftercare",
-    element: <Aftercare />,
+    element: (
+      <>
+        <Layout />
+        <Aftercare />
+      </>
+    ),
   },
   {
     // Thank You
     path: "thank-you",
-    element: <ThankYou />,
+    element: (
+      <>
+        <Layout />
+        <ThankYou />
+      </>
+    ),
   },
   {
     // Error
     path: "error",
-    element: <Error />,
+    element: (
+      <>
+        <Layout />
+        <Error />
+      </>
+    ),
   },
   {
     // All other routes, 403 Error
     path: "*",
-    element: <Error403 />,
+    element: (
+      <>
+        <Layout />
+        <Error403 />
+      </>
+    ),
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Logo />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
