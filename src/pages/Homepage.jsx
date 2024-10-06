@@ -38,6 +38,10 @@ function Homepage() {
         {/* Aftercare */}
         <button onClick={() => changeHashAddress("aftercare")}>
           <strong>AFTERCARE</strong>
+        </button>{" "}
+        {/* STUDIO PDF */}
+        <button onClick={() => changeURL("how-to-find-the-studio.pdf")}>
+          <strong>STUDIO LOCATION</strong>
         </button>
       </div>
     </>
