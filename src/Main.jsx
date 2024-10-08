@@ -9,6 +9,7 @@ import ReactDOM from "react-dom/client";
 import Logo from "./pages/Logo";
 import Homepage from "./pages/Homepage";
 import Booking from "./pages/Booking";
+import BookingPolicy from "./pages/BookingPolicy";
 import Aftercare from "./pages/Aftercare";
 import ThankYou from "./pages/ThankYou";
 import Error from "./pages/Error";
@@ -40,6 +41,16 @@ const router = createHashRouter([
       <>
         <Layout />
         <Booking />
+      </>
+    ),
+  },
+  {
+    // Booking Policy
+    path: "booking-policy",
+    element: (
+      <>
+        <Layout />
+        <BookingPolicy />
       </>
     ),
   },
