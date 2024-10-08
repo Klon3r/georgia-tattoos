@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { changeHashAddress } from "./Homepage";
 
 function Booking() {
   const [firstName, setFirstName] = useState("");
@@ -13,6 +14,9 @@ function Booking() {
   const [sizeTattoo, setSizeTattoo] = useState("");
   const [inputClass, setInputClass] = useState("");
   const [files, setFiles] = useState([]);
+  const [policyClicked, setPolicyClicked] = useState(() => {
+    return localStorage.getItem("policyClicked") === "true";
+  });
 
   const fileRef = useRef(null);
 
@@ -55,6 +59,9 @@ function Booking() {
     setSaturday(false);
     setFiles();
     fileRef.current.value = "";
+    setPolicyClicked(false);
+    setSizeTattoo("");
+    setLocationOnBody("");
   }
 
   // Check instragram handle fits within guidelines
@@ -135,51 +142,59 @@ function Booking() {
    * @param {Submit} e
    */
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (agreePolicy === true) {
+      e.preventDefault();
 
-    const url = "http://192.168.50.173:3000/booking"; //TODO: Change this on live server
+      const url = "http://192.168.50.173:3000/booking"; //TODO: Change this on live server
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    // Append all the data to formData
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("prefName", preferredName);
-    formData.append("pronouns", pronouns);
-    formData.append("email", email);
-    formData.append("number", number);
-    formData.append("instagram", instagram);
-    formData.append("descTattoo", descTattoo);
-    formData.append("availMonday", monday);
-    formData.append("availTuesday", tuesday);
-    formData.append("availFriday", friday);
-    formData.append("availSaturday", saturday);
-    formData.append("locationOnBody", locationOnBody);
-    formData.append("sizeTattoo", sizeTattoo);
-    formData.append("tattooColor", tattooColor);
-    formData.append("workAround", workAround);
+      // Append all the data to formData
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("prefName", preferredName);
+      formData.append("pronouns", pronouns);
+      formData.append("email", email);
+      formData.append("number", number);
+      formData.append("instagram", instagram);
+      formData.append("descTattoo", descTattoo);
+      formData.append("availMonday", monday);
+      formData.append("availTuesday", tuesday);
+      formData.append("availFriday", friday);
+      formData.append("availSaturday", saturday);
+      formData.append("locationOnBody", locationOnBody);
+      formData.append("sizeTattoo", sizeTattoo);
+      formData.append("tattooColor", tattooColor);
+      formData.append("workAround", workAround);
 
-    // Handle the files
-    const files = fileRef.current.files;
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        formData.append("referenceFiles", files[i]);
+      // Handle the files
+      const files = fileRef.current.files;
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          formData.append("referenceFiles", files[i]);
+        }
       }
+
+      // Send booking information to server
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      }).then((response) => {
+        // Handle the responses
+        if (response.status === 201) {
+          window.location.hash = "#thank-you";
+        } else if (response.status === 500) {
+          window.location.hash = "#error";
+        }
+      });
     }
-
-    // Send booking information to server
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    }).then((response) => {
-      // Handle the responses
-      if (response.status === 201) {
-        window.location.hash = "#thank-you";
-      } else if (response.status === 500) {
-        window.location.hash = "#error";
-      }
-    });
   };
+
+  function handleBookingPolicy(id) {
+    setPolicyClicked(true);
+    localStorage.setItem(id, true);
+    changeHashAddress("booking-policy");
+  }
 
   function checkFiles(files) {
     let totalSize = 0;
@@ -457,6 +472,7 @@ function Booking() {
               }}
             ></input>
           </div>
+
           {/* Black & Grey or Color */}
           <div className="booking-label">
             Black & Grey or Color: <span className="required">*</span>
@@ -478,6 +494,7 @@ function Booking() {
               <option value="Color">Color</option>
             </select>
           </div>
+
           {/* Work Around Gaps */}
           <div className="booking-label">
             Will I be working around other tattoos/filling a gap?:{" "}
@@ -500,6 +517,36 @@ function Booking() {
               <option value="No">No</option>
             </select>
           </div>
+          {/* Booking Policy */}
+          <div className="booking-label">
+            Booking Policies<span className="required">*</span>
+          </div>
+          <div className="booking-policy-input">
+            <input
+              type="checkbox"
+              id="booking-policy-checkbox"
+              title="booking-policy-checkbox"
+              name="booking-policy-checkbox:"
+              checked={policyClicked}
+              onChange={(e) => {
+                // setAgreePolicy(e.target.checked);
+              }}
+              required
+            ></input>
+            <div>
+              <p style={{ fontSize: 1 + "em" }}>
+                Please click
+                <a
+                  className="policy-link"
+                  onClick={() => handleBookingPolicy("policyClicked")}
+                >
+                  HERE
+                </a>
+                to agree and view policy
+              </p>
+            </div>
+          </div>
+          {/* Reference Photos */}
           <div className="booking-label">
             Upload a reference photos: <span className="required">*</span>
           </div>
@@ -519,6 +566,7 @@ function Booking() {
                 checkFiles(e.target.files);
               }}
               multiple
+              required
             />
           </div>
           <div className="booking-button-div">
