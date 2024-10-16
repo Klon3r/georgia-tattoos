@@ -3,7 +3,7 @@ import { changeHashAddress } from "./Homepage";
 function Error() {
   return (
     <>
-      <h2>Error</h2>
+      <h2>ERROR</h2>
       <p style={{ marginBottom: "0px", padding: "20px", textAlign: "center" }}>
         There has been an error please go back and try again.
       </p>
