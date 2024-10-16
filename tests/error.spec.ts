@@ -16,3 +16,10 @@ test("Check error text", async ({ page }) => {
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "ERROR" })).toBeVisible();
 });
+
+// Check Button
+test("Check button routes back to homepage", async ({ page }) => {
+  await page.goto(errorPage);
+  await page.getByRole("button", { name: /BACK/i }).click();
+  await expect(page).toHaveURL(/. *#/);
+});
