@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
 
-// Change later for Vercel
 const aftercare = "localhost:5173#aftercare";
 
 // Check Title
@@ -13,13 +12,13 @@ test("Check Hash Routing", async ({ page }) => {
 test("Check heading names", async ({ page }) => {
   await page.goto(aftercare);
   await expect(page.getByTitle("healing-with-second-skin")).toHaveText(
-    "HEALING WITH SECOND SKIN",
+    "HEALING WITH SECOND SKIN"
   );
   await expect(page.getByTitle("healing-with-cream")).toHaveText(
-    "HEALING WITH CREAM",
+    "HEALING WITH CREAM"
   );
   await expect(page.getByTitle("product-recommendations")).toHaveText(
-    "PRODUCT RECOMMENDATIONS",
+    "PRODUCT RECOMMENDATIONS"
   );
 });
 
