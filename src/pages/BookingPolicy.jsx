@@ -23,7 +23,9 @@ function BookingPolicy() {
     <>
       <div id="content-div">
         <h2 id="headings">PLEASE READ</h2>
-        <h3 id="headings">Deposits are non-refundable</h3>
+        <h3 id="headings" data-testid="non-refundable">
+          Deposits are non-refundable
+        </h3>
         <p className="text">
           Please note that your tattoo appointment is not confirmed until we
           have settled on a date/time and I've received a screenshot of the
@@ -42,7 +44,9 @@ function BookingPolicy() {
           </a>
           .
         </p>
-        <h3 id="headings">Deposits</h3>
+        <h3 id="headings" data-testid="deposits">
+          Deposits
+        </h3>
         <p className="text">
           A $100 deposit will be collected for each booking made, this amount
           comes off the total on the day.
@@ -54,7 +58,9 @@ function BookingPolicy() {
           will be automatically deleted from my system and the prior agreed upon
           date will need to be renegotiated before a deposit can be paid.
         </p>
-        <h3 id="headings">Reschedules</h3>
+        <h3 id="headings" data-testid="reschedules">
+          Reschedules
+        </h3>
         <p className="text">
           If you need to reschedule your booking, please contact me via
           Instagram only more than 48 hours before your appointment time.
@@ -72,7 +78,11 @@ function BookingPolicy() {
           date ASAP but to keep things fair, it's highly likely your new date
           will be months out from your original.
         </p>
-        <h3 id="headings" style={{ marginBottom: 0 + "px" }}>
+        <h3
+          id="headings"
+          data-testid="booking-policy"
+          style={{ marginBottom: 0 + "px" }}
+        >
           Full Day Booking Policy
         </h3>
         <p className="text" style={{ marginTop: 0 + "px" }}>
