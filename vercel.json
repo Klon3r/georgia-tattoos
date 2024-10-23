@@ -6,11 +6,11 @@
       "use": "@vercel/node"
     },
     {
-      "src": "index.html",
+      "src": "build/index.html",
       "use": "@vercel/static"
     },
     {
-      "src": "src/**/*",
+      "src": "build/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -22,6 +22,12 @@
     {
       "src": "/(.*)",
       "dest": "/index.html"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
