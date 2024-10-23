@@ -3,12 +3,12 @@ function Homepage() {
     <>
       <div className="button-div">
         {/* Booking */}
-        <button
+        {/* <button
           onClick={() => changeHashAddress("booking")}
           id="booking-button"
         >
           <strong>BOOKING FORM</strong>
-        </button>
+        </button> */}
         {/* Etsy */}
         <button
           onClick={() =>
