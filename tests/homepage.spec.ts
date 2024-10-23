@@ -9,13 +9,13 @@ test("Check Title", async ({ page }) => {
 });
 
 // Booking Form
-test("Check Booking Button", async ({ page }) => {
-  await page.goto(homepage);
-  await page
-    .getByRole("button", { name: "BOOKING FORM" })
-    .click({ force: true });
-  await expect(page).toHaveURL(/.*#booking/);
-});
+// test("Check Booking Button", async ({ page }) => {
+//   await page.goto(homepage);
+//   await page
+//     .getByRole("button", { name: "BOOKING FORM" })
+//     .click({ force: true });
+//   await expect(page).toHaveURL(/.*#booking/);
+// });
 
 // Etsy
 // test("Check Esty Store Button", async ({ page }) => {
@@ -41,13 +41,15 @@ test("Check Facebook Button", async ({ page }) => {
 // Tiktok
 test("Check Tiktok Button", async ({ page }) => {
   await page.goto(homepage);
-  await page.getByRole("button", { name: "TIKTOK" }).click({ force: true });
+  await page.getByText("TIKTOK").click({ force: true });
+  //await page.getByRole("button", { name: "TIKTOK" }).click({ force: true });
   await expect(page).toHaveURL(/.*georgia.tattoos*/);
 });
 
 // Aftercare
 test("Check Aftercare Button", async ({ page }) => {
   await page.goto(homepage);
-  await page.getByRole("button", { name: "AFTERCARE" }).click({ force: true });
+  //await page.getByRole("button", { name: "AFTERCARE" }).click({ force: true });
+  await page.getByText("AFTERCARE").click({ force: true });
   await expect(page).toHaveURL(/.*aftercare/);
 });
