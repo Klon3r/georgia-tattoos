@@ -1,39 +1,32 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import bodyParser from "body-parser";
 import multer from "multer";
-import { insertBooking } from "./database.js";
-import { sendEmail } from "./email.js";
+import { sendEmail } from "./email.js"; // Adjust the path as needed
 
 const app = express();
 
+// Security and middleware setup
 app.use(helmet());
-app.use(express.json());
-app.use(cors({ origin: "www.georgiatattoos.com.au" }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://www.georgiatattoos.com.au",
+  })
+);
 
+// Set up file upload handling using multer
 const upload = multer({ storage: multer.memoryStorage() });
 
-app.post("/booking", upload.array("referenceFiles"), async (req, res) => {
-  console.log("Form Data: ", req.body);
-  let data = req.body;
-
+app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
+  //console.log("Form Data:", req.body);
+  //console.log("Files:", req.files);
   try {
-    await sendEmail(process.env.EMAIL_USERNAME, data, req.files);
+    await sendEmail(process.env.EMAIL_USERNAME, req.body, req.files);
     res.status(201).send();
   } catch (err) {
-    console.error("There was an error: ", err);
-    res.status(500).send();
+    //console.log("There was an error submitting the booking: ", err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// Vercel default export function
-export default (req, res) => {
-  if (req.method === "POST") {
-    return app(req, res);
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-};
+export default app;
