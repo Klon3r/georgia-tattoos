@@ -29,6 +29,11 @@ app.post("/booking", upload.array("referenceFiles"), async (req, res) => {
 });
 
 // Vercel default export function
-export default async (req, res) => {
-  await app(req, res);
+export default (req, res) => {
+  if (req.method === "POST") {
+    return app(req, res);
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 };
