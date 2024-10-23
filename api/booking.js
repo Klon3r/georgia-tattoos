@@ -33,9 +33,7 @@ app.post("/booking", upload.array("referenceFiles"), (req, res) => {
   }
 });
 
-export default app;
-
-// TODO: NOT NEEDED FOR VERCEL
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
+// Vercel default export function
+export default async (req, res) => {
+  await app(req, res);
+};
