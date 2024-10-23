@@ -48,14 +48,14 @@ app.post("/booking", upload.array("referenceFiles"), (req, res) => {
     // );
 
     try {
-      //sendEmail(process.env.HER_EMAIL, data, req.files);
-      sendEmail(process.env.MY_EMAIL, data, req.files);
+      sendEmail(process.env.EMAIL_USERNAME, data, req.files);
+      //sendEmail(process.env.MY_EMAIL, data, req.files);
     } catch (err) {
       console.error("There has been an error sending the email: ", err);
     }
 
     // Send status code
-    //res.status(201).send();
+    res.status(201).send();
   } catch (err) {
     // Error
     console.error("There was an error: ", err);
