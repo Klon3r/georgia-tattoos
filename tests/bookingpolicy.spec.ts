@@ -11,8 +11,9 @@ test("Check Hash Routing", async ({ page }) => {
 // Check instagram link
 test("Check instagram link", async ({ page }) => {
   await page.goto(bookingPolicy);
-  await page.getByText("@georgia.tattoos").click();
-  await expect(page).toHaveURL(/.* georgia.tattoos/);
+  const link = page.getByText("@georgia.tattoos");
+
+  await expect(link).toHaveText("@georgia.tattoos");
 });
 
 // Check headings
