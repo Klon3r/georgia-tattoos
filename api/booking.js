@@ -10,7 +10,7 @@ const app = express();
 
 app.use(helmet());
 app.use(express.json());
-app.use(cors({ origin: "http://www.georgiatattoos.com.au:5173" }));
+app.use(cors({ origin: "http://www.georgiatattoos.com.au" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const upload = multer({ storage: multer.memoryStorage() });

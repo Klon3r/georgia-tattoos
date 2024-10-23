@@ -145,7 +145,7 @@ function Booking() {
     if (policyClicked === true) {
       e.preventDefault();
 
-      const url = "http://www.georgiatattoos.com.au:3000/api/booking"; //TODO: Change this on live server
+      const url = "http://www.georgiatattoos.com.au/api/booking"; //TODO: Change this on live server
 
       const formData = new FormData();
 
