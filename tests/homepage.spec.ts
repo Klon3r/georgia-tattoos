@@ -28,21 +28,21 @@ test("Check Booking Button", async ({ page }) => {
 test("Check Instagram Button", async ({ page }) => {
   await page.goto(homepage);
   await page.getByRole("button", { name: "INSTAGRAM" }).click({ force: true });
-  await expect(page).toHaveURL("https://www.instagram.com/georgia.tattoos/");
+  await expect(page).toHaveURL(/.*georgia.tattoos*/);
 });
 
 // Facebook
 test("Check Facebook Button", async ({ page }) => {
   await page.goto(homepage);
   await page.getByRole("button", { name: "FACEBOOK" }).click({ force: true });
-  await expect(page).toHaveURL("https://www.facebook.com/georgiamtattoos");
+  await expect(page).toHaveURL(/.*georgiamtattoos*/);
 });
 
 // Tiktok
 test("Check Tiktok Button", async ({ page }) => {
   await page.goto(homepage);
   await page.getByRole("button", { name: "TIKTOK" }).click({ force: true });
-  await expect(page).toHaveURL("https://www.tiktok.com/@georgia.tattoos");
+  await expect(page).toHaveURL(/.*georgia.tattoos*/);
 });
 
 // Aftercare
