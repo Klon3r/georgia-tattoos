@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 4,
   "builds": [
     {
       "src": "api/booking.js",
@@ -17,7 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/build/index.html"
     }
   ]
 }
