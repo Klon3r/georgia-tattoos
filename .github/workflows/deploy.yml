@@ -1,0 +1,42 @@
+name: Build & Deploy to Vercel
+
+on: 
+  workflow_run:
+    workflows: ["Run Tests"]
+    types:
+      - completed
+
+env:
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+jobs:
+  build_website_files:
+    name: Build Files
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          
+      - name: Install Vercel
+        run: npm install vercel
+
+      - name: Install Depends
+        run: npm ci
+
+      - name: Build Site
+        run: npm run build
+
+      - name: Get latest vercel config
+        run: npx vercel pull --token ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build a vercel project
+        run: npx vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy App
+        run: npx vercel --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
