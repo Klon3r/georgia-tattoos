@@ -142,7 +142,7 @@ function Booking() {
    * @param {Submit} e
    */
   const handleSubmit = (e) => {
-    if (agreePolicy === true) {
+    if (policyClicked === true) {
       e.preventDefault();
 
       const url = "http://192.168.50.173:3000/booking"; //TODO: Change this on live server
