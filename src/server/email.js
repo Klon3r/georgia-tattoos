@@ -30,10 +30,10 @@ export function sendEmail(toEmail, bookingData, files) {
       address: process.env.EMAIL_USERNAME,
     },
     to: toEmail,
+    replyTo: bookingData.email,
     subject: `${bookingData.firstName + " " + bookingData.lastName} ${
       "(" + bookingData.instagram + ")"
     }`,
-    //text: "This is an email sending test", //plain body text
     html: `  
     <h3>Booking</h3>
     <table>
