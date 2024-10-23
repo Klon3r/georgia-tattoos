@@ -15,17 +15,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-app.post("/booking", upload.array("referenceFiles"), (req, res) => {
+app.post("/booking", upload.array("referenceFiles"), async (req, res) => {
   console.log("Form Data: ", req.body);
   let data = req.body;
 
   try {
-    try {
-      sendEmail(process.env.EMAIL_USERNAME, data, req.files);
-    } catch (err) {
-      console.error("Error sending email: ", err);
-    }
-
+    await sendEmail(process.env.EMAIL_USERNAME, data, req.files);
     res.status(201).send();
   } catch (err) {
     console.error("There was an error: ", err);
