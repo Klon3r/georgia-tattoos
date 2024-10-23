@@ -1,4 +1,4 @@
-// Inside api/index.js
+// api/index
 import { json } from "express";
 
 export default function handler(req, res) {
