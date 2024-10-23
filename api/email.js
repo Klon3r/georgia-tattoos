@@ -11,7 +11,7 @@ export function sendEmail(toEmail, bookingData, files) {
 
   const instagramURL = convertInstagram(bookingData.instagram);
 
-  dotenv.config({ path: "../../.env" });
+  //dotenv.config({ path: "../../.env" });
 
   // Create transporter obj
   const transporter = nodemailer.createTransport({
