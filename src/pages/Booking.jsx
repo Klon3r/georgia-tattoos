@@ -145,7 +145,7 @@ function Booking() {
     if (policyClicked === true) {
       e.preventDefault();
 
-      const url = "api/booking";
+      const url = "/api/booking";
 
       const formData = new FormData();
 
@@ -179,14 +179,10 @@ function Booking() {
       fetch(url, {
         method: "POST",
         body: formData,
-      }).then((response) => {
-        // Handle the responses
-        if (response.status === 201) {
-          window.location.hash = "#thank-you";
-        } else if (response.status === 500) {
-          window.location.hash = "#error";
-        }
       });
+      // Instantly change to thank-you due to how serverless function works
+      // This will reduce lag (5-10 Second wait time after clicking submit)
+      window.location.hash = "#thank-you";
     }
   };
 

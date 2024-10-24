@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import multer from "multer";
 import nodemailer from "nodemailer";
+import { promisify } from "util";
 
 const app = express();
 
@@ -10,7 +11,7 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: "http://www.georgiatattoos.com.au",
+    origin: ["https://www.georgiatattoos.com.au", "http://localhost:3000"],
   })
 );
 
@@ -20,11 +21,13 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
   //console.log("Form Data:", req.body);
   //console.log("Files:", req.files);
+
   try {
-    sendEmail(process.env.EMAIL_USERNAME, req.body, req.files);
-    res.status(201).send();
+    await sendEmail(process.env.EMAIL_USERNAME, req.body, req.files);
+    // Success
+    //res.status(201).send();
   } catch (err) {
-    //console.log("There was an error submitting the booking: ", err);
+    console.log("There was an error submitting the booking: ", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -35,7 +38,7 @@ app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
  * @param {object} bookingData - Booking information (name, description, size in cm)
  * @param {array} files - Reference photos to be attached to email
  */
-export function sendEmail(toEmail, bookingData, files) {
+async function sendEmail(toEmail, bookingData, files) {
   const availability = getAvailability(
     bookingData.availMonday,
     bookingData.availTuesday,
@@ -138,21 +141,24 @@ export function sendEmail(toEmail, bookingData, files) {
     attachments: files.map((file) => ({
       filename: file.originalname,
       content: file.buffer,
-      contentType: file.minetype,
+      contentType: file.mimetype,
     })),
   };
 
-  const sendMail = async (transporter, mailOptions) => {
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log("Email has been sent");
-    } catch (err) {
-      console.error("There has been an error: ", err);
-    }
-  };
+  // Promisify sendMail
+  const sendMail = promisify(transporter.sendMail.bind(transporter));
+
+  try {
+    // Send email and await response
+    await sendMail(mailOptions);
+    console.log("Email has been sent");
+  } catch (err) {
+    console.error("Error sending email: ", err);
+    throw err; // Propagate the error
+  }
 
   //console.log("Booking Array: ", bookingData);
-  sendMail(transporter, mailOptions);
+  //sendMail(transporter, mailOptions);
 }
 
 /**
