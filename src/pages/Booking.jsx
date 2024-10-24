@@ -41,7 +41,9 @@ function Booking() {
     }
   };
 
-  // TODO: Add all values reset
+  /**
+   * Reset all the values for the booking form
+   */
   function resetValues() {
     setFirstName("");
     setLastName("");
@@ -57,11 +59,13 @@ function Booking() {
     setTuesday(false);
     setFriday(false);
     setSaturday(false);
-    setFiles();
+    setFiles([]);
     fileRef.current.value = "";
     setPolicyClicked(false);
     setSizeTattoo("");
     setLocationOnBody("");
+
+    localStorage.clear();
   }
 
   // Check instragram handle fits within guidelines
@@ -182,6 +186,7 @@ function Booking() {
       });
 
       resetValues();
+
       // Instantly change to thank-you due to how serverless function works
       // This will reduce lag (5-10 Second wait time after clicking submit)
       window.location.hash = "#thank-you";
