@@ -180,6 +180,8 @@ function Booking() {
         method: "POST",
         body: formData,
       });
+
+      resetValues();
       // Instantly change to thank-you due to how serverless function works
       // This will reduce lag (5-10 Second wait time after clicking submit)
       window.location.hash = "#thank-you";
