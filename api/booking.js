@@ -11,7 +11,7 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: ["https://www.georgiatattoos.com.au", "http://localhost:3000"],
+    origin: "https://www.georgiatattoos.com.au",
   })
 );
 
