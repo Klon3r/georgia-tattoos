@@ -1,7 +1,7 @@
 # Georgia Tattoos - Website
 
 <div align="center">
-  <img style="background-color: white; border-radius: 50%; width: 100px;"src="./src/assets/smile_logo.png">
+  <img style="background-color: white; border-radius: 50%; width: 100px;"src="./screenshot/logo-white-background.png">
   <br>
   <a href="http://www.georgiatattoos.com.au">
     <img src="https://img.shields.io/website?url=http%3A//www.georgiatattoos.com.au" alt="Website Status">
