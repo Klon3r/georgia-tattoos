@@ -26,7 +26,7 @@ export function sendEmail(toEmail, bookingData, files) {
 
   const mailOptions = {
     from: {
-      name: "Georgia Tattoos",
+      name: "ICT Project: Tattoo Booking",
       address: process.env.EMAIL_USERNAME,
     },
     to: toEmail,

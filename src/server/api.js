@@ -15,8 +15,9 @@ const port = 3000;
 // Middleware
 app.use(helmet());
 app.use(express.json());
-// TODO: Change this on live deployment
-app.use(cors({ origin: "http://192.168.50.173:5173" }));
+app.use(
+  cors({ origin: ["http://192.168.50.173:5173", "http://localhost:5173/"] })
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -28,28 +29,27 @@ app.post("/booking", upload.array("referenceFiles"), (req, res) => {
   let data = req.body;
 
   try {
-    // insertBooking(
-    //   data.firstName,
-    //   data.lastName,
-    //   data.prefName,
-    //   data.pronouns,
-    //   data.email,
-    //   data.number,
-    //   data.instagram,
-    //   data.descTattoo,
-    //   data.availMonday,
-    //   data.availTuesday,
-    //   data.availFriday,
-    //   data.availSaturday,
-    //   data.locationOnBody,
-    //   data.sizeTattoo,
-    //   data.tattooColor,
-    //   data.workAround
-    // );
+    insertBooking(
+      data.firstName,
+      data.lastName,
+      data.prefName,
+      data.pronouns,
+      data.email,
+      data.number,
+      data.instagram,
+      data.descTattoo,
+      data.availMonday,
+      data.availTuesday,
+      data.availFriday,
+      data.availSaturday,
+      data.locationOnBody,
+      data.sizeTattoo,
+      data.tattooColor,
+      data.workAround
+    );
 
     try {
       sendEmail(process.env.EMAIL_USERNAME, data, req.files);
-      //sendEmail(process.env.MY_EMAIL, data, req.files);
     } catch (err) {
       console.error("There has been an error sending the email: ", err);
     }
