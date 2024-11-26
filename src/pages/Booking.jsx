@@ -62,6 +62,8 @@ function Booking() {
     setPolicyClicked(false);
     setSizeTattoo("");
     setLocationOnBody("");
+
+    localStorage.clear();
   }
 
   // Check instragram handle fits within guidelines
@@ -179,14 +181,10 @@ function Booking() {
       fetch(url, {
         method: "POST",
         body: formData,
-      }).then((response) => {
-        // Handle the responses
-        if (response.status === 201) {
-          window.location.hash = "#thank-you";
-        } else if (response.status === 500) {
-          window.location.hash = "#error";
-        }
       });
+
+      resetValues();
+      window.location = "#thank-you";
     }
   };
 
