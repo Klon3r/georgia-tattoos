@@ -19,8 +19,8 @@ app.use(
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
-  console.log("Form Data:", req.body);
-  console.log("Files:", req.files);
+  //console.log("Form Data:", req.body);
+  //console.log("Files:", req.files);
 
   try {
     throw error();
@@ -61,7 +61,6 @@ async function sendErrorEmail(toEmail, errorData, bookingInfo) {
       name: "Vercel Error",
       address: process.env.EMAIL_USERNAME,
     },
-    to: toEmail,
     subject: `Vercel Error: ${currentDate} ${currentTime}`,
     html: `<h2>There has been an error</h2>
         <strong>${errorData.name}:</strong> ${errorData.message}<br>
