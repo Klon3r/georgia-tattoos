@@ -299,3 +299,15 @@ input[type="checkbox"] {
   margin-right: 5px;
   text-decoration: underline;
 }
+
+.submit-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.spinner-img {
+  width: 40px;
+}

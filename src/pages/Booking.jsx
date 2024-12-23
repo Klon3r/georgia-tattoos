@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { changeHashAddress } from "./Homepage";
+import spinner from "../assets/spinner.gif";
 
 function Booking() {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +18,7 @@ function Booking() {
   const [policyClicked, setPolicyClicked] = useState(() => {
     return localStorage.getItem("policyClicked") === "true";
   });
+  const [isSending, setIsSending] = useState(false);
 
   const fileRef = useRef(null);
 
@@ -64,6 +66,7 @@ function Booking() {
     setPolicyClicked(false);
     setSizeTattoo("");
     setLocationOnBody("");
+    setIsSending(false);
 
     localStorage.clear();
   }
@@ -125,7 +128,7 @@ function Booking() {
     };
 
     if (localStorage.length > 0) {
-      Object.keys(localStorage).forEach(function (key) {
+      Object.keys(localStorage).forEach(function(key) {
         if (key in setterMap) {
           const value = localStorage.getItem(key);
           setterMap[key](
@@ -150,7 +153,6 @@ function Booking() {
       e.preventDefault();
 
       const url = "/api/booking";
-
       const formData = new FormData();
 
       // Append all the data to formData
@@ -179,17 +181,21 @@ function Booking() {
         }
       }
 
+      setIsSending(true);
+
       // Send booking information to server
       fetch(url, {
         method: "POST",
         body: formData,
+      }).then((response) => {
+        if (response.ok) {
+          resetValues();
+          window.location.hash = "#thank-you";
+        } else {
+          window.location.hash = "#error"
+          console.log(response);
+        }
       });
-
-      resetValues();
-
-      // Instantly change to thank-you due to how serverless function works
-      // This will reduce lag (5-10 Second wait time after clicking submit)
-      window.location.hash = "#thank-you";
     }
   };
 
@@ -583,7 +589,16 @@ function Booking() {
             >
               Reset
             </button>
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={isSending}>
+              {isSending ? (
+                <div className="submit-button">
+                  <img src={spinner} alt="Loading..." className="spinner-img" />
+                  Please wait...
+                </div>
+              ) : (
+                "Submit"
+              )}
+            </button>
           </div>
         </form>
       </div>

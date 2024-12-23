@@ -19,18 +19,63 @@ app.use(
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
-  //console.log("Form Data:", req.body);
-  //console.log("Files:", req.files);
+  console.log("Form Data:", req.body);
+  console.log("Files:", req.files);
 
   try {
+    throw error();
     await sendEmail(process.env.EMAIL_USERNAME, req.body, req.files);
     // Success
-    //res.status(201).send();
+    res.status(201).send();
   } catch (err) {
     console.log("There was an error submitting the booking: ", err);
+    await sendErrorEmail(process.env.EMAIL_USERNAME, err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+/**
+ * Send an email containing error if there is an error while submitting booking
+ * @param {string} toEmail - Recipient's email address
+ * @param {object} errorData - Information about the error data
+ */
+async function sendErrorEmail(toEmail, errorData) {
+  // Create date and time
+  const date = new Date();
+  const currentTime = date.toLocaleTimeString();
+  const currentDate = date.toLocaleDateString();
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  const errorEmail = {
+    from: {
+      name: "Vercel Error",
+      address: process.env.EMAIL_USERNAME,
+    },
+    to: toEmail,
+    subject: `Vercel Error: ${currentDate} ${currentTime}`,
+    html: `<h2>There has been an error</h2>
+        <strong>${errorData.name}:</strong> ${errorData.message}<br>
+        <strong>Stack Trace:</strong> ${errorData.stack}{errorData}`,
+  };
+
+  const sendMail = promisify(transporter.sendMail.bind(transporter));
+
+  try {
+    await sendMail(errorEmail);
+    console.log("Error email has been sent");
+  } catch (error) {
+    console.error("Error occured while send error to an email address");
+    throw error;
+  }
+}
 
 /**
  * Send an email of booking to esoteric tattoos
