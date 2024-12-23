@@ -29,7 +29,7 @@ app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
     res.status(201).send();
   } catch (err) {
     console.log("There was an error submitting the booking: ", err);
-    await sendErrorEmail(process.env.EMAIL_USERNAME, err);
+    await sendErrorEmail(process.env.EMAIL_USERNAME, err, req.body);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -38,9 +38,11 @@ app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
  * @param {string} toEmail - Recipient's email address
  * @param {object} errorData - Information about the error data
  */
-async function sendErrorEmail(toEmail, errorData) {
+async function sendErrorEmail(toEmail, errorData, bookingInfo) {
+  const instagramURL = convertInstagram(bookingInfo.instagram);
   // Create date and time
   const date = new Date();
+  // TODO: Convert time to AEST since Vercel works in UTC?
   const currentTime = date.toLocaleTimeString();
   const currentDate = date.toLocaleDateString();
 
@@ -63,7 +65,13 @@ async function sendErrorEmail(toEmail, errorData) {
     subject: `Vercel Error: ${currentDate} ${currentTime}`,
     html: `<h2>There has been an error</h2>
         <strong>${errorData.name}:</strong> ${errorData.message}<br>
-        <strong>Stack Trace:</strong> ${errorData.stack}{errorData}`,
+        <strong>Stack Trace:</strong> ${errorData.stack}{errorData}
+        <hr>
+        <strong>Name: </strong> ${booingInfo.firstName + " " + bookingInfo.lastName }
+        <strong>Email: </strong> ${bookingInfo.email}
+        <strong>Instagram: </strong> <a href="${instagramURL}">${bookingData.instagram}</a>
+        <strong>Number: </strong> ${bookingInfo.number}
+`,
   };
 
   const sendMail = promisify(transporter.sendMail.bind(transporter));
