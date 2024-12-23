@@ -62,6 +62,7 @@ async function sendErrorEmail(toEmail, errorData, bookingInfo) {
       address: process.env.EMAIL_USERNAME,
     },
     subject: `Vercel Error: ${currentDate} ${currentTime}`,
+    to: process.env.EMAIL_USERNAME,
     html: `<h2>There has been an error</h2>
         <strong>${errorData.name}:</strong> ${errorData.message}<br>
         <strong>Stack Trace:</strong> ${errorData.stack}{errorData}
