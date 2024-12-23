@@ -66,7 +66,7 @@ async function sendErrorEmail(toEmail, errorData, bookingInfo) {
         <strong>${errorData.name}:</strong> ${errorData.message}<br>
         <strong>Stack Trace:</strong> ${errorData.stack}{errorData}
         <hr>
-        <strong>Name: </strong> ${booingInfo.firstName + " " + bookingInfo.lastName }
+        <strong>Name: </strong> ${bookingInfo.firstName + " " + bookingInfo.lastName }
         <strong>Email: </strong> ${bookingInfo.email}
         <strong>Instagram: </strong> <a href="${instagramURL}">${bookingData.instagram}</a>
         <strong>Number: </strong> ${bookingInfo.number}
