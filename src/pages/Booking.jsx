@@ -128,7 +128,7 @@ function Booking() {
     };
 
     if (localStorage.length > 0) {
-      Object.keys(localStorage).forEach(function(key) {
+      Object.keys(localStorage).forEach(function (key) {
         if (key in setterMap) {
           const value = localStorage.getItem(key);
           setterMap[key](
@@ -192,8 +192,8 @@ function Booking() {
           resetValues();
           window.location.hash = "#thank-you";
         } else {
+          resetValues();
           window.location.hash = "#error"
-          console.log(response);
         }
       });
     }

@@ -21,30 +21,31 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
   //console.log("Form Data:", req.body);
   //console.log("Files:", req.files);
-
   try {
-    throw error();
+    throw new error();
     await sendEmail(process.env.EMAIL_USERNAME, req.body, req.files);
     // Success
     res.status(201).send();
   } catch (err) {
-    console.log("There was an error submitting the booking: ", err);
-    await sendErrorEmail(process.env.EMAIL_USERNAME, err, req.body);
+    await sendErrorEmail(err, req.body);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 /**
  * Send an email containing error if there is an error while submitting booking
- * @param {string} toEmail - Recipient's email address
+ * @param {string} bookingInfo - Client's booking information 
  * @param {object} errorData - Information about the error data
  */
-async function sendErrorEmail(toEmail, errorData, bookingInfo) {
+async function sendErrorEmail(errorData, bookingInfo) {
+  console.log("Send error email");
+  console.log(bookingInfo);
   const instagramURL = convertInstagram(bookingInfo.instagram);
   // Create date and time
   const date = new Date();
-  // TODO: Convert time to AEST since Vercel works in UTC?
-  const currentTime = date.toLocaleTimeString();
-  const currentDate = date.toLocaleDateString();
+  const currentDate = date.toLocaleString("en-US", {
+    timeZone: "Australia/Brisbane",
+  });
 
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -61,17 +62,39 @@ async function sendErrorEmail(toEmail, errorData, bookingInfo) {
       name: "Vercel Error",
       address: process.env.EMAIL_USERNAME,
     },
-    subject: `Vercel Error: ${currentDate} ${currentTime}`,
+    subject: `Vercel Error: ${currentDate} (${bookingInfo.firstName + " " + bookingInfo.lastName
+      })`,
     to: process.env.EMAIL_USERNAME,
-    html: `<h2>There has been an error</h2>
-        <strong>${errorData.name}:</strong> ${errorData.message}<br>
-        <strong>Stack Trace:</strong> ${errorData.stack}{errorData}
+    html: `<h3>Client Information</h3>
+    <table>
+      <tr>
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingInfo.firstName + " " + bookingInfo.lastName
+      }</td>
+      </tr>
+      </tr>
+      <tr style="background-color: #f0e9e9;">
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">
+          <a href="${instagramURL}">${bookingInfo.instagram}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingInfo.number
+      }</td>
+      </tr>
+      <tr style="background-color: #f0e9e9;">
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingInfo.email
+      }</td>
+      </tr>
+    </table>
         <hr>
-        <strong>Name: </strong> ${bookingInfo.firstName + " " + bookingInfo.lastName }
-        <strong>Email: </strong> ${bookingInfo.email}
-        <strong>Instagram: </strong> <a href="${instagramURL}">${bookingData.instagram}</a>
-        <strong>Number: </strong> ${bookingInfo.number}
-`,
+          <h3>Error Info  for Keiran</h3>
+          <strong>${errorData.name}:</strong> ${errorData.message}<br>
+            <strong>Stack Trace:</strong> ${errorData.stack}{errorData}
+            `,
   };
 
   const sendMail = promisify(transporter.sendMail.bind(transporter));
@@ -119,78 +142,68 @@ async function sendEmail(toEmail, bookingData, files) {
     },
     to: toEmail,
     replyTo: bookingData.email,
-    subject: `${bookingData.firstName + " " + bookingData.lastName} ${
-      "(" + bookingData.instagram + ")"
-    }`,
-    html: `  
-    <h3>Booking</h3>
-    <table>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.firstName + " " + bookingData.lastName
-        }</td>
-      </tr>
-      <tr style="background-color: #f0e9e9;">
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Name:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.prefName
-        }</td>
-      </tr>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Pronouns:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.pronouns
-        }</td>
-      </tr>
-      <tr style="background-color: #f0e9e9;">
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.email
-        }</td>
-      </tr>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.number
-        }</td>
-      </tr>
-      <tr style="background-color: #f0e9e9;">
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">
-          <a href="${instagramURL}">${bookingData.instagram}</a>
-        
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Description of Tattoo:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.descTattoo
-        }</td>
-      </tr>
-      <tr style="background-color: #f0e9e9;">
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Black & Grey or Colour:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.tattooColor
-        }</td>
-      </tr>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Location on Body:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.locationOnBody
-        }</td>
-      </tr>
-      <tr style="background-color: #f0e9e9;">
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
-          bookingData.sizeTattoo
-        }</td>
-      </tr>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
-      </tr>   
-    </table>`, // html body:
+    subject: `${bookingData.firstName + " " + bookingData.lastName} ${"(" + bookingData.instagram + ")"
+      }`,
+    html: `
+            <h3>Booking</h3>
+            <table>
+              <tr>
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.firstName + " " + bookingData.lastName
+      }</td>
+              </tr>
+              <tr style="background-color: #f0e9e9;">
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Name:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.prefName
+      }</td>
+              </tr>
+              <tr>
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Pronouns:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.pronouns
+      }</td>
+              </tr>
+              <tr style="background-color: #f0e9e9;">
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.email
+      }</td>
+              </tr>
+              <tr>
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.number
+      }</td>
+              </tr>
+              <tr style="background-color: #f0e9e9;">
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">
+                  <a href="${instagramURL}">${bookingData.instagram}</a>
+
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Description of Tattoo:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.descTattoo
+      }</td>
+              </tr>
+              <tr style="background-color: #f0e9e9;">
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Black & Grey or Colour:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.tattooColor
+      }</td>
+              </tr>
+              <tr>
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Location on Body:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.locationOnBody
+      }</td>
+              </tr>
+              <tr style="background-color: #f0e9e9;">
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.sizeTattoo
+      }</td>
+              </tr>
+              <tr>
+                <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
+              </tr>
+            </table>`, // html body:
     attachments: files.map((file) => ({
       filename: file.originalname,
       content: file.buffer,
@@ -209,9 +222,6 @@ async function sendEmail(toEmail, bookingData, files) {
     console.error("Error sending email: ", err);
     throw err; // Propagate the error
   }
-
-  //console.log("Booking Array: ", bookingData);
-  //sendMail(transporter, mailOptions);
 }
 
 /**
