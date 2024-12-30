@@ -4,7 +4,7 @@ import picklesImage from "../assets/dr-pickles-tattoo-balm.jpg";
 import inkyImage from "../assets/inky-salve.png";
 import opsiteImage from "../assets/opsite-flex.jpg";
 
-import { changeHashAddress } from "./Homepage";
+import { changeURL } from "./Homepage";
 
 function Aftercare() {
   return (
@@ -307,7 +307,7 @@ function Aftercare() {
         </p>
       </div>
       <div className="home-button-div">
-        <button type="button" onClick={() => changeHashAddress("#")}>
+        <button type="button" onClick={() => changeURL("/")}>
           Homepage
         </button>
       </div>

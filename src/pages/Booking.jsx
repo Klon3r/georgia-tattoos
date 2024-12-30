@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { changeHashAddress } from "./Homepage";
+import { changeURL } from "./Homepage";
 import spinner from "../assets/spinner.gif";
 
 function Booking() {
@@ -132,7 +132,7 @@ function Booking() {
         if (key in setterMap) {
           const value = localStorage.getItem(key);
           setterMap[key](
-            value === "true" ? true : value === "false" ? false : value
+            value === "true" ? true : value === "false" ? false : value,
           );
         }
       });
@@ -193,7 +193,7 @@ function Booking() {
           window.location.hash = "#thank-you";
         } else {
           resetValues();
-          window.location.hash = "#error"
+          window.location.hash = "#error";
         }
       });
     }
@@ -202,7 +202,7 @@ function Booking() {
   function handleBookingPolicy(id) {
     setPolicyClicked(true);
     localStorage.setItem(id, true);
-    changeHashAddress("booking-policy");
+    changeURL("booking-policy");
   }
 
   function checkFiles(files) {

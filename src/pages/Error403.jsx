@@ -1,4 +1,4 @@
-import { changeHashAddress } from "./Homepage";
+import { changeURL } from "./Homepage";
 
 function Error403() {
   return (
@@ -8,7 +8,7 @@ function Error403() {
         That page doesn't exist, please go back to the homepage.
       </p>
       {/* Back Button */}
-      <button onClick={() => changeHashAddress("")} id="back-button">
+      <button onClick={() => changeURL("")} id="back-button">
         <strong>BACK</strong>
       </button>
     </>

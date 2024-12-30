@@ -1,4 +1,4 @@
-import { changeHashAddress } from "./Homepage";
+import { changeURL } from "./Homepage";
 
 function Error() {
   return (
@@ -8,7 +8,7 @@ function Error() {
         There has been an error please go back and try again.
       </p>
       {/* Back Button */}
-      <button onClick={() => changeHashAddress("")} id="back-button">
+      <button onClick={() => changeURL("")} id="back-button">
         <strong>BACK</strong>
       </button>
     </>

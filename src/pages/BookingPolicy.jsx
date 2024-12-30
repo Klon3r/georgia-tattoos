@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { changeHashAddress } from "./Homepage";
+import { changeURL } from "./Homepage";
 
 function BookingPolicy() {
   useEffect(() => {
@@ -11,7 +11,7 @@ function BookingPolicy() {
     };
 
     // Add event when page loads
-    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("change", handleHashChange);
 
     // Remove event listener on component unmount
     return () => {
@@ -104,7 +104,7 @@ function BookingPolicy() {
         </p>
       </div>{" "}
       {/* Booking */}
-      <button onClick={() => changeHashAddress("booking")}>
+      <button onClick={() => changeURL("booking")}>
         <strong>BACK TO BOOKING</strong>
       </button>{" "}
     </>

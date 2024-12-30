@@ -38,7 +38,7 @@ function Homepage() {
           <strong>TIKTOK</strong>
         </button>
         {/* Aftercare */}
-        <button onClick={() => changeHashAddress("aftercare")}>
+        <button onClick={() => changeURL("aftercare")}>
           <strong>AFTERCARE</strong>
         </button>
         {/* STUDIO PDF */}
@@ -52,11 +52,7 @@ function Homepage() {
   );
 }
 
-export function changeHashAddress(location) {
-  window.location.hash = location;
-}
-
-function changeURL(location) {
+export function changeURL(location) {
   window.location = location;
 }
 
