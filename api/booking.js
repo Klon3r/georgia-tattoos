@@ -22,7 +22,6 @@ app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
   //console.log("Form Data:", req.body);
   //console.log("Files:", req.files);
   try {
-    throw new error();
     await sendEmail(process.env.EMAIL_USERNAME, req.body, req.files);
     // Success
     res.status(201).send();
