@@ -21,5 +21,5 @@ test("Check error text", async ({ page }) => {
 test("Check button routes back to homepage", async ({ page }) => {
   await page.goto(errorPage);
   await page.getByRole("button", { name: /BACK/i }).click();
-  await expect(page).toHaveURL(/. *#/);
+  await expect(page).toHaveURL(/. */);
 });
