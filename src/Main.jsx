@@ -36,7 +36,7 @@ const router = createBrowserRouter([
   },
   {
     // Booking
-    path: "booking",
+    path: "/booking",
     element: (
       <>
         <Layout />
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
   },
   {
     // Booking Policy
-    path: "booking-policy",
+    path: "/booking-policy",
     element: (
       <>
         <Layout />
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
   },
   {
     // Aftercare
-    path: "aftercare",
+    path: "/aftercare",
     element: (
       <>
         <Layout />
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
   },
   {
     // Thank You
-    path: "thank-you",
+    path: "/thank-you",
     element: (
       <>
         <Layout />
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
   },
   {
     // Error
-    path: "error",
+    path: "/error",
     element: (
       <>
         <Layout />
