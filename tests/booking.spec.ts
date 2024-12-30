@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
 
-const booking = "localhost:5173#booking";
+const booking = "localhost:5173/booking";
 
 // Check Title
 test("Check Hash Routing", async ({ page }) => {
   await page.goto(booking);
-  await expect(page).toHaveURL(/.*#booking/);
+  await expect(page).toHaveURL(/.*booking/);
 });
 
 // Check inputs exist
