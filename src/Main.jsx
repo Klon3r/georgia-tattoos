@@ -12,6 +12,7 @@ import Booking from "./pages/Booking";
 import BookingPolicy from "./pages/BookingPolicy";
 import Aftercare from "./pages/Aftercare";
 import ThankYou from "./pages/ThankYou";
+import ConsentForm from "./pages/ConsentForm";
 import Error from "./pages/Error";
 import Error403 from "./pages/Error403";
 
@@ -71,6 +72,16 @@ const router = createBrowserRouter([
       <>
         <Layout />
         <ThankYou />
+      </>
+    ),
+  },
+  {
+    // Consent Form
+    path: "/consent",
+    element: (
+      <>
+        <Layout />
+        <ConsentForm />
       </>
     ),
   },

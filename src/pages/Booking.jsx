@@ -132,7 +132,7 @@ function Booking() {
         if (key in setterMap) {
           const value = localStorage.getItem(key);
           setterMap[key](
-            value === "true" ? true : value === "false" ? false : value,
+            value === "true" ? true : value === "false" ? false : value
           );
         }
       });

@@ -311,3 +311,36 @@ input[type="checkbox"] {
 .spinner-img {
   width: 40px;
 }
+
+/* ---------------------- 
+        CONSENT FORM 
+   ----------------------  */
+.consent-label {
+  font-weight: 600;
+  font-size: var(--font-size);
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.consent-inputs {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.consent-inputs input[type="date"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.consent-inputs input[type="file"] {
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 16px;
+}
