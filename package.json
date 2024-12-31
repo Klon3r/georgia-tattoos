@@ -13,6 +13,7 @@
     "docker": "docker-compose --env-file .env up -d"
   },
   "dependencies": {
+    "flatpickr": "^4.6.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vercel": "^32.3.0"
