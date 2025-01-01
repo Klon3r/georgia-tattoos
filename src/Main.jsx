@@ -21,6 +21,18 @@ import "./style.css";
 function Layout() {
   const location = useLocation();
 
+  React.useEffect(() => {
+    if (location.pathname === "/consent") {
+      document.body.style.backgroundColor = "#fcdef8";
+    } else {
+      document.body.style.backgroundImage =
+        "url('./assets/spiderweb_background.png')";
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundAttachment = "fixed";
+      document.body.backgroundColor = "#f6bbed";
+    }
+  }, [location.pathname]);
+
   return <>{location.pathname !== "/studio" && <Logo />}</>;
 }
 

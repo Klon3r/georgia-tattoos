@@ -17,10 +17,6 @@
          Mainpage
    ----------------------  */
 body {
-  background-color: #f6bbed;
-  background-image: url("./assets/spiderweb_background.png");
-  background-size: cover;
-  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -315,6 +311,7 @@ input[type="checkbox"] {
 /* ---------------------- 
         CONSENT FORM 
    ----------------------  */
+
 .consent-label {
   font-weight: 600;
   font-size: var(--font-size);
@@ -343,4 +340,79 @@ input[type="checkbox"] {
   box-sizing: border-box;
   padding: 5px;
   font-size: 16px;
+}
+
+.consent-paragraph {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.consent-div {
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  gap: 10px; /* Adds consistent spacing */
+}
+
+.consent-paragraph {
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.consent-form-page {
+  width: 100%;
+  border-radius: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-image: none;
+}
+
+/* DESKTOP CONSENT DIV */
+@media (min-width: 768px) {
+  .consent-form-page {
+    width: 40%;
+  }
+}
+
+/* Questionaire */
+
+.radio-button-div {
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.radio-group {
+  display: flex;
+  gap: 5rem;
+}
+
+.radio-button-div label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-div {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.checkbox-div label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  line-height: 1;
+}
+
+.checkbox-div input[type="checkbox"] {
+  margin: 0;
+  width: 20px;
+  height: 20px;
 }
