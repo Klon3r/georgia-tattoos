@@ -416,3 +416,25 @@ input[type="checkbox"] {
   width: 20px;
   height: 20px;
 }
+
+.consent-inputs li {
+  padding: 5px;
+}
+
+/** SIGNATURE AREA */
+.signature-pad {
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+@media (pointer: coarse) {
+  body {
+    overflow: hidden; /** Needed to prevent the vertical scroll on touch devices */
+  }
+}
+
+.signature-div {
+  margin: auto;
+}

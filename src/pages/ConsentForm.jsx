@@ -1,11 +1,12 @@
-import LicenseCardInput from "./components/LicenseCardInput";
-import NameInput from "./components/NameInput";
-import PronounSelector from "./components/PronounSelector";
-import DateOfBirthSelector from "./components/DateOfBirthSelector";
-import PhoneNumberInput from "./components/PhoneNumberInput";
-import HomeAddressTextArea from "./components/HomeAddressTextArea";
-import EmergancyContactInformationInput from "./components/EmergencyContactInformationInput";
-import QuestionnaireInput from "./components/QuestionnaireInput";
+import LicenseCardInput from "./components/Consent/LicenseCardInput";
+import NameInput from "./components/Consent/NameInput";
+import PronounSelector from "./components/Consent/PronounSelector";
+import DateOfBirthSelector from "./components/Consent/DateOfBirthSelector";
+import PhoneNumberInput from "./components/Consent/PhoneNumberInput";
+import HomeAddressTextArea from "./components/Consent/HomeAddressTextArea";
+import EmergancyContactInformationInput from "./components/Consent/EmergencyContactInformationInput";
+import QuestionnaireInput from "./components/Consent/QuestionnaireInput";
+import Signature from "./components/Consent/Signature";
 
 function ConsentForm() {
   return (
@@ -27,6 +28,7 @@ function ConsentForm() {
         <h2>Pre-Procedure Questionnaire</h2>
         <div className="consent-div">
           <QuestionnaireInput />
+          <Signature />
         </div>
       </div>
     </>
