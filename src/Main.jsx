@@ -15,6 +15,7 @@ import ThankYou from "./pages/ThankYou";
 import ConsentForm from "./pages/ConsentForm";
 import Error from "./pages/Error";
 import Error403 from "./pages/Error403";
+import spiderwebBackground from "./assets/spiderweb_background.png";
 
 import "./style.css";
 
@@ -23,13 +24,15 @@ function Layout() {
 
   React.useEffect(() => {
     if (location.pathname === "/consent") {
+      console.log(location.pathname);
       document.body.style.backgroundColor = "#fcdef8";
+      document.body.style.backgroundImage = "none";
     } else {
-      document.body.style.backgroundImage =
-        "url('./assets/spiderweb_background.png')";
+      console.log(location.pathname);
+      document.body.style.backgroundColor = "#f6bbed";
+      document.body.style.backgroundImage = `url(${spiderwebBackground})`;
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundAttachment = "fixed";
-      document.body.backgroundColor = "#f6bbed";
     }
   }, [location.pathname]);
 
