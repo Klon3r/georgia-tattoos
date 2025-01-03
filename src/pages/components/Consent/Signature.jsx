@@ -45,6 +45,21 @@ function Signature() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const resizeCanvas = () => {
+      const canvasWidth = canvas.offsetWidth;
+      const canvasHeight = canvas.offsetHeight;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+    };
+
+    resizeCanvas();
+
+    window.addEventListener("resize", resizeCanvas);
+    return () => window.removeEventListener("resize", resizeCanvas);
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
 
     const touchStartHandle = (event) => {
       preventScroll(event);
@@ -78,8 +93,6 @@ function Signature() {
         <div className="signature-div">
           <canvas
             ref={canvasRef}
-            height="100"
-            width="350"
             className="signature-pad"
             onPointerDown={(event) => {
               handlePointerDown(event);
@@ -89,10 +102,12 @@ function Signature() {
             onPointerMove={handlePointerMove}
             onMouseLeave={handlePointerUp}
           ></canvas>
-          <p>
-            <a onClick={clearCanvas}>Clear</a>
-          </p>
         </div>
+      </div>
+      <div className="clear-button-div">
+        <p>
+          <a onClick={clearCanvas}>Clear</a>
+        </p>
       </div>
     </>
   );

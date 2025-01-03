@@ -1,11 +1,17 @@
-function TattooOptions() {
+function TattooOptions({ value, onChange }) {
   return (
     <>
       <div className="consent-label">
         What part of the body is your tattoo/s going on?
         <span className="required">*</span>
         <div className="consent-inputs">
-          <textarea placeholder="i.e. forearm" rows="4" />
+          <textarea
+            placeholder="i.e. forearm"
+            rows="4"
+            name="whereTattooOnBody"
+            value={value.whereTattooOnBody}
+            onChange={onChange}
+          />
         </div>
       </div>
 
@@ -21,8 +27,9 @@ function TattooOptions() {
               type="radio"
               id="numbing-cream-yes"
               title="numbing-cream-yes"
-              name="numbing-cream"
+              name="numbingCream"
               value="yes"
+              onChange={onChange}
             />
             Yes
           </label>
@@ -34,8 +41,9 @@ function TattooOptions() {
               type="radio"
               id="numbing-cream-no"
               title="numbing-cream-no"
-              name="numbing-cream"
+              name="numbingCream"
               value="no"
+              onChange={onChange}
             />
             No
           </label>

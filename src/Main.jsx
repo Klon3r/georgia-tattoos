@@ -24,11 +24,9 @@ function Layout() {
 
   React.useEffect(() => {
     if (location.pathname === "/consent") {
-      console.log(location.pathname);
       document.body.style.backgroundColor = "#fcdef8";
       document.body.style.backgroundImage = "none";
     } else {
-      console.log(location.pathname);
       document.body.style.backgroundColor = "#f6bbed";
       document.body.style.backgroundImage = `url(${spiderwebBackground})`;
       document.body.style.backgroundSize = "cover";

@@ -1,19 +1,4 @@
-import React, { useEffect } from "react";
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css"; // Default styles
-
-function DateOfBirthSelector() {
-  useEffect(() => {
-    const todayDate = new Date();
-    flatpickr("#dob", {
-      dateFormat: "d-m-Y",
-      minDate: "01-01-1990",
-      maxDate: todayDate,
-      disableMobile: true, // Remove mobile styling
-      theme: "light", // light or dark
-    });
-  }, []);
-
+function DateOfBirthSelector({ value, onChange }) {
   return (
     <>
       <div className="consent-label">
@@ -21,11 +6,11 @@ function DateOfBirthSelector() {
       </div>
       <div className="consent-inputs">
         <input
-          type="text"
-          id="dob"
+          type="date"
+          id="dob-id"
           name="dob"
-          placeholder="dd-mm-yyyy"
-          title="date-of-birth"
+          value={value.dob}
+          onChange={onChange}
           required
         />
       </div>

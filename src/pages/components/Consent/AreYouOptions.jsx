@@ -1,4 +1,4 @@
-function AreYouOptions() {
+function AreYouOptions({ value, onChange }) {
   return (
     <>
       <div className="consent-label">
@@ -15,6 +15,7 @@ function AreYouOptions() {
               title="breastfeeding-yes"
               name="breastfeeding"
               value="yes"
+              onChange={onChange}
             />
             Yes
           </label>
@@ -28,6 +29,7 @@ function AreYouOptions() {
               title="breastfeeding-no"
               name="breastfeeding"
               value="no"
+              onChange={onChange}
             />
             No
           </label>
@@ -47,6 +49,7 @@ function AreYouOptions() {
               id="cancer-yes"
               title="cancer-yes"
               name="cancer"
+              onChange={onChange}
               value="yes"
             />
             Yes
@@ -61,6 +64,7 @@ function AreYouOptions() {
               title="cancer-no"
               name="cancer"
               value="no"
+              onChange={onChange}
             />
             No
           </label>
@@ -79,7 +83,8 @@ function AreYouOptions() {
               type="radio"
               id="alcohol-or-drugs-yes"
               title="alcohol-or-drugs-yes"
-              name="alcohol-or-drugs"
+              name="alcoholOrDrugs"
+              onChange={onChange}
               value="yes"
             />
             Yes
@@ -92,7 +97,8 @@ function AreYouOptions() {
               type="radio"
               id="alcohol-or-drugs-no"
               title="alcohol-or-drugs-no"
-              name="alcohol-or-drugs"
+              name="alcoholOrDrugs"
+              onChange={onChange}
               value="no"
             />
             No

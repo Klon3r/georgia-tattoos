@@ -329,9 +329,19 @@ input[type="checkbox"] {
 
 .consent-inputs input[type="date"] {
   width: 100%;
-  box-sizing: border-box;
-  padding: 8px;
+  padding: 12px;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer; /* Ensures it's clear the input is interactive */
+  box-sizing: border-box;
+}
+
+.consent-inputs input[type="date"]:focus {
+  border-color: #4a90e2;
+  outline: none;
 }
 
 .consent-inputs input[type="file"] {
@@ -421,12 +431,26 @@ input[type="checkbox"] {
   padding: 5px;
 }
 
+.consent-inputs canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.signature-div {
+  width: 100%;
+  height: 100px;
+  padding-bottom: 10px;
+  position: relative; /* Ensure the canvas and button are correctly positioned */
+}
+
 /** SIGNATURE AREA */
 .signature-pad {
   cursor: pointer;
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
+  width: 100%;
+  height: 100%;
 }
 
 @media (pointer: coarse) {
@@ -435,6 +459,9 @@ input[type="checkbox"] {
   }
 }
 
-.signature-div {
-  margin: auto;
+.clear-button-div p {
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  cursor: pointer;
 }

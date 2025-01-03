@@ -1,4 +1,8 @@
-function LicenseCardInput() {
+function LicenseCardInput({ value, onChange }) {
+  const handleInput = (event) => {
+    const newValue = event.target.value.replace(/[^0-9]/g, "");
+    onChange({ target: { name: event.target.name, value: newValue } });
+  };
   return (
     <>
       <div className="consent-label">
@@ -7,12 +11,15 @@ function LicenseCardInput() {
       </div>
       <div className="consent-inputs">
         <input
-          type="number"
+          type="text"
           id="license-number"
           title="license-number"
           className="license-number"
-          name="license-number:"
+          name="licenseNumber"
           placeholder="License Number"
+          value={value.licenseNumber}
+          onInput={handleInput}
+          inputMode="numeric"
           required
         />
       </div>

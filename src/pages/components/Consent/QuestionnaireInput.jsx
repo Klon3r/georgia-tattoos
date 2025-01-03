@@ -6,7 +6,7 @@ import MedicationsOptions from "./Questionnaire/MedicationsOptions";
 import TattooOptions from "./Questionnaire/TattooOptions";
 import TermsAndConditions from "./TermsAndConditions";
 
-function QuestionnaireInput() {
+function QuestionnaireInput({ value, onChange }) {
   return (
     <>
       <MedicationsOptions />

@@ -1,4 +1,4 @@
-function NameInput() {
+function NameInput({ value, onChange }) {
   return (
     <>
       <div className="consent-label">
@@ -11,6 +11,8 @@ function NameInput() {
           name="fname"
           placeholder="First Name"
           title="first-name"
+          value={value.fname}
+          onChange={onChange}
           required
         ></input>
         <input
@@ -19,6 +21,8 @@ function NameInput() {
           name="lname"
           placeholder="Last Name"
           title="last-name"
+          value={value.lname}
+          onChange={onChange}
           required
         ></input>
       </div>

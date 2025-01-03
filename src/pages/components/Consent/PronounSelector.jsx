@@ -1,4 +1,4 @@
-function PronounSelector() {
+function PronounSelector({ value, onChange }) {
   return (
     <>
       <div className="consent-label">
@@ -9,7 +9,9 @@ function PronounSelector() {
           id="pronouns"
           title="pronouns"
           className="pronouns"
-          name="Pronouns:"
+          name="pronouns"
+          value={value.pronouns}
+          onChange={onChange}
           required
         >
           <option hidden>Select pronouns</option>

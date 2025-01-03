@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function MedicationsOptions() {
-  const [medicationBool, setMedicationBool] = useState(false);
+function MedicationsOptions({ value, onChange }) {
+  const [medicationBool, setMedicationBool] = useState(null);
 
   return (
     <>
@@ -17,8 +17,9 @@ function MedicationsOptions() {
               type="radio"
               id="medication-yes"
               title="medication-yes"
-              name="medication"
+              name="medications"
               value="yes"
+              onChange={onChange}
               onClick={() => setMedicationBool(true)}
             />
             Yes
@@ -31,8 +32,9 @@ function MedicationsOptions() {
               type="radio"
               id="medication-no"
               title="medication-no"
-              name="medication"
+              name="medications"
               value="no"
+              onChange={onChange}
               onClick={() => setMedicationBool(false)}
             />
             No
@@ -44,7 +46,13 @@ function MedicationsOptions() {
           Please specify which medications
           <span className="required">*</span>
           <div className="consent-inputs">
-            <textarea placeholder="i.e. blood thinners" rows="4" />
+            <textarea
+              placeholder="i.e. blood thinners"
+              rows="4"
+              name="whichMedications"
+              value={value.whichMedications}
+              onChange={onChange}
+            />
           </div>
         </div>
       )}
