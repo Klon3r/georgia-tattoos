@@ -430,7 +430,7 @@ input[type="checkbox"] {
 }
 
 @media (pointer: coarse) {
-  body {
+  .signature-div {
     overflow: hidden; /** Needed to prevent the vertical scroll on touch devices */
   }
 }

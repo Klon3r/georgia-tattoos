@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function Signature() {
   const canvasRef = useRef(null);
@@ -20,6 +20,8 @@ function Signature() {
     if (!writingMode) return;
     const ctx = canvasRef.current.getContext("2d");
     const [positionX, positionY] = getCursorPosition(event);
+    ctx.lineWidth = 2;
+    ctx.lineJoin = ctx.lineCap = "round";
     ctx.lineTo(positionX, positionY);
     ctx.stroke();
   };
@@ -32,6 +34,43 @@ function Signature() {
     return [positionX, positionY];
   };
 
+  const preventScroll = (event) => {
+    event.preventDefault();
+  };
+
+  const clearCanvas = () => {
+    const ctx = canvasRef.current.getContext("2d");
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+
+    const touchStartHandle = (event) => {
+      preventScroll(event);
+      handlePointerDown(event);
+    };
+
+    const touchMoveHandle = (event) => {
+      preventScroll(event);
+      handlePointerMove(event);
+    };
+
+    const touchEndHandle = () => {
+      handlePointerUp();
+    };
+
+    canvas.addEventListener("touchstart", touchStartHandle, { passive: false });
+    canvas.addEventListener("touchmove", touchMoveHandle, { passive: false });
+    canvas.addEventListener("touchend", touchEndHandle);
+
+    return () => {
+      canvas.removeEventListener("touchstart", touchStartHandle);
+      canvas.removeEventListener("touchmove", touchMoveHandle);
+      canvas.removeEventListener("touchend", touchEndHandle);
+    };
+  }, []);
+
   return (
     <>
       <div className="consent-label">Signature:</div>
@@ -40,12 +79,19 @@ function Signature() {
           <canvas
             ref={canvasRef}
             height="100"
-            width="300"
+            width="350"
             className="signature-pad"
-            onPointerDown={handlePointerDown}
+            onPointerDown={(event) => {
+              handlePointerDown(event);
+              preventScroll(event);
+            }}
             onPointerUp={handlePointerUp}
             onPointerMove={handlePointerMove}
+            onMouseLeave={handlePointerUp}
           ></canvas>
+          <p>
+            <a onClick={clearCanvas}>Clear</a>
+          </p>
         </div>
       </div>
     </>
