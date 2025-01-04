@@ -1,4 +1,27 @@
-function MedicalConditionsOptions() {
+import { useState } from "react";
+
+function MedicalConditionsOptions({ value, onChange }) {
+  const [medicalConditions, setMedicalConditions] = useState([]);
+  const [diabetesCheck, setDiabetesCheck] = useState(false);
+
+  const pushToList = (value, e) => {
+    if (e.target.checked == true) {
+      if (!medicalConditions.includes(value)) {
+        // Add to list
+        medicalConditions.push(value);
+      }
+    } else {
+      // Remove from list
+      if (medicalConditions.includes(value)) {
+        const index = medicalConditions.indexOf(value);
+        medicalConditions.splice(index, 1);
+      }
+    }
+    onChange({
+      target: { name: "medicalConditions", value: medicalConditions },
+    });
+  };
+
   return (
     <>
       <div className="consent-label">
@@ -14,6 +37,7 @@ function MedicalConditionsOptions() {
               id="diabetes-checkbox"
               title="diabetes-checkbox"
               name="diabetes"
+              onClick={(e) => pushToList("diabetes", e)}
             />
             Diabetes
           </label>
@@ -25,7 +49,8 @@ function MedicalConditionsOptions() {
               type="checkbox"
               id="hiv-aids-checkbox"
               title="hiv-aids-checkbox"
-              name="hiv-aids"
+              name="hivAids"
+              onClick={(e) => pushToList("hiv aids", e)}
             />
             HIV/AIDS
           </label>
@@ -38,6 +63,7 @@ function MedicalConditionsOptions() {
               id="hepatitis-checkbox"
               title="hepatitis-checkbox"
               name="hepatitis"
+              onClick={(e) => pushToList("hepatitis", e)}
             />
             Hepatitis
           </label>
@@ -50,6 +76,7 @@ function MedicalConditionsOptions() {
               id="heart-condition-checkbox"
               title="heart-condition-checkbox"
               name="heart-condition"
+              onClick={(e) => pushToList("heart condition", e)}
             />
             Heart Condition/s
           </label>
@@ -62,6 +89,7 @@ function MedicalConditionsOptions() {
               id="eczema-checkbox"
               title="eczema-checkbox"
               name="eczema"
+              onClick={(e) => pushToList("eczema", e)}
             />
             Psoriasis/Eczema
           </label>
@@ -74,6 +102,7 @@ function MedicalConditionsOptions() {
               id="keloiding-checkbox"
               title="keloiding-checkbox"
               name="keloiding"
+              onClick={(e) => pushToList("keloiding", e)}
             />
             Prone to Keloiding
           </label>
@@ -86,6 +115,7 @@ function MedicalConditionsOptions() {
               id="autoimmune-checkbox"
               title="autoimmune-checkbox"
               name="autoimmune"
+              onClick={(e) => pushToList("autoimmune", e)}
             />
             Autoimmune Disorder
           </label>
@@ -98,6 +128,7 @@ function MedicalConditionsOptions() {
               id="none-of-the-above-checkbox"
               title="none-of-the-above-checkbox"
               name="none-of-the-above"
+              onClick={(e) => pushToList("none of the above", e)}
             />
             None of the above
           </label>
@@ -107,7 +138,12 @@ function MedicalConditionsOptions() {
           Please list below any other medical conditions not listed you think I
           should know about (optional)
           <div className="consent-inputs">
-            <textarea rows="4" />
+            <textarea
+              rows="4"
+              name="otherMedicalConditions"
+              value={value.otherMedicalConditions}
+              onChange={onChange}
+            />
           </div>
         </div>
       </div>

@@ -21,7 +21,6 @@ function PhoneNumberInput({ value, onChange }) {
           inputMode="numeric"
           onInput={handleInput}
           value={value.phoneNumber}
-          required
         ></input>
       </div>
     </>

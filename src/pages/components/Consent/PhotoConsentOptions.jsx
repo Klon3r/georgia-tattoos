@@ -1,4 +1,4 @@
-function PhotoConsentOptions() {
+function PhotoConsentOptions({ value, onChange }) {
   return (
     <>
       <div className="consent-label">
@@ -13,8 +13,9 @@ function PhotoConsentOptions() {
               type="radio"
               id="photo-choices-yes"
               title="photo-choices-yes"
-              name="photo-permission"
+              name="photoPermission"
               value="yes"
+              onChange={onChange}
             />
             Yes
           </label>
@@ -26,8 +27,9 @@ function PhotoConsentOptions() {
               type="radio"
               id="photo-choices-no"
               title="photo-choices-no"
-              name="photo-permission"
+              name="photoPermission"
               value="no"
+              onChange={onChange}
             />
             No
           </label>

@@ -3,6 +3,12 @@ function LicenseCardInput({ value, onChange }) {
     const newValue = event.target.value.replace(/[^0-9]/g, "");
     onChange({ target: { name: event.target.name, value: newValue } });
   };
+
+  const handleFileInput = (event) => {
+    const file = event.target.files[0];
+    onChange({ target: { name: event.target.name, value: file } });
+  };
+
   return (
     <>
       <div className="consent-label">
@@ -20,7 +26,6 @@ function LicenseCardInput({ value, onChange }) {
           value={value.licenseNumber}
           onInput={handleInput}
           inputMode="numeric"
-          required
         />
       </div>
       <div className="consent-label">
@@ -28,7 +33,12 @@ function LicenseCardInput({ value, onChange }) {
         <span className="required">*</span>
       </div>
       <div className="consent-inputs">
-        <input type="file" accept="image/*;capture=camera"></input>
+        <input
+          type="file"
+          accept="image/*;capture=camera"
+          name="licensePhoto"
+          onChange={handleFileInput}
+        ></input>
       </div>
     </>
   );

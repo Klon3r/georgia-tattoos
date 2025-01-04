@@ -1,4 +1,4 @@
-function TermsAndConditions() {
+function TermsAndConditions({ value, onChange }) {
   return (
     <>
       <h2>Tattoo Terms and Conditions</h2>
@@ -54,6 +54,7 @@ function TermsAndConditions() {
       </div>
       <div className="consent-label">
         I understand and have fully disclosed the following:
+        <span className="required">*</span>
       </div>
 
       <div id="acknowledge-choices" className="radio-group">
@@ -65,6 +66,7 @@ function TermsAndConditions() {
               title="ack-yes"
               name="acknowledge"
               value="yes"
+              onChange={onChange}
             />
             Yes
           </label>
@@ -78,6 +80,7 @@ function TermsAndConditions() {
               title="ack-no"
               name="acknowledge"
               value="no"
+              onChange={onChange}
             />
             No
           </label>

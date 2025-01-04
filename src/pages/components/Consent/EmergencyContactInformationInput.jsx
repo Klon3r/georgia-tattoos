@@ -22,7 +22,6 @@ function EmergancyContactInformationInput({ value, onChange }) {
           title="Emergency Contact Name"
           value={value.emergancyContactName}
           onChange={onChange}
-          required
         ></input>
       </div>
 
@@ -38,7 +37,6 @@ function EmergancyContactInformationInput({ value, onChange }) {
           title="Emergency Contact Number"
           value={value.emergancyContactNumber}
           onChange={onChange}
-          required
         ></input>
       </div>
     </>

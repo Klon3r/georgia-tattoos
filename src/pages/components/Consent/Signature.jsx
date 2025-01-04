@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
-function Signature() {
+function Signature({ value, onChange }) {
   const canvasRef = useRef(null);
   const [writingMode, setWritingMode] = useState(false);
 
@@ -14,6 +14,7 @@ function Signature() {
 
   const handlePointerUp = () => {
     setWritingMode(false);
+    saveSignature();
   };
 
   const handlePointerMove = (event) => {
@@ -41,6 +42,14 @@ function Signature() {
   const clearCanvas = () => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  };
+
+  const saveSignature = () => {
+    const canvas = canvasRef.current;
+    const signatureData = canvas.toDataURL();
+    onChange({
+      target: { name: "signatureImage", value: signatureData },
+    });
   };
 
   useEffect(() => {
@@ -106,7 +115,9 @@ function Signature() {
       </div>
       <div className="clear-button-div">
         <p>
-          <a onClick={clearCanvas}>Clear</a>
+          <a onClick={clearCanvas} className="clear-button">
+            Clear
+          </a>
         </p>
       </div>
     </>

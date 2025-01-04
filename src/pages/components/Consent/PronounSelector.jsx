@@ -12,7 +12,6 @@ function PronounSelector({ value, onChange }) {
           name="pronouns"
           value={value.pronouns}
           onChange={onChange}
-          required
         >
           <option hidden>Select pronouns</option>
           <option value="She/Her">She/Her</option>

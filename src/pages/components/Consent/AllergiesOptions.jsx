@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AllergiesOptions() {
+function AllergiesOptions({ value, onChange }) {
   const [allergies, setAllergies] = useState(false);
 
   return (
@@ -19,6 +19,7 @@ function AllergiesOptions() {
               title="allergies-yes"
               name="allergies"
               value="yes"
+              onChange={onChange}
               onClick={() => setAllergies(true)}
             />
             Yes
@@ -33,6 +34,7 @@ function AllergiesOptions() {
               title="allergies-no"
               name="allergies"
               value="no"
+              onChange={onChange}
               onClick={() => setAllergies(false)}
             />
             No
@@ -44,7 +46,13 @@ function AllergiesOptions() {
           Please specify which allergies
           <span className="required">*</span>
           <div className="consent-inputs">
-            <textarea placeholder="i.e. latex" rows="4" />
+            <textarea
+              placeholder="i.e. latex"
+              rows="4"
+              name="allergiesInfo"
+              onChange={onChange}
+              value={value.allergiesInfo}
+            />
           </div>
         </div>
       )}

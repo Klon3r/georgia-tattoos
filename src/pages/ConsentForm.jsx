@@ -33,15 +33,41 @@ function ConsentForm() {
     breastfeeding: "",
     cancer: "",
     alcoholOrDrugs: "",
+    allergies: "",
+    allergiesInfo: "",
+    medicalConditions: "",
+    otherMedicalConditions: "",
+    photoPermision: "",
+    acknowledge: "",
+    signatureImage: "",
+    licensePhoto: "",
   });
+
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check for correct form data or give warning
+    const fieldsNotRequired = ["whichMedications", "otherMedicalConditions"];
+    let hasError = false;
+
+    Object.keys(formData).map((key) => {
+      if (!fieldsNotRequired.includes(key) && formData[key] === "") {
+        hasError = true;
+      }
+
+      setError(hasError);
+
+      if (!hasError) {
+        // Submit Form via API
+      }
+    });
   };
 
   return (
@@ -63,7 +89,10 @@ function ConsentForm() {
               onChange={handleChange}
             />
             <LicenseCardInput
-              value={{ licenseNumber: formData.licenseNumber }}
+              value={{
+                licensePhoto: formData.licensePhoto,
+                licenseNumber: formData.licenseNumber,
+              }}
               onChange={handleChange}
             />
             <PhoneNumberInput
@@ -109,12 +138,38 @@ function ConsentForm() {
               }}
               onChange={handleChange}
             />
-            <AllergiesOptions />
-            <MedicalConditionsOptions />
-            <PhotoConsentOptions />
-            <TermsAndConditions />
-            <Signature />
+            <AllergiesOptions
+              value={{
+                alergies: formData.allergies,
+                allergiesInfo: formData.allergiesInfo,
+              }}
+              onChange={handleChange}
+            />
+            <MedicalConditionsOptions
+              value={{
+                medicalConditions: formData.medicalConditions,
+                otherMedicalConditions: formData.otherMedicalConditions,
+              }}
+              onChange={handleChange}
+            />
+            <PhotoConsentOptions
+              value={{ photoPermision: formData.photoPermision }}
+              onChange={handleChange}
+            />
+            <TermsAndConditions
+              value={{
+                acknowledge: formData.acknowledge,
+              }}
+              onChange={handleChange}
+            />
+            <Signature
+              value={{ signatureImage: formData.signatureImage }}
+              onChange={handleChange}
+            />
           </div>
+          {error && (
+            <div className="error-div">Please fill in all required fields</div>
+          )}
           <div className="submit-button-div">
             <button type="submit" onClick={handleSubmit}>
               Submit

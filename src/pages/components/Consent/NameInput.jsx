@@ -13,7 +13,6 @@ function NameInput({ value, onChange }) {
           title="first-name"
           value={value.fname}
           onChange={onChange}
-          required
         ></input>
         <input
           type="text"
@@ -23,7 +22,6 @@ function NameInput({ value, onChange }) {
           title="last-name"
           value={value.lname}
           onChange={onChange}
-          required
         ></input>
       </div>
     </>

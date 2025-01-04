@@ -11,7 +11,6 @@ function DateOfBirthSelector({ value, onChange }) {
           name="dob"
           value={value.dob}
           onChange={onChange}
-          required
         />
       </div>
     </>
