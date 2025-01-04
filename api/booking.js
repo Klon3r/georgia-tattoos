@@ -12,7 +12,7 @@ app.use(helmet());
 app.use(
   cors({
     origin: "https://www.georgiatattoos.com.au",
-  })
+  }),
 );
 
 // File upload
@@ -33,7 +33,7 @@ app.post("/api/booking", upload.array("referenceFiles"), async (req, res) => {
 
 /**
  * Send an email containing error if there is an error while submitting booking
- * @param {string} bookingInfo - Client's booking information 
+ * @param {string} bookingInfo - Client's booking information
  * @param {object} errorData - Information about the error data
  */
 async function sendErrorEmail(errorData, bookingInfo) {
@@ -61,15 +61,17 @@ async function sendErrorEmail(errorData, bookingInfo) {
       name: "Vercel Error",
       address: process.env.EMAIL_USERNAME,
     },
-    subject: `Vercel Error: ${currentDate} (${bookingInfo.firstName + " " + bookingInfo.lastName
-      })`,
+    subject: `Vercel Error: ${currentDate} (${
+      bookingInfo.firstName + " " + bookingInfo.lastName
+    })`,
     to: process.env.EMAIL_USERNAME,
     html: `<h3>Client Information</h3>
     <table>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingInfo.firstName + " " + bookingInfo.lastName
-      }</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          bookingInfo.firstName + " " + bookingInfo.lastName
+        }</td>
       </tr>
       </tr>
       <tr style="background-color: #f0e9e9;">
@@ -80,13 +82,15 @@ async function sendErrorEmail(errorData, bookingInfo) {
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingInfo.number
-      }</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          bookingInfo.number
+        }</td>
       </tr>
       <tr style="background-color: #f0e9e9;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingInfo.email
-      }</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          bookingInfo.email
+        }</td>
       </tr>
     </table>
         <hr>
@@ -118,7 +122,7 @@ async function sendEmail(toEmail, bookingData, files) {
     bookingData.availMonday,
     bookingData.availTuesday,
     bookingData.availFriday,
-    bookingData.availSaturday
+    bookingData.availSaturday,
   );
 
   const instagramURL = convertInstagram(bookingData.instagram);
@@ -141,35 +145,41 @@ async function sendEmail(toEmail, bookingData, files) {
     },
     to: toEmail,
     replyTo: bookingData.email,
-    subject: `${bookingData.firstName + " " + bookingData.lastName} ${"(" + bookingData.instagram + ")"
-      }`,
+    subject: `${bookingData.firstName + " " + bookingData.lastName} ${
+      "(" + bookingData.instagram + ")"
+    }`,
     html: `
             <h3>Booking</h3>
             <table>
               <tr>
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.firstName + " " + bookingData.lastName
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.firstName + " " + bookingData.lastName
+                }</td>
               </tr>
               <tr style="background-color: #f0e9e9;">
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Name:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.prefName
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.prefName
+                }</td>
               </tr>
               <tr>
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Pronouns:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.pronouns
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.pronouns
+                }</td>
               </tr>
               <tr style="background-color: #f0e9e9;">
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.email
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.email
+                }</td>
               </tr>
               <tr>
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.number
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.number
+                }</td>
               </tr>
               <tr style="background-color: #f0e9e9;">
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
@@ -180,23 +190,27 @@ async function sendEmail(toEmail, bookingData, files) {
               </tr>
               <tr>
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Description of Tattoo:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.descTattoo
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.descTattoo
+                }</td>
               </tr>
               <tr style="background-color: #f0e9e9;">
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Black & Grey or Colour:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.tattooColor
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.tattooColor
+                }</td>
               </tr>
               <tr>
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Location on Body:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.locationOnBody
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.locationOnBody
+                }</td>
               </tr>
               <tr style="background-color: #f0e9e9;">
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
-                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${bookingData.sizeTattoo
-      }</td>
+                <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+                  bookingData.sizeTattoo
+                }</td>
               </tr>
               <tr>
                 <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>

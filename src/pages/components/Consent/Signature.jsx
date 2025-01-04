@@ -46,7 +46,7 @@ function Signature({ value, onChange }) {
 
   const saveSignature = () => {
     const canvas = canvasRef.current;
-    const signatureData = canvas.toDataURL();
+    const signatureData = canvas.toDataURL("image/png");
     onChange({
       target: { name: "signatureImage", value: signatureData },
     });

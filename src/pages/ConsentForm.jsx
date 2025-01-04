@@ -14,6 +14,7 @@ import MedicationsOptions from "./components/Consent/MedicationsOptions";
 import TattooOptions from "./components/Consent/TattooOptions";
 import TermsAndConditions from "./components/Consent/TermsAndConditions";
 import { useState } from "react";
+import spinner from "../assets/spinner.gif";
 
 function ConsentForm() {
   const [formData, setFormData] = useState({
@@ -37,37 +38,72 @@ function ConsentForm() {
     allergiesInfo: "",
     medicalConditions: "",
     otherMedicalConditions: "",
-    photoPermision: "",
+    photoPermission: "",
     acknowledge: "",
     signatureImage: "",
     licensePhoto: "",
   });
 
   const [error, setError] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [fieldsNotRequired, setFieldsNotRequired] = useState([
+    "whichMedications",
+    "otherMedicalConditions",
+    "allergiesInfo",
+  ]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check for correct form data or give warning
-    const fieldsNotRequired = ["whichMedications", "otherMedicalConditions"];
+    console.log(formData.signatureImage);
+    // if (isSending) return;
+
     let hasError = false;
 
-    Object.keys(formData).map((key) => {
+    // Check allergies and allergiesInfo
+    if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
+      hasError = true;
+    }
+
+    // Check medications & whichMedications
+    if (
+      formData["medications"] === "yes" &&
+      formData["whichMedications"] === ""
+    ) {
+      hasError = true;
+    }
+
+    // Then, check all other fields
+    Object.keys(formData).forEach((key) => {
       if (!fieldsNotRequired.includes(key) && formData[key] === "") {
+        console.log("Missing field:", key);
         hasError = true;
       }
-
-      setError(hasError);
-
-      if (!hasError) {
-        // Submit Form via API
-      }
     });
+
+    setError(hasError);
+
+    if (!hasError) {
+      // Form Data
+      const url = "http://localhost:3000/api/consent";
+      // const urlPhone = "http://192.168.50.233:5173/api/consent";
+      const formDataToSend = new FormData();
+
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      setIsSending(true);
+      fetch(url, {
+        method: "POST",
+        body: formDataToSend,
+      });
+    }
   };
 
   return (
@@ -171,8 +207,15 @@ function ConsentForm() {
             <div className="error-div">Please fill in all required fields</div>
           )}
           <div className="submit-button-div">
-            <button type="submit" onClick={handleSubmit}>
-              Submit
+            <button type="submit">
+              {isSending ? (
+                <div className="submit-button">
+                  <img src={spinner} alt="Loading..." className="spinner-img" />
+                  Please wait...
+                </div>
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
