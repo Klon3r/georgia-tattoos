@@ -59,7 +59,7 @@ function TermsAndConditions({ value, onChange }) {
 
       <div id="acknowledge-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="ack-yes">
             <input
               type="radio"
               id="ack-yes"
@@ -73,7 +73,7 @@ function TermsAndConditions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="ack-no">
             <input
               type="radio"
               id="ack-no"

@@ -1,4 +1,4 @@
-function EmergancyContactInformationInput({ value, onChange }) {
+function EmergencyContactInformationInput({ value, onChange }) {
   return (
     <>
       <p className="consent-paragraph">
@@ -20,7 +20,7 @@ function EmergancyContactInformationInput({ value, onChange }) {
           name="emergencyContactName"
           placeholder="Emergency Contact Name"
           title="Emergency Contact Name"
-          value={value.emergancyContactName}
+          value={value.emergencyContactName}
           onChange={onChange}
         ></input>
       </div>
@@ -35,7 +35,7 @@ function EmergancyContactInformationInput({ value, onChange }) {
           name="emergencyContactNumber"
           placeholder="Emergency Contact Number"
           title="Emergency Contact Number"
-          value={value.emergancyContactNumber}
+          value={value.emergencyContactNumber}
           onChange={onChange}
         ></input>
       </div>
@@ -43,4 +43,4 @@ function EmergancyContactInformationInput({ value, onChange }) {
   );
 }
 
-export default EmergancyContactInformationInput;
+export default EmergencyContactInformationInput;

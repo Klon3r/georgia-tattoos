@@ -4,7 +4,7 @@ import PronounSelector from "./components/Consent/PronounSelector";
 import DateOfBirthSelector from "./components/Consent/DateOfBirthSelector";
 import PhoneNumberInput from "./components/Consent/PhoneNumberInput";
 import HomeAddressTextArea from "./components/Consent/HomeAddressTextArea";
-import EmergancyContactInformationInput from "./components/Consent/EmergencyContactInformationInput";
+import EmergencyContactInformationInput from "./components/Consent/EmergencyContactInformationInput";
 import Signature from "./components/Consent/Signature";
 import PhotoConsentOptions from "./components/Consent/PhotoConsentOptions";
 import AllergiesOptions from "./components/Consent/AllergiesOptions";
@@ -142,7 +142,7 @@ function ConsentForm() {
           </div>
           <h2>Emergency Contact Information</h2>
           <div className="consent-div">
-            <EmergancyContactInformationInput
+            <EmergencyContactInformationInput
               value={{
                 emergencyContactNumber: formData.emergencyContactNumber,
                 emergencyContactName: formData.emergencyContactName,
@@ -176,7 +176,7 @@ function ConsentForm() {
             />
             <AllergiesOptions
               value={{
-                alergies: formData.allergies,
+                allergies: formData.allergies,
                 allergiesInfo: formData.allergiesInfo,
               }}
               onChange={handleChange}
@@ -189,7 +189,7 @@ function ConsentForm() {
               onChange={handleChange}
             />
             <PhotoConsentOptions
-              value={{ photoPermision: formData.photoPermision }}
+              value={{ photoPermission: formData.photoPermission }}
               onChange={handleChange}
             />
             <TermsAndConditions

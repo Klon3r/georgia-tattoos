@@ -8,7 +8,7 @@ function PhotoConsentOptions({ value, onChange }) {
       </div>
       <div id="photo-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="photo-choices-yes">
             <input
               type="radio"
               id="photo-choices-yes"
@@ -22,7 +22,7 @@ function PhotoConsentOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="photo-choices-no">
             <input
               type="radio"
               id="photo-choices-no"

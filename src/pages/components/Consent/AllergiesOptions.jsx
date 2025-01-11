@@ -12,7 +12,7 @@ function AllergiesOptions({ value, onChange }) {
 
       <div id="allergies-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="allergies-yes">
             <input
               type="radio"
               id="allergies-yes"
@@ -27,7 +27,7 @@ function AllergiesOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="allergies-no">
             <input
               type="radio"
               id="allergies-no"

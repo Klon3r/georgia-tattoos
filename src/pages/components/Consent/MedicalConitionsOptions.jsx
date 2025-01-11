@@ -31,7 +31,7 @@ function MedicalConditionsOptions({ value, onChange }) {
 
       <div id="medical-conditions" className="checkbox-group">
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="diabetes-checkbox">
             <input
               type="checkbox"
               id="diabetes-checkbox"
@@ -44,7 +44,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="hiv-aids-checkbox">
             <input
               type="checkbox"
               id="hiv-aids-checkbox"
@@ -57,7 +57,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="hepatitis-checkbox">
             <input
               type="checkbox"
               id="hepatitis-checkbox"
@@ -70,7 +70,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="heart-condition-checkbox">
             <input
               type="checkbox"
               id="heart-condition-checkbox"
@@ -83,7 +83,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="eczema-checkbox">
             <input
               type="checkbox"
               id="eczema-checkbox"
@@ -96,7 +96,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="keloiding-checkbox">
             <input
               type="checkbox"
               id="keloiding-checkbox"
@@ -109,7 +109,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="autoimmune-checkbox">
             <input
               type="checkbox"
               id="autoimmune-checkbox"
@@ -122,7 +122,7 @@ function MedicalConditionsOptions({ value, onChange }) {
         </div>
 
         <div className="checkbox-div">
-          <label htmlFor="checkbox-div">
+          <label htmlFor="none-of-the-above-checkbox">
             <input
               type="checkbox"
               id="none-of-the-above-checkbox"

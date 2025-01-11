@@ -3,6 +3,10 @@ import { useState } from "react";
 function MedicationsOptions({ value, onChange }) {
   const [medicationBool, setMedicationBool] = useState(null);
 
+  const labelOnClick = (value) => {
+    console.log(value);
+  };
+
   return (
     <>
       <div className="consent-label">
@@ -12,7 +16,7 @@ function MedicationsOptions({ value, onChange }) {
 
       <div id="medication-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="medication-yes">
             <input
               type="radio"
               id="medication-yes"
@@ -27,7 +31,7 @@ function MedicationsOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="medication-no">
             <input
               type="radio"
               id="medication-no"

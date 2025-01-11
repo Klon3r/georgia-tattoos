@@ -22,7 +22,7 @@ function TattooOptions({ value, onChange }) {
 
       <div id="tattoo-option-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="numbing-cream-yes">
             <input
               type="radio"
               id="numbing-cream-yes"
@@ -36,7 +36,7 @@ function TattooOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="numbing-cream-no">
             <input
               type="radio"
               id="numbing-cream-no"

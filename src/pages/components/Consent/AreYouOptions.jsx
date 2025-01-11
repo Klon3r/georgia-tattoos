@@ -8,7 +8,7 @@ function AreYouOptions({ value, onChange }) {
 
       <div id="are-you-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="breastfeeding-yes">
             <input
               type="radio"
               id="breastfeeding-yes"
@@ -22,7 +22,7 @@ function AreYouOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="breastfeeding-no">
             <input
               type="radio"
               id="breastfeeding-no"
@@ -43,7 +43,7 @@ function AreYouOptions({ value, onChange }) {
 
       <div id="are-you-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="cancer-yes">
             <input
               type="radio"
               id="cancer-yes"
@@ -57,7 +57,7 @@ function AreYouOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="cancer-no">
             <input
               type="radio"
               id="cancer-no"
@@ -78,7 +78,7 @@ function AreYouOptions({ value, onChange }) {
 
       <div id="are-you-choices" className="radio-group">
         <div className="radio-button-div">
-          <label htmlFor="radio-button-yes">
+          <label htmlFor="alcohol-or-drugs-yes">
             <input
               type="radio"
               id="alcohol-or-drugs-yes"
@@ -92,7 +92,7 @@ function AreYouOptions({ value, onChange }) {
         </div>
 
         <div className="radio-button-div">
-          <label htmlFor="radio-button-no">
+          <label htmlFor="alcohol-or-drugs-no">
             <input
               type="radio"
               id="alcohol-or-drugs-no"

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import multer from "multer";
-import nodemailer from "nodemailer";
+import SendConsentEmail from "./SendEmail.js";
 
 //-----------------------------------
 import dotenv from "dotenv";
@@ -26,6 +26,14 @@ const upload = multer({ storage: multer.memoryStorage() });
 app.post("/api/consent", upload.single("licensePhoto"), async (req, res) => {
   console.log("Form Data: ", req.body);
   console.log("FILE: ", req.file);
+
+  try {
+    // something
+    SendConsentEmail(req.body, req.file);
+  } catch (error) {
+    // Do function
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 //------------------------------------------------
