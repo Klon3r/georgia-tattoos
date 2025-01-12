@@ -16,20 +16,26 @@ app.use(
   cors({
     //origin: "https://www.georgiatattoos.com.au",
     origin: "*", //REMOVE BEFORE PUSH TO VERCEL!!!
-  }),
+  })
 );
 
 app.use(express.json());
 
 const upload = multer({ storage: multer.memoryStorage() });
+const uploadFields = upload.fields([
+  { name: "pdf", maxCount: 1 },
+  { name: "licensePhoto", maxCount: 1 },
+]);
 
-app.post("/api/consent", upload.single("licensePhoto"), async (req, res) => {
+app.post("/api/consent", uploadFields, async (req, res) => {
   console.log("Form Data: ", req.body);
-  console.log("FILE: ", req.file);
+  console.log("FILE: ", req.files);
 
+  const data = req.body;
+  const files = req.files;
   try {
     // something
-    SendConsentEmail(req.body, req.file);
+    SendConsentEmail(data, files);
   } catch (error) {
     // Do function
     res.status(500).json({ error: "Internal Server Error" });

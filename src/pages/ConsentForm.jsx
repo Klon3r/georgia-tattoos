@@ -14,7 +14,9 @@ import MedicationsOptions from "./components/Consent/MedicationsOptions";
 import TattooOptions from "./components/Consent/TattooOptions";
 import TermsAndConditions from "./components/Consent/TermsAndConditions";
 import { useState } from "react";
+import jsPDF from "jspdf";
 import spinner from "../assets/spinner.gif";
+import esotericTextLogo from "../assets/esoteric-text-logo.png";
 
 function ConsentForm() {
   const [formData, setFormData] = useState({
@@ -57,7 +59,67 @@ function ConsentForm() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const createPDF = async (formData) => {
+    const dobSplit = formData.dob.split("-");
+    const dob = dobSplit[2] + "-" + dobSplit[1] + "-" + dobSplit[0];
+
+    const addressSplit = formData.homeAddress.split(" ");
+    const address = addressSplit.join(" ");
+
+    const xForData = 15;
+    const xForDataAlign = 61;
+    const doc = new jsPDF();
+
+    // Background Color
+    doc.setFillColor(252, 222, 248);
+    doc.rect(
+      0,
+      0,
+      doc.internal.pageSize.width,
+      doc.internal.pageSize.height,
+      "F",
+    );
+
+    doc.setFontSize(25);
+    const clientHeader = "Client Info";
+    doc.text(clientHeader, 10, 50);
+    doc.line(10, 51, 11 + doc.getTextWidth(clientHeader), 51);
+    doc.setFontSize(16);
+    doc.text(`Name:`, xForData, 58);
+    doc.text(`${formData.fname} ${formData.lname}`, xForDataAlign, 58);
+    doc.text(`Pronouns:`, xForData, 66);
+    doc.text(`${formData.pronouns}`, xForDataAlign, 66);
+    doc.text(`Date of Birth:`, xForData, 74);
+    doc.text(`${dob}`, xForDataAlign, 74);
+    doc.text(`Phone Number:`, xForData, 82);
+    doc.text(`${formData.phoneNumber}`, xForDataAlign, 82);
+    doc.text(`Home Address:`, xForData, 90);
+    doc.text(`${formData.homeAddress}`, xForDataAlign, 90);
+    doc.text(`License Number:`, xForData, 111);
+    doc.text(`${formData.licenseNumber}`, xForDataAlign, 111);
+    // ADD LICENSE PHOTO HERE
+    doc.setFontSize(25);
+
+    const emergencyHeader = "Emergency Contact";
+    doc.text(emergencyHeader, 10, 135);
+    doc.line(10, 136, 11 + doc.getTextWidth(emergencyHeader), 136);
+    doc.setFontSize(16);
+    doc.text(`Name: ${formData.emergencyContactName}`, 20, 160);
+    doc.text(`Number: ${formData.emergencyContactNumber}`, 20, 170);
+
+    const pdfBuffer = doc.output("arraybuffer");
+    const pdfBlob = new Blob([pdfBuffer], { type: "application/pdf" });
+
+    // Generate a downloadable URL for the Blob
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+
+    return {
+      pdfUrl, // TODO: change to pdfBlob once the pdf is to my liking
+      filename: `${formData.fname}-${formData.lname}-consent.pdf`,
+    };
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log(formData.signatureImage);
@@ -90,19 +152,32 @@ function ConsentForm() {
 
     if (!hasError) {
       // Form Data
-      const url = "http://localhost:3000/api/consent";
-      // const urlPhone = "http://192.168.50.233:5173/api/consent";
-      const formDataToSend = new FormData();
+      // const url = "http://localhost:3000/api/consent";
+      // const formDataToSend = new FormData();
 
-      Object.keys(formData).forEach((key) => {
-        formDataToSend.append(key, formData[key]);
-      });
+      //Object.keys(formData).forEach((key) => {
+      //  formDataToSend.append(key, formData[key]);
+      //});
 
-      setIsSending(true);
-      fetch(url, {
-        method: "POST",
-        body: formDataToSend,
-      });
+      //const { file, filename } = await createPDF(formData);
+      //formDataToSend.append("pdf", file, filename);
+
+      //setIsSending(true);
+      //await fetch(url, {
+      // method: "POST",
+      // body: formDataToSend,
+      //});
+      //
+
+      const { pdfUrl, filename } = await createPDF(formData);
+
+      const link = document.createElement("a");
+      link.href = pdfUrl;
+      link.download = filename;
+
+      link.click();
+
+      URL.revokeObjectURL(pdfUrl);
     }
   };
 
