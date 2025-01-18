@@ -5,9 +5,10 @@ function TattooOptions({ value, onChange }) {
         What part of the body is your tattoo/s going on?
         <span className="required">*</span>
         <div className="consent-inputs">
-          <textarea
-            placeholder="i.e. forearm"
-            rows="4"
+          <input
+            type="text"
+            placeholder="i.e. upper leg"
+            rows="1"
             name="whereTattooOnBody"
             value={value.whereTattooOnBody}
             onChange={onChange}

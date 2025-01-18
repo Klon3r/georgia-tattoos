@@ -50,9 +50,10 @@ function MedicationsOptions({ value, onChange }) {
           Please specify which medications
           <span className="required">*</span>
           <div className="consent-inputs">
-            <textarea
+            <input
               placeholder="i.e. blood thinners"
-              rows="4"
+              rows="1"
+              type="text"
               name="whichMedications"
               value={value.whichMedications}
               onChange={onChange}
