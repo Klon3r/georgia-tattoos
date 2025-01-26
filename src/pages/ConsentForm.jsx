@@ -64,32 +64,32 @@ function ConsentForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (isSending) return;
+    if (isSending) return;
 
     let hasError = false;
 
     // Check allergies and allergiesInfo
-    // if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
-    //   hasError = true;
-    // }
+    if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
+      hasError = true;
+    }
 
-    // // Check medications & whichMedications
-    // if (
-    //   formData["medications"] === "yes" &&
-    //   formData["whichMedications"] === ""
-    // ) {
-    //   hasError = true;
-    // }
+    // Check medications & whichMedications
+    if (
+      formData["medications"] === "yes" &&
+      formData["whichMedications"] === ""
+    ) {
+      hasError = true;
+    }
 
-    // // Then, check all other fields
-    // Object.keys(formData).forEach((key) => {
-    //   if (!fieldsNotRequired.includes(key) && formData[key] === "") {
-    //     console.log("Missing field:", key);
-    //     hasError = true;
-    //   }
-    // });
+    // Then, check all other fields
+    Object.keys(formData).forEach((key) => {
+      if (!fieldsNotRequired.includes(key) && formData[key] === "") {
+        console.log("Missing field:", key);
+        hasError = true;
+      }
+    });
 
-    // setError(hasError);
+    setError(hasError);
 
     if (!hasError) {
       // Form Data
@@ -110,8 +110,7 @@ function ConsentForm() {
       //});
       //
       console.log(formData);
-      console.log(testData);
-      const { pdfUrl, filename } = await CreatePDF(testData);
+      const { pdfUrl, filename } = await CreatePDF(formData);
 
       const link = document.createElement("a");
       link.href = pdfUrl;

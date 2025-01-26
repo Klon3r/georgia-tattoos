@@ -11,9 +11,8 @@ async function CreatePDF(formData) {
     });
   };
 
-  // TODO: Use this on release
-  //let licenseImage;
-  //licenseImage = await fileToBase64(formData.licensePhoto);
+  let licenseImage;
+  licenseImage = await fileToBase64(formData.licensePhoto);
 
   const dobSplit = formData.dob.split("-");
   const dob = dobSplit[2] + "-" + dobSplit[1] + "-" + dobSplit[0];
@@ -101,7 +100,7 @@ async function CreatePDF(formData) {
   // TODO: Add error checking if there is no photo
   doc.setFont("times", "bold");
   doc.text(`License Photo:`, xForData, y);
-  doc.addImage(formData.licensePhoto, "JPEG", xForDataAlign + 1, y - 4, 85, 50);
+  doc.addImage(licenseImage, "JPEG", xForDataAlign + 1, y - 4, 85, 50);
   let photoSpace = 54;
   y = y + photoSpace;
 

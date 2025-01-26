@@ -8,7 +8,7 @@ function HomeAddressTextArea({ value, onChange }) {
         <textarea
           placeholder="Enter your full address (e.g., 123 Example St, Apt 4, Brisbane, QLD 4000)"
           name="homeAddress"
-          rows="4"
+          rows="3"
           maxLength={500}
           value={value.homeAddress}
           onChange={onChange}
