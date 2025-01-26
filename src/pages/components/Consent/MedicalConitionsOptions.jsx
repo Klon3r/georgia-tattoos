@@ -37,7 +37,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="diabetes-checkbox"
               title="diabetes-checkbox"
               name="diabetes"
-              onClick={(e) => pushToList("diabetes", e)}
+              onClick={(e) => pushToList(" Diabetes", e)}
             />
             Diabetes
           </label>
@@ -50,7 +50,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="hiv-aids-checkbox"
               title="hiv-aids-checkbox"
               name="hivAids"
-              onClick={(e) => pushToList("hiv aids", e)}
+              onClick={(e) => pushToList(" HIV/AIDS", e)}
             />
             HIV/AIDS
           </label>
@@ -63,7 +63,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="hepatitis-checkbox"
               title="hepatitis-checkbox"
               name="hepatitis"
-              onClick={(e) => pushToList("hepatitis", e)}
+              onClick={(e) => pushToList(" Hepatitis", e)}
             />
             Hepatitis
           </label>
@@ -76,7 +76,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="heart-condition-checkbox"
               title="heart-condition-checkbox"
               name="heart-condition"
-              onClick={(e) => pushToList("heart condition", e)}
+              onClick={(e) => pushToList(" Heart Condition/s", e)}
             />
             Heart Condition/s
           </label>
@@ -89,7 +89,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="eczema-checkbox"
               title="eczema-checkbox"
               name="eczema"
-              onClick={(e) => pushToList("eczema", e)}
+              onClick={(e) => pushToList(" Psoriasis/Eczema", e)}
             />
             Psoriasis/Eczema
           </label>
@@ -102,7 +102,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="keloiding-checkbox"
               title="keloiding-checkbox"
               name="keloiding"
-              onClick={(e) => pushToList("keloiding", e)}
+              onClick={(e) => pushToList(" Keloiding", e)}
             />
             Prone to Keloiding
           </label>
@@ -115,7 +115,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="autoimmune-checkbox"
               title="autoimmune-checkbox"
               name="autoimmune"
-              onClick={(e) => pushToList("autoimmune", e)}
+              onClick={(e) => pushToList(" Autoimmune Disorder", e)}
             />
             Autoimmune Disorder
           </label>
@@ -128,7 +128,7 @@ function MedicalConditionsOptions({ value, onChange }) {
               id="none-of-the-above-checkbox"
               title="none-of-the-above-checkbox"
               name="none-of-the-above"
-              onClick={(e) => pushToList("none of the above", e)}
+              onClick={(e) => pushToList(" None of the above", e)}
             />
             None of the above
           </label>

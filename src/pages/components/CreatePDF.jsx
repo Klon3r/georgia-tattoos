@@ -42,51 +42,93 @@ async function CreatePDF(formData) {
     imageWidth,
     50
   );
-  doc.setFontSize(40);
+
+  // HEADER
+  doc.setFontSize(35);
+  doc.setFont("times", "bold");
   const clientHeader = "Client Info";
   doc.text(clientHeader, 10, y);
   doc.line(10, y + 1, 11 + doc.getTextWidth(clientHeader), y + 1);
-  doc.setFontSize(20);
+  doc.setFontSize(14);
   y = y + gapSpace;
+
+  // NAME
   doc.text(`Name:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${formData.fname} ${formData.lname}`, xForDataAlign, y);
   y = y + gapSpace;
+
+  // PRONOUNS
+  doc.setFont("times", "bold");
   doc.text(`Pronouns:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${formData.pronouns}`, xForDataAlign, y);
   y = y + gapSpace;
+
+  // DOB
+  doc.setFont("times", "bold");
   doc.text(`Date of Birth:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${dob}`, xForDataAlign, y);
   y = y + gapSpace;
+
+  // PHONE NUMBER
+  doc.setFont("times", "bold");
   doc.text(`Phone Number:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${formData.phoneNumber}`, xForDataAlign, y);
   y = y + gapSpace;
+
+  // LICENSE NUMBER
+  doc.setFont("times", "bold");
   doc.text(`License Number:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${formData.licenseNumber}`, xForDataAlign, y);
   y = y + gapSpace;
+
+  // HOME ADDRESS
+  doc.setFont("times", "bold");
+  doc.text(`Home Address:`, xForData, y);
+  doc.setFont("times", "normal");
+  doc.text(`${formData.homeAddress}`, xForDataAlign, y, { maxWidth: 120 });
+  let addressTextLines = doc.splitTextToSize(formData.homeAddress, 120);
+  addressTextLines.forEach((line, index) => {
+    y = y + gapSpace / 3;
+  });
+  y = y + gapSpace;
+
+  // LICENSE PHOTO
   // TODO: Add error checking if there is no photo
+  doc.setFont("times", "bold");
   doc.text(`License Photo:`, xForData, y);
   doc.addImage(formData.licensePhoto, "JPEG", xForDataAlign + 1, y - 4, 85, 50);
   let photoSpace = 54;
   y = y + photoSpace;
-  doc.text(`Home Address:`, xForData, y);
-  y = y + gapSpace;
-  doc.text(`${formData.homeAddress}`, xForData + 5, y, { maxWidth: 180 });
-  y = y + gapSpace;
 
   // --------------------
   // EMERGENCY CONTACT
   // --------------------
   y = y + 20;
-  doc.setFontSize(30);
+  // HEADER
+  doc.setFont("times", "bold");
+  doc.setFontSize(35);
   const emergencyHeader = "Emergency Contact";
   doc.text(emergencyHeader, 10, y);
   doc.line(10, y + 1, 11 + doc.getTextWidth(emergencyHeader), y + 1);
-  doc.setFontSize(20);
+  doc.setFontSize(14);
   y = y + gapSpace;
+
+  // NAME
+  doc.setFont("times", "bold");
   doc.text(`Name:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${formData.emergencyContactName}`, xForDataAlign, y);
   y = y + gapSpace;
+
+  // NUMBER
+  doc.setFont("times", "bold");
   doc.text(`Number:`, xForData, y);
+  doc.setFont("times", "normal");
   doc.text(`${formData.emergencyContactNumber}`, xForDataAlign, y);
 
   // --------------------
@@ -94,88 +136,112 @@ async function CreatePDF(formData) {
   // --------------------
 
   doc.addPage();
-  let xForQuestions = 25;
+  let xForQuestions = 20;
   let xForOther = 80;
   y = 20;
   gapSpace = 10;
   doc.setFontSize(40);
+  doc.setFont("times", "bold");
   const questionnaireHeader = "Questionnaire";
   doc.text(questionnaireHeader, 10, y);
   doc.line(10, y + 1, 11 + doc.getTextWidth(questionnaireHeader), y + 1);
   y = y + gapSpace;
-  doc.setFontSize(20);
+  doc.setFontSize(14);
   doc.text(`Are you currently taking any medications?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.medications}`, xForQuestions, y);
   y = y + gapSpace;
+  doc.setFont("times", "bold");
 
   if (formData.whichMedications !== "") {
     doc.text(`Which medications?`, xForData, y);
     y = y + gapSpace;
+    doc.setFont("times", "normal");
+
     doc.text(`- ${formData.whichMedications}`, xForQuestions, y);
     y = y + gapSpace;
   }
 
+  doc.setFont("times", "bold");
   doc.text(`What part of the body is your tattoo/s going on?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.whereTattooOnBody}`, xForQuestions, y);
   y = y + gapSpace;
 
+  doc.setFont("times", "bold");
   doc.text(`Have you used numbing cream for this tattoo session?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.numbingCream}`, xForQuestions, y);
   y = y + gapSpace;
 
+  doc.setFont("times", "bold");
   doc.text(`Are you currently pregnant or breastfeeding?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.breastfeeding}`, xForQuestions, y);
   y = y + gapSpace;
 
+  doc.setFont("times", "bold");
   doc.text(`Are you currently undertaking treatment for cancer?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.cancer}`, xForQuestions, y);
   y = y + gapSpace;
 
+  doc.setFont("times", "bold");
   doc.text(
     `Are you currently under the influence of drugs or alcohol?`,
     xForData,
     y
   );
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.alcoholOrDrugs}`, xForQuestions, y);
   y = y + gapSpace;
-
+  doc.setFont("times", "bold");
   doc.text(`Do you have any known allergies?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.allergies}`, xForQuestions, y);
   y = y + gapSpace;
 
+  doc.setFont("times", "bold");
   if (formData.allergiesInfo !== "") {
     doc.text(`Which allergies?`, xForData, y);
     y = y + gapSpace;
+    doc.setFont("times", "normal");
     doc.text(`- ${formData.allergiesInfo}`, xForQuestions, y);
     y = y + gapSpace;
   }
 
+  doc.setFont("times", "bold");
   doc.text(`Which Medical Conditions`, xForData, y);
   y = y + gapSpace;
-  doc.text(`- ${formData.medicalConditions}`, xForQuestions, y, {
+  doc.setFont("times", "normal");
+  doc.text(`-${formData.medicalConditions}`, xForQuestions, y, {
     maxWidth: 180,
   });
 
   // If the text is too long, then add a new line
-  let textLines = doc.splitTextToSize(formData.medicalConditions, 180);
-  y = y + gapSpace + textLines.length;
+  // let textLines = doc.splitTextToSize(formData.medicalConditions, 180);
+  y = y + gapSpace;
 
+  doc.setFont("times", "bold");
   if (formData.otherMedicalConditions !== "") {
     doc.text(`Other Medical Conditions`, xForData, y);
     y = y + gapSpace;
+    doc.setFont("times", "normal");
     doc.text(`- ${formData.otherMedicalConditions}`, xForQuestions, y);
     y = y + gapSpace;
   }
 
+  doc.setFont("times", "bold");
   doc.text(`Photo permission to post on social media?`, xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
   doc.text(`- ${formData.photoPermission}`, xForQuestions, y);
   y = y + gapSpace;
 
@@ -186,6 +252,7 @@ async function CreatePDF(formData) {
   doc.addPage();
   y = 20;
   doc.setFontSize(40);
+  doc.setFont("times", "bold");
   const termsHeader = "Terms & Conditions";
   doc.text(termsHeader, 10, y);
   doc.line(10, y + 1, 13 + doc.getTextWidth(termsHeader), y + 1);
@@ -208,9 +275,10 @@ async function CreatePDF(formData) {
 
   doc.text("I understand and have fully disclosed the following:", xForData, y);
   y = y + gapSpace;
+  doc.setFont("times", "normal");
 
   terms.forEach((term, index) => {
-    const textLines = doc.splitTextToSize(term, 180);
+    const textLines = doc.splitTextToSize(term, 150);
     doc.text(`${index + 1}. `, xForData, y);
     textLines.forEach((line, lineIndex) => {
       const yOffset = lineIndex * 6;
@@ -225,7 +293,7 @@ async function CreatePDF(formData) {
     xForData,
     y
   );
-  doc.addImage(formData.signatureImage, "PNG", 20, y, 100, 20);
+  doc.addImage(formData.signatureImage, "PNG", 20, y + 10, 100, 20);
 
   const pdfBuffer = doc.output("arraybuffer");
   const pdfBlob = new Blob([pdfBuffer], { type: "application/pdf" });

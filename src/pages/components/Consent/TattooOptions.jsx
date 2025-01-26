@@ -29,7 +29,7 @@ function TattooOptions({ value, onChange }) {
               id="numbing-cream-yes"
               title="numbing-cream-yes"
               name="numbingCream"
-              value="yes"
+              value="Yes"
               onChange={onChange}
             />
             Yes
@@ -43,7 +43,7 @@ function TattooOptions({ value, onChange }) {
               id="numbing-cream-no"
               title="numbing-cream-no"
               name="numbingCream"
-              value="no"
+              value="No"
               onChange={onChange}
             />
             No

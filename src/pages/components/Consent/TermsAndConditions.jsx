@@ -65,7 +65,7 @@ function TermsAndConditions({ value, onChange }) {
               id="ack-yes"
               title="ack-yes"
               name="acknowledge"
-              value="yes"
+              value="Yes"
               onChange={onChange}
             />
             Yes
@@ -79,7 +79,7 @@ function TermsAndConditions({ value, onChange }) {
               id="ack-no"
               title="ack-no"
               name="acknowledge"
-              value="no"
+              value="No"
               onChange={onChange}
             />
             No

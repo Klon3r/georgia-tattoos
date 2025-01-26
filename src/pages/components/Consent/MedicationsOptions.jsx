@@ -22,7 +22,7 @@ function MedicationsOptions({ value, onChange }) {
               id="medication-yes"
               title="medication-yes"
               name="medications"
-              value="yes"
+              value="Yes"
               onChange={onChange}
               onClick={() => setMedicationBool(true)}
             />
@@ -37,7 +37,7 @@ function MedicationsOptions({ value, onChange }) {
               id="medication-no"
               title="medication-no"
               name="medications"
-              value="no"
+              value="No"
               onChange={onChange}
               onClick={() => setMedicationBool(false)}
             />

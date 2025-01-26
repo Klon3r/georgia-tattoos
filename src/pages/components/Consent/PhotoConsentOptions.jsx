@@ -14,7 +14,7 @@ function PhotoConsentOptions({ value, onChange }) {
               id="photo-choices-yes"
               title="photo-choices-yes"
               name="photoPermission"
-              value="yes"
+              value="Yes"
               onChange={onChange}
             />
             Yes
@@ -28,7 +28,7 @@ function PhotoConsentOptions({ value, onChange }) {
               id="photo-choices-no"
               title="photo-choices-no"
               name="photoPermission"
-              value="no"
+              value="No"
               onChange={onChange}
             />
             No
