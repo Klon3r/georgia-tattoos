@@ -12,6 +12,7 @@ function TattooOptions({ value, onChange }) {
             name="whereTattooOnBody"
             value={value.whereTattooOnBody}
             onChange={onChange}
+            maxLength={200}
           />
         </div>
       </div>

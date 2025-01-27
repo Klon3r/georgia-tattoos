@@ -48,10 +48,11 @@ function AllergiesOptions({ value, onChange }) {
           <div className="consent-inputs">
             <textarea
               placeholder="i.e. latex"
-              rows="4"
+              rows="2"
               name="allergiesInfo"
               onChange={onChange}
               value={value.allergiesInfo}
+              maxLength={200}
             />
           </div>
         </div>

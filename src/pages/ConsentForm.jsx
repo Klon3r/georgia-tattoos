@@ -19,6 +19,7 @@ import testData from "./components/TestData";
 import { useState } from "react";
 
 import spinner from "../assets/spinner.gif";
+import test from "node:test";
 
 function ConsentForm() {
   const [formData, setFormData] = useState({
@@ -64,32 +65,31 @@ function ConsentForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isSending) return;
-
+    // if (isSending) return;
     let hasError = false;
 
-    // Check allergies and allergiesInfo
-    if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
-      hasError = true;
-    }
+    // // Check allergies and allergiesInfo
+    // if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
+    //   hasError = true;
+    // }
 
-    // Check medications & whichMedications
-    if (
-      formData["medications"] === "yes" &&
-      formData["whichMedications"] === ""
-    ) {
-      hasError = true;
-    }
+    // // Check medications & whichMedications
+    // if (
+    //   formData["medications"] === "yes" &&
+    //   formData["whichMedications"] === ""
+    // ) {
+    //   hasError = true;
+    // }
 
-    // Then, check all other fields
-    Object.keys(formData).forEach((key) => {
-      if (!fieldsNotRequired.includes(key) && formData[key] === "") {
-        console.log("Missing field:", key);
-        hasError = true;
-      }
-    });
+    // // Then, check all other fields
+    // Object.keys(formData).forEach((key) => {
+    //   if (!fieldsNotRequired.includes(key) && formData[key] === "") {
+    //     console.log("Missing field:", key);
+    //     hasError = true;
+    //   }
+    // });
 
-    setError(hasError);
+    // setError(hasError);
 
     if (!hasError) {
       // Form Data
@@ -110,7 +110,7 @@ function ConsentForm() {
       //});
       //
       console.log(formData);
-      const { pdfUrl, filename } = await CreatePDF(formData);
+      const { pdfUrl, filename } = await CreatePDF(testData);
 
       const link = document.createElement("a");
       link.href = pdfUrl;
@@ -168,17 +168,17 @@ function ConsentForm() {
           </div>
           <h2>Pre-Procedure Questionnaire</h2>
           <div className="consent-div">
-            <MedicationsOptions
-              value={{
-                medications: formData.medications,
-                whichMedications: formData.whichMedications,
-              }}
-              onChange={handleChange}
-            />
             <TattooOptions
               value={{
                 whereTattooOnBody: formData.whereTattooOnBody,
                 numbingCream: formData.numbingCream,
+              }}
+              onChange={handleChange}
+            />
+            <MedicationsOptions
+              value={{
+                medications: formData.medications,
+                whichMedications: formData.whichMedications,
               }}
               onChange={handleChange}
             />
@@ -204,14 +204,14 @@ function ConsentForm() {
               }}
               onChange={handleChange}
             />
-            <PhotoConsentOptions
-              value={{ photoPermission: formData.photoPermission }}
-              onChange={handleChange}
-            />
             <TermsAndConditions
               value={{
                 acknowledge: formData.acknowledge,
               }}
+              onChange={handleChange}
+            />
+            <PhotoConsentOptions
+              value={{ photoPermission: formData.photoPermission }}
               onChange={handleChange}
             />
             <Signature

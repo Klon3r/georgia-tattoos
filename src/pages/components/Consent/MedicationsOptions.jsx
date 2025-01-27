@@ -57,6 +57,7 @@ function MedicationsOptions({ value, onChange }) {
               name="whichMedications"
               value={value.whichMedications}
               onChange={onChange}
+              maxLength={300}
             />
           </div>
         </div>

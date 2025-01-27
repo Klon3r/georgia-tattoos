@@ -12,7 +12,7 @@ async function CreatePDF(formData) {
   };
 
   let licenseImage;
-  licenseImage = await fileToBase64(formData.licensePhoto);
+  //licenseImage = await fileToBase64(formData.licensePhoto);
 
   const dobSplit = formData.dob.split("-");
   const dob = dobSplit[2] + "-" + dobSplit[1] + "-" + dobSplit[0];
@@ -54,7 +54,11 @@ async function CreatePDF(formData) {
   // NAME
   doc.text(`Name:`, xForData, y);
   doc.setFont("times", "normal");
-  doc.text(`${formData.fname} ${formData.lname}`, xForDataAlign, y);
+  let fullName = `${formData.fname} ${formData.lname}`;
+  doc.text(`${fullName}`, xForDataAlign, y, {
+    maxWidth: 120,
+  });
+
   y = y + gapSpace;
 
   // PRONOUNS
@@ -89,19 +93,25 @@ async function CreatePDF(formData) {
   doc.setFont("times", "bold");
   doc.text(`Home Address:`, xForData, y);
   doc.setFont("times", "normal");
-  doc.text(`${formData.homeAddress}`, xForDataAlign, y, { maxWidth: 120 });
-  let addressTextLines = doc.splitTextToSize(formData.homeAddress, 120);
+  doc.text(`${formData.homeAddress}`, xForDataAlign, y, { maxWidth: 115 });
+  let addressTextLines = doc.splitTextToSize(formData.homeAddress, 115);
   addressTextLines.forEach((line, index) => {
     y = y + gapSpace / 3;
   });
   y = y + gapSpace;
 
   // LICENSE PHOTO
-  // TODO: Add error checking if there is no photo
   doc.setFont("times", "bold");
   doc.text(`License Photo:`, xForData, y);
-  doc.addImage(licenseImage, "JPEG", xForDataAlign + 1, y - 4, 85, 50);
-  let photoSpace = 54;
+  doc.addImage(
+    formData.licensePhoto,
+    "JPEG",
+    xForDataAlign + 1,
+    y - 4,
+    110,
+    70
+  );
+  let photoSpace = 63;
   y = y + photoSpace;
 
   // --------------------
@@ -121,7 +131,9 @@ async function CreatePDF(formData) {
   doc.setFont("times", "bold");
   doc.text(`Name:`, xForData, y);
   doc.setFont("times", "normal");
-  doc.text(`${formData.emergencyContactName}`, xForDataAlign, y);
+  doc.text(`${formData.emergencyContactName}`, xForDataAlign, y, {
+    maxWidth: 120,
+  });
   y = y + gapSpace;
 
   // NUMBER
@@ -138,7 +150,7 @@ async function CreatePDF(formData) {
   let xForQuestions = 20;
   let xForOther = 80;
   y = 20;
-  gapSpace = 10;
+  gapSpace = 8;
   doc.setFontSize(40);
   doc.setFont("times", "bold");
   const questionnaireHeader = "Questionnaire";
@@ -158,7 +170,14 @@ async function CreatePDF(formData) {
     y = y + gapSpace;
     doc.setFont("times", "normal");
 
-    doc.text(`- ${formData.whichMedications}`, xForQuestions, y);
+    doc.text(`- ${formData.whichMedications}`, xForQuestions, y, {
+      maxWidth: 180,
+    });
+
+    let medicationLines = doc.splitTextToSize(formData.whichMedications, 180);
+    medicationLines.forEach((line, index) => {
+      y = y + gapSpace / 2;
+    });
     y = y + gapSpace;
   }
 
@@ -166,7 +185,13 @@ async function CreatePDF(formData) {
   doc.text(`What part of the body is your tattoo/s going on?`, xForData, y);
   y = y + gapSpace;
   doc.setFont("times", "normal");
-  doc.text(`- ${formData.whereTattooOnBody}`, xForQuestions, y);
+  doc.text(`- ${formData.whereTattooOnBody}`, xForQuestions, y, {
+    maxWidth: 180,
+  });
+  let whereTattooLines = doc.splitTextToSize(formData.whereTattooOnBody, 180);
+  whereTattooLines.forEach((line, index) => {
+    y = y + gapSpace / 2;
+  });
   y = y + gapSpace;
 
   doc.setFont("times", "bold");
@@ -212,7 +237,13 @@ async function CreatePDF(formData) {
     doc.text(`Which allergies?`, xForData, y);
     y = y + gapSpace;
     doc.setFont("times", "normal");
-    doc.text(`- ${formData.allergiesInfo}`, xForQuestions, y);
+    doc.text(`- ${formData.allergiesInfo}`, xForQuestions, y, {
+      maxWidth: 180,
+    });
+    let allergiesInfoLines = doc.splitTextToSize(formData.allergiesInfo, 180);
+    allergiesInfoLines.forEach((line, index) => {
+      y = y + gapSpace / 2;
+    });
     y = y + gapSpace;
   }
 
@@ -233,7 +264,16 @@ async function CreatePDF(formData) {
     doc.text(`Other Medical Conditions`, xForData, y);
     y = y + gapSpace;
     doc.setFont("times", "normal");
-    doc.text(`- ${formData.otherMedicalConditions}`, xForQuestions, y);
+    doc.text(`- ${formData.otherMedicalConditions}`, xForQuestions, y, {
+      maxWidth: 180,
+    });
+    let otherMedicalConditionsLines = doc.splitTextToSize(
+      formData.otherMedicalConditions,
+      180
+    );
+    otherMedicalConditionsLines.forEach((line, index) => {
+      y = y + gapSpace / 2;
+    });
     y = y + gapSpace;
   }
 

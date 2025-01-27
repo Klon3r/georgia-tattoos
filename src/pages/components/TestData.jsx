@@ -1,24 +1,29 @@
 const testData = {
-  fname: "John",
-  lname: "Doe",
+  fname: "JonathanChristopherAlexanderMaximilianTheodoresada", // 50 characters
+  lname: "SmithJohnsonWilliamsBrownJonesGarciaMartinezdsdsds", // 50 characters
   pronouns: "he/him",
   dob: "1990-01-01",
-  licenseNumber: "123456789",
-  phoneNumber: "1234567890",
+  licenseNumber: "0123456789",
+  phoneNumber: "0123456789",
   homeAddress:
-    "123 Main Street, Springfield, USA testinng for what happends if the address is too long, is this too long?",
-  emergencyContactName: "Jane Doe",
-  emergencyContactNumber: "0498743212",
+    "123 Lorem Ipsum Street, Apt 456, Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua, Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat, Duis Aute Irure Dolor In Reprehenderit In Volup",
+  emergencyContactName:
+    "JonathanChristopherAlexanderMaximilianTheodoresada SmithJohnsonWilliamsBrownJonesGarciaMartinezdsdsd", // 100 characters
+  emergencyContactNumber: "0400000000",
   medications: "Yes",
-  whichMedications: "Insulin",
-  whereTattooOnBody: "Left arm",
+  whichMedications:
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.", // 300 characters
+  whereTattooOnBody:
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu", // 200 characters
   numbingCream: "Yes",
   breastfeeding: "No",
   cancer: "No",
   alcoholOrDrugs: "No",
   allergies: "Yes",
-  allergiesInfo: "Latex",
-  otherMedicalConditions: "I have something else called alopecia",
+  allergiesInfo:
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu", // 200 characters
+  otherMedicalConditions:
+    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu", // 200 characters
   medicalConditions: [
     " Diabetes",
     " HIV/AIDS",

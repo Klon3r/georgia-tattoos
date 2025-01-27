@@ -1,4 +1,9 @@
 function EmergencyContactInformationInput({ value, onChange }) {
+  const handleInput = (event) => {
+    const newValue = event.target.value.replace(/[^0-9]/g, "");
+    onChange({ target: { name: event.target.name, value: newValue } });
+  };
+
   return (
     <>
       <p className="consent-paragraph">
@@ -22,6 +27,7 @@ function EmergencyContactInformationInput({ value, onChange }) {
           title="Emergency Contact Name"
           value={value.emergencyContactName}
           onChange={onChange}
+          maxLength={100}
         ></input>
       </div>
 
@@ -33,10 +39,12 @@ function EmergencyContactInformationInput({ value, onChange }) {
           type="text"
           id="emergency-contact-number"
           name="emergencyContactNumber"
-          placeholder="Emergency Contact Number"
           title="Emergency Contact Number"
           value={value.emergencyContactNumber}
-          onChange={onChange}
+          inputMode="numeric"
+          onInput={handleInput}
+          maxLength={10}
+          placeholder="## #### ####"
         ></input>
       </div>
     </>
