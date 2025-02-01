@@ -68,57 +68,58 @@ function ConsentForm() {
     // if (isSending) return;
     let hasError = false;
 
-    // // Check allergies and allergiesInfo
-    // if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
-    //   hasError = true;
-    // }
+    // Check allergies and allergiesInfo
+    if (formData["allergies"] === "yes" && formData["allergiesInfo"] === "") {
+      hasError = true;
+    }
 
-    // // Check medications & whichMedications
-    // if (
-    //   formData["medications"] === "yes" &&
-    //   formData["whichMedications"] === ""
-    // ) {
-    //   hasError = true;
-    // }
+    // Check medications & whichMedications
+    if (
+      formData["medications"] === "yes" &&
+      formData["whichMedications"] === ""
+    ) {
+      hasError = true;
+    }
 
-    // // Then, check all other fields
-    // Object.keys(formData).forEach((key) => {
-    //   if (!fieldsNotRequired.includes(key) && formData[key] === "") {
-    //     console.log("Missing field:", key);
-    //     hasError = true;
-    //   }
-    // });
+    // Check all other fields
+    Object.keys(formData).forEach((key) => {
+      if (!fieldsNotRequired.includes(key) && formData[key] === "") {
+        console.log("Missing field:", key);
+        hasError = true;
+      }
+    });
 
-    // setError(hasError);
+    setError(hasError);
 
     if (!hasError) {
-      // Form Data
-      // const url = "http://localhost:3000/api/consent";
-      // const formDataToSend = new FormData();
+      const url = "http://localhost:3000/api/consent";
+      const formDataToSend = new FormData();
 
-      //Object.keys(formData).forEach((key) => {
-      //  formDataToSend.append(key, formData[key]);
-      //});
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
 
-      //const { file, filename } = await createPDF(formData);
-      //formDataToSend.append("pdf", file, filename);
+      const { pdfBlob, filename } = await CreatePDF(formData);
+      formDataToSend.append("pdf", pdfBlob, filename);
 
-      //setIsSending(true);
-      //await fetch(url, {
-      // method: "POST",
-      // body: formDataToSend,
-      //});
-      //
-      console.log(formData);
-      const { pdfUrl, filename } = await CreatePDF(testData);
+      setIsSending(true);
 
-      const link = document.createElement("a");
-      link.href = pdfUrl;
-      link.download = filename;
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          body: formDataToSend,
+        });
 
-      link.click();
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-      URL.revokeObjectURL(pdfUrl);
+        console.log("✅ Form submitted successfully");
+      } catch (error) {
+        console.error("❌ Error submitting form:", error);
+      } finally {
+        setIsSending(false);
+      }
     }
   };
 

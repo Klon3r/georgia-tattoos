@@ -12,7 +12,7 @@ async function CreatePDF(formData) {
   };
 
   let licenseImage;
-  //licenseImage = await fileToBase64(formData.licensePhoto);
+  licenseImage = await fileToBase64(formData.licensePhoto);
 
   const dobSplit = formData.dob.split("-");
   const dob = dobSplit[2] + "-" + dobSplit[1] + "-" + dobSplit[0];
@@ -103,14 +103,7 @@ async function CreatePDF(formData) {
   // LICENSE PHOTO
   doc.setFont("times", "bold");
   doc.text(`License Photo:`, xForData, y);
-  doc.addImage(
-    formData.licensePhoto,
-    "JPEG",
-    xForDataAlign + 1,
-    y - 4,
-    110,
-    70
-  );
+  doc.addImage(licenseImage, "JPEG", xForDataAlign + 1, y - 4, 110, 70);
   let photoSpace = 63;
   y = y + photoSpace;
 
@@ -338,10 +331,10 @@ async function CreatePDF(formData) {
   const pdfBlob = new Blob([pdfBuffer], { type: "application/pdf" });
 
   // Generate a downloadable URL for the Blob
-  const pdfUrl = URL.createObjectURL(pdfBlob);
+  // const pdfUrl = URL.createObjectURL(pdfBlob);
 
   return {
-    pdfUrl, // TODO: change to pdfBlob once the pdf is to my liking
+    pdfBlob,
     filename: `${formData.fname}-${formData.lname}-consent.pdf`,
   };
 }

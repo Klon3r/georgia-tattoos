@@ -14,7 +14,7 @@ function AreYouOptions({ value, onChange }) {
               id="breastfeeding-yes"
               title="breastfeeding-yes"
               name="breastfeeding"
-              value="yes"
+              value="Yes"
               onChange={onChange}
             />
             Yes
@@ -28,7 +28,7 @@ function AreYouOptions({ value, onChange }) {
               id="breastfeeding-no"
               title="breastfeeding-no"
               name="breastfeeding"
-              value="no"
+              value="No"
               onChange={onChange}
             />
             No
@@ -50,7 +50,7 @@ function AreYouOptions({ value, onChange }) {
               title="cancer-yes"
               name="cancer"
               onChange={onChange}
-              value="yes"
+              value="Yes"
             />
             Yes
           </label>
@@ -63,7 +63,7 @@ function AreYouOptions({ value, onChange }) {
               id="cancer-no"
               title="cancer-no"
               name="cancer"
-              value="no"
+              value="No"
               onChange={onChange}
             />
             No
@@ -85,7 +85,7 @@ function AreYouOptions({ value, onChange }) {
               title="alcohol-or-drugs-yes"
               name="alcoholOrDrugs"
               onChange={onChange}
-              value="yes"
+              value="Yes"
             />
             Yes
           </label>
@@ -99,7 +99,7 @@ function AreYouOptions({ value, onChange }) {
               title="alcohol-or-drugs-no"
               name="alcoholOrDrugs"
               onChange={onChange}
-              value="no"
+              value="No"
             />
             No
           </label>

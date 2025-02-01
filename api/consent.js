@@ -33,13 +33,14 @@ app.post("/api/consent", uploadFields, async (req, res) => {
 
   const data = req.body;
   const files = req.files;
-  try {
-    // something
-    SendConsentEmail(data, files);
-  } catch (error) {
-    // Do function
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+
+  SendConsentEmail(data, files)
+    .then(() => console.log("Email task started"))
+    .catch((error) => console.error("Failed to send email:", error));
+
+  res
+    .status(202)
+    .json({ message: "Consent email is being sent asynchronously" });
 });
 
 //------------------------------------------------

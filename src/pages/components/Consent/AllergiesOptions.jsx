@@ -18,7 +18,7 @@ function AllergiesOptions({ value, onChange }) {
               id="allergies-yes"
               title="allergies-yes"
               name="allergies"
-              value="yes"
+              value="Yes"
               onChange={onChange}
               onClick={() => setAllergies(true)}
             />
@@ -33,7 +33,7 @@ function AllergiesOptions({ value, onChange }) {
               id="allergies-no"
               title="allergies-no"
               name="allergies"
-              value="no"
+              value="No"
               onChange={onChange}
               onClick={() => setAllergies(false)}
             />
