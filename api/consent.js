@@ -18,8 +18,8 @@ app.use(
     origin: "*", //REMOVE BEFORE PUSH TO VERCEL!!!
   })
 );
-
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const upload = multer({ storage: multer.memoryStorage() });
 const uploadFields = upload.fields([
