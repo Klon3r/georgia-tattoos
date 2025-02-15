@@ -14,12 +14,8 @@ import MedicationsOptions from "./components/Consent/MedicationsOptions";
 import TattooOptions from "./components/Consent/TattooOptions";
 import TermsAndConditions from "./components/Consent/TermsAndConditions";
 import CreatePDF from "./components/CreatePDF";
-import testData from "./components/TestData";
-
 import { useState } from "react";
-
 import spinner from "../assets/spinner.gif";
-import test from "node:test";
 
 function ConsentForm() {
   const [formData, setFormData] = useState({
@@ -92,7 +88,7 @@ function ConsentForm() {
     setError(hasError);
 
     if (!hasError) {
-      const url = "http://localhost:3000/api/consent";
+      const url = "https://www.georgiatattoos.com.au/api/consent";
       const formDataToSend = new FormData();
 
       Object.keys(formData).forEach((key) => {
