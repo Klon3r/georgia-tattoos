@@ -36,3 +36,5 @@ app.post("/api/consent", uploadFields, async (req, res) => {
     .status(202)
     .json({ message: "Consent email is being sent asynchronously" });
 });
+
+export default app;
