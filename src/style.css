@@ -466,6 +466,11 @@ input[type="checkbox"] {
   padding-bottom: 40px;
 }
 
+.clear-button-div {
+  display: flex;
+  justify-content: center;
+}
+
 .clear-button {
   font-size: 1.2rem;
   text-align: center;
