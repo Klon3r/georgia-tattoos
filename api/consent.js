@@ -30,13 +30,16 @@ app.post("/api/consent", uploadFields, async (req, res) => {
   const data = req.body;
   const files = req.files;
 
-  SendConsentEmail(data, files)
-    .then(() => console.log("Email task started"))
-    .catch((error) => console.error("Failed to send email:", error));
-
-  res
-    .status(202)
-    .json({ message: "Consent email is being sent asynchronously" });
+  try {
+    await SendConsentEmail(data, files);
+    console.log("✅ Consent email task started successfully");
+    res
+      .status(202)
+      .json({ message: "Consent email is being sent asynchronously" });
+  } catch (error) {
+    console.error("❌ Error in processing consent email:", error);
+    res.status(500).json({ message: "Failed to process the consent email" });
+  }
 });
 
 async function SendConsentEmail(data, files) {
