@@ -5,6 +5,7 @@ function Signature({ value, onChange }) {
   const [writingMode, setWritingMode] = useState(false);
 
   const handlePointerDown = (event) => {
+    event.preventDefault();
     setWritingMode(true);
     const ctx = canvasRef.current.getContext("2d");
     ctx.beginPath();
