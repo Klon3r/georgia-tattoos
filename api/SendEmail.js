@@ -20,6 +20,7 @@ async function SendConsentEmail(data, files) {
 
   const msg = {
     to: process.env.CONSENT_EMAIL,
+    from: process.env.CONSENT_EMAIL,
     subject: `${msgInfo.checkEmail ? "🔴 " : "🟢 "}Consent Form: ${
       data.fname
     } ${data.lname} ${msgInfo.dateJoined}`,
