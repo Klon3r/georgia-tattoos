@@ -14,12 +14,12 @@ app.use(
     origin: "https://www.georgiatattoos.com.au",
   })
 );
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ limit: "10mb", extended: true }));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { filesize: 10 * 1024 * 1024 }, // 10MB for each file
+  limits: { filesize: 50 * 1024 * 1024 }, // 50MB for each file
 });
 const uploadFields = upload.fields([
   { name: "pdf", maxCount: 1 },
