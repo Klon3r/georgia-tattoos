@@ -4,6 +4,7 @@ import esotericLogo from "../../../assets/esoteric-text-logo.png";
 async function CreatePDF(formData) {
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
+      const reader = new FileReader();
       reader.onload = () => {
         let result = reader.result;
 
