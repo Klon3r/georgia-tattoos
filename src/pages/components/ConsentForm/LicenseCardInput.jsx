@@ -7,8 +7,7 @@ function LicenseCardInput({ value, onChange }) {
   const handleFileInput = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const fileBlob = new Blob([file], { type: file.type });
-      onChange({ target: { name: event.target.name, value: fileBlob } });
+      onChange({ target: { name: event.target.name, value: file } });
     }
   };
 
