@@ -106,6 +106,8 @@ function ConsentForm() {
           body: formDataToSend,
         });
 
+        const responseData = await response.json();
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
