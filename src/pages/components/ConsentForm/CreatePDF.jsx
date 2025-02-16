@@ -1,5 +1,5 @@
 import jsPDF from "jspdf";
-import esotericLogo from "../../assets/esoteric-text-logo.png";
+import esotericLogo from "../../../assets/esoteric-text-logo.png";
 
 async function CreatePDF(formData) {
   const fileToBase64 = (file) => {

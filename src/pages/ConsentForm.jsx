@@ -1,19 +1,19 @@
-import LicenseCardInput from "./components/Consent/LicenseCardInput";
-import NameInput from "./components/Consent/NameInput";
-import PronounSelector from "./components/Consent/PronounSelector";
-import DateOfBirthSelector from "./components/Consent/DateOfBirthSelector";
-import PhoneNumberInput from "./components/Consent/PhoneNumberInput";
-import HomeAddressTextArea from "./components/Consent/HomeAddressTextArea";
-import EmergencyContactInformationInput from "./components/Consent/EmergencyContactInformationInput";
-import Signature from "./components/Consent/Signature";
-import PhotoConsentOptions from "./components/Consent/PhotoConsentOptions";
-import AllergiesOptions from "./components/Consent/AllergiesOptions";
-import AreYouOptions from "./components/Consent/AreYouOptions";
-import MedicalConditionsOptions from "./components/Consent/MedicalConitionsOptions";
-import MedicationsOptions from "./components/Consent/MedicationsOptions";
-import TattooOptions from "./components/Consent/TattooOptions";
-import TermsAndConditions from "./components/Consent/TermsAndConditions";
-import CreatePDF from "./components/CreatePDF";
+import LicenseCardInput from "./components/ConsentForm/LicenseCardInput";
+import NameInput from "./components/ConsentForm/NameInput";
+import PronounSelector from "./components/ConsentForm/PronounSelector";
+import DateOfBirthSelector from "./components/ConsentForm/DateOfBirthSelector";
+import PhoneNumberInput from "./components/ConsentForm/PhoneNumberInput";
+import HomeAddressTextArea from "./components/ConsentForm/HomeAddressTextArea";
+import EmergencyContactInformationInput from "./components/ConsentForm/EmergencyContactInformationInput";
+import Signature from "./components/ConsentForm/Signature";
+import PhotoConsentOptions from "./components/ConsentForm/PhotoConsentOptions";
+import AllergiesOptions from "./components/ConsentForm/AllergiesOptions";
+import AreYouOptions from "./components/ConsentForm/AreYouOptions";
+import MedicalConditionsOptions from "./components/ConsentForm/MedicalConitionsOptions";
+import MedicationsOptions from "./components/ConsentForm/MedicationsOptions";
+import TattooOptions from "./components/ConsentForm/TattooOptions";
+import TermsAndConditions from "./components/ConsentForm/TermsAndConditions";
+import CreatePDF from "./components/ConsentForm/CreatePDF";
 import { useState } from "react";
 import spinner from "../assets/spinner.gif";
 
@@ -110,9 +110,11 @@ function ConsentForm() {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        console.log("✅ Form submitted successfully");
+        console.log("✅ Consent form submitted successfully");
+        window.location = "/consent-submitted";
       } catch (error) {
-        console.error("❌ Error submitting form:", error);
+        console.error("❌ Error submitting consent form:", error);
+        window.location = "/error";
       } finally {
         setIsSending(false);
       }

@@ -18,6 +18,7 @@ import Error403 from "./pages/Error403";
 import spiderwebBackground from "./assets/spiderweb_background.png";
 
 import "./style.css";
+import ConsentSubmitted from "./pages/components/ConsentForm/ConsentSubmitted";
 
 function Layout() {
   const location = useLocation();
@@ -99,6 +100,16 @@ const router = createBrowserRouter([
     ),
   },
   {
+    // Consent Submitted
+    path: "/consent-submitted",
+    element: (
+      <>
+        <Layout />
+        <ConsentSubmitted />
+      </>
+    ),
+  },
+  {
     // Error
     path: "/error",
     element: (
@@ -123,5 +134,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
