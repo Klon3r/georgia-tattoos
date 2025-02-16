@@ -1,29 +1,11 @@
 import jsPDF from "jspdf";
-import esotericLogo from "../../../assets/esoteric-text-logo.png";
+import esotericLogo from "../../assets/esoteric-text-logo.png";
 
 async function CreatePDF(formData) {
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => {
-        let result = reader.result;
-
-        // Convert to JPEG if not
-        if (!file.type.includes("jpeg") && !file.type.includes("jpg")) {
-          let img = new Image();
-          img.src = result;
-          img.onload = () => {
-            let canvas = document.createElement("canvas");
-            canvas.width = img.width;
-            canvas.height = img.height;
-            let ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-            resolve(canvas.toDataURL("image/jpeg")); // Force JPEG format
-          };
-        } else {
-          resolve(result);
-        }
-      };
+      reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
     });
