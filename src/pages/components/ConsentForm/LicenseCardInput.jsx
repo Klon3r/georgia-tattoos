@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 function LicenseCardInput({ value, onChange }) {
   const handleInput = (event) => {
     const newValue = event.target.value.replace(/[^0-9]/g, "");
@@ -7,6 +9,16 @@ function LicenseCardInput({ value, onChange }) {
   const handleFileInput = (event) => {
     const file = event.target.files[0];
     if (file) {
+      const fileType = file.type.toLowerCase();
+      if (fileType !== "image/jpeg" && fileType !== "image/jpg") {
+        Swal.fire({
+          title: "Invalid File Type",
+          text: "Please upload a JPG or JPEG image.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
       onChange({ target: { name: event.target.name, value: file } });
     }
   };
