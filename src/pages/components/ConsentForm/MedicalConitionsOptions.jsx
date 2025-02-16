@@ -139,7 +139,7 @@ function MedicalConditionsOptions({ value, onChange }) {
           should know about (optional)
           <div className="consent-inputs">
             <textarea
-              rows="2"
+              rows="1"
               name="otherMedicalConditions"
               value={value.otherMedicalConditions}
               onChange={onChange}
