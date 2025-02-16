@@ -12,7 +12,7 @@ test("Check Error Hash", async ({ page }) => {
 test("Check error text", async ({ page }) => {
   await page.goto(errorPage);
   await expect(
-    page.getByText("There has been an error please go back and try again."),
+    page.getByText("There has been an error please try again.")
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "ERROR" })).toBeVisible();
 });
@@ -20,6 +20,6 @@ test("Check error text", async ({ page }) => {
 // Check Button
 test("Check button routes back to homepage", async ({ page }) => {
   await page.goto(errorPage);
-  await page.getByRole("button", { name: /BACK/i }).click();
+  await page.getByRole("button", { name: /Homepage/i }).click();
   await expect(page).toHaveURL(/. */);
 });
