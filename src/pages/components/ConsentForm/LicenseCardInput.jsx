@@ -16,6 +16,8 @@ function LicenseCardInput({ value, onChange }) {
           text: "Please upload a JPG or JPEG image.",
           icon: "error",
           confirmButtonText: "OK",
+        }).then(() => {
+          event.target.value = "";
         });
         return;
       }
