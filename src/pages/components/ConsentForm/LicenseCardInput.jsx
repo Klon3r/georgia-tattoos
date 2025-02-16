@@ -37,7 +37,8 @@ function LicenseCardInput({ value, onChange }) {
       <div className="consent-inputs">
         <input
           type="file"
-          accept="image/*;capture=camera"
+          accept="image/*"
+          capture="camera"
           name="licensePhoto"
           onChange={handleFileInput}
         ></input>
