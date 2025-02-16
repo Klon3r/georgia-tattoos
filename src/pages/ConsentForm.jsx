@@ -113,10 +113,10 @@ function ConsentForm() {
         }
 
         console.log("✅ Consent form submitted successfully");
-        window.location = "/consent-submitted";
+        window.location.href = "/consent-submitted";
       } catch (error) {
         console.error("❌ Error submitting consent form:", error);
-        window.location = "/error";
+        window.location.href = "/error";
       } finally {
         setIsSending(false);
       }
