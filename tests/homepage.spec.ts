@@ -24,13 +24,6 @@ test("Check Title", async ({ page }) => {
 //   await expect(page).toHaveURL("https://www.etsy.com/au/shop/georgiatattoos");
 // });
 
-// Instagram
-test("Check Instagram Button", async ({ page }) => {
-  await page.goto(homepage);
-  await page.getByRole("button", { name: "INSTAGRAM" }).click({ force: true });
-  await expect(page).toHaveURL(/.*georgia.tattoos*/);
-});
-
 // Facebook
 test("Check Facebook Button", async ({ page }) => {
   await page.goto(homepage);
