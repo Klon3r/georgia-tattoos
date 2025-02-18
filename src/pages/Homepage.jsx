@@ -11,42 +11,37 @@ function Homepage() {
         >
           <strong>BOOKING FORM</strong>
         </button> */}
-        {/* Etsy */}
-        <button
-          onClick={() =>
-            changeURL("https://www.etsy.com/au/shop/georgiatattoos")
-          }
-        >
-          <strong>ETSY STORE</strong>
+
+        {/* Shopify */}
+        <button onClick={() => changeURL("https://qwqr9e-6b.myshopify.com/")}>
+          <strong>SHOP NOW</strong>
         </button>
-        {/* Instagram */}
-        <button
-          onClick={() => changeURL("https://www.instagram.com/georgia.tattoos")}
-        >
-          <strong>INSTAGRAM</strong>
+
+        {/* Aftercare */}
+        <button onClick={() => changeURL("aftercare")}>
+          <strong>AFTERCARE</strong>
         </button>
-        {/* Facebook */}
-        <button
-          onClick={() => changeURL("https://www.facebook.com/georgiamtattoos")}
-        >
-          <strong>FACEBOOK</strong>
-        </button>
+
+        {/* STUDIO PDF */}
+        <a href={studioPDF} download>
+          <button>
+            <strong>STUDIO GUIDE</strong>
+          </button>
+        </a>
+
         {/* Tik Tok */}
         <button
           onClick={() => changeURL("https://www.tiktok.com/@georgia.tattoos")}
         >
           <strong>TIKTOK</strong>
         </button>
-        {/* Aftercare */}
-        <button onClick={() => changeURL("aftercare")}>
-          <strong>AFTERCARE</strong>
+
+        {/* Facebook */}
+        <button
+          onClick={() => changeURL("https://www.facebook.com/georgiamtattoos")}
+        >
+          <strong>FACEBOOK</strong>
         </button>
-        {/* STUDIO PDF */}
-        <a href={studioPDF} download>
-          <button>
-            <strong>STUDIO LOCATION</strong>
-          </button>
-        </a>
       </div>
     </>
   );

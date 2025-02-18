@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 
 /* Global */
 :root {
@@ -10,7 +11,8 @@
 }
 
 * {
-  font-family: "DM sans", sans-serif;
+  /* font-family: "DM sans", sans-serif; */
+  /* font-family: "Oswald", serif; */
 }
 
 /* ---------------------- 
@@ -39,6 +41,11 @@ img.logo-img {
   width: 150px;
 }
 
+img.logo-img2 {
+  width: 250px;
+  margin-top: 2em;
+}
+
 button {
   width: 250px;
   text-align: center;
@@ -53,7 +60,8 @@ button {
   padding: 15px 30px;
   transition: all 0.5s;
   touch-action: manipulation;
-  font-family: "DM sans", sans-serif;
+
+  font-weight: 700;
   font-size: 1em;
   text-decoration: none;
   color: black;
@@ -74,11 +82,13 @@ button:hover {
 div.button-div {
   display: flex;
   flex-direction: column;
-  gap: 0.7em;
+  gap: 1em;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin-top: 2em;
+  font-family: "Oswald", serif;
+  margin-top: 50px;
 }
 
 /* ---------------------- 

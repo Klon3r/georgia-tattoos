@@ -16,6 +16,8 @@ import ConsentForm from "./pages/ConsentForm";
 import Error from "./pages/Error";
 import Error403 from "./pages/Error403";
 import spiderwebBackground from "./assets/spiderweb_background.png";
+import pinkCheckBackground from "./assets/background-pink-checks.jpg";
+import greenCheckBackground from "./assets/background-green-checks.jpg";
 
 import "./style.css";
 import ConsentSubmitted from "./pages/components/ConsentForm/ConsentSubmitted";
@@ -29,7 +31,7 @@ function Layout() {
       document.body.style.backgroundImage = "none";
     } else {
       document.body.style.backgroundColor = "#f6bbed";
-      document.body.style.backgroundImage = `url(${spiderwebBackground})`;
+      document.body.style.backgroundImage = `url(${pinkCheckBackground})`;
       document.body.style.backgroundSize = "cover";
       document.body.style.backgroundAttachment = "fixed";
     }
