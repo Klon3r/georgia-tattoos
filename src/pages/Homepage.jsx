@@ -1,4 +1,4 @@
-import studioPDF from "../../public/how-to-find-studio.pdf";
+import studioPDF from "../../public/how-to-find-the-studio.pdf";
 
 function Homepage() {
   return (
