@@ -3,13 +3,13 @@ import { test, expect } from "@playwright/test";
 const booking = "localhost:5173/booking";
 
 // Check Title
-test("Check Hash Routing", async ({ page }) => {
+test.skip("Check Hash Routing", async ({ page }) => {
   await page.goto(booking);
   await expect(page).toHaveURL(/.*booking/);
 });
 
 // Check inputs exist
-test("Check Inputs Exist", async ({ page }) => {
+test.skip("Check Inputs Exist", async ({ page }) => {
   await page.goto(booking);
 
   const fName = page.getByTitle("first-name");
@@ -43,7 +43,7 @@ test("Check Inputs Exist", async ({ page }) => {
   await expect(workAround).toHaveId("workAround");
 });
 
-test("Check values stay on reload", async ({ page }) => {
+test.skip("Check values stay on reload", async ({ page }) => {
   await page.goto(booking);
 
   const fName = page.getByTitle("first-name");

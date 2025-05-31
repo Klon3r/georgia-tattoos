@@ -10,8 +10,7 @@
     "preview": "vite preview",
     "test": "npx playwright test --ui",
     "server": "nodemon ./api/booking.js",
-    "consent-server": "nodemon ./api/consent.js",
-    "docker": "docker-compose --env-file .env up -d"
+    "consent-server": "nodemon ./api/consent.js"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.4",
@@ -24,11 +23,13 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.51.1",
+    "@tailwindcss/vite": "^4.1.7",
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.11",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "body-parser": "^1.20.3",
+    "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "eslint": "^9.22.0",
@@ -43,6 +44,8 @@
     "pg": "^8.14.1",
     "react-router-dom": "^7.3.0",
     "sweetalert2": "^11.17.2",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5.8.3",
     "vite": "^6.2.2"
   }
 }
