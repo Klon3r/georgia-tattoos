@@ -4,7 +4,7 @@
   <img style="background-color: white; border-radius: 50%; width: 100px;"src="./screenshot/logo-white-background.png">
   <br>
   <a href="http://www.georgiatattoos.com.au">
-    <img src="https://img.shields.io/website?url=http%3A//www.georgiatattoos.com.au" alt="Website Status">
+    <img src="https://img.shields.io/website?url=https://www.georgiatattoos.com.au" alt="Website Status">
   </a>
   <br>
   <em>↑ Click to go to website ↑</em>
@@ -15,10 +15,11 @@
 
 ## Created using
 
-- ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 - ![React](https://shields.io/badge/react-black?logo=react&style=for-the-badge)
 - ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+- ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge)
+- ![TailwindCSS Badge](https://img.shields.io/badge/Tailwind_CSS-grey?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC)
 
 ## Tools Used
 
@@ -30,14 +31,4 @@
 - ![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=for-the-badge)
 - ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-## Screenshots
-
-<div align="center">
-<h3>Homepage</h3>
-<img src="./screenshot/homepage-screenshot.png" alt="Homepage screenshot">
-
-<h3>Booking</h3>
-<img src="./screenshot/booking-screenshot.png" alt="Booking screenshot">
-</div>
-<br><br>
 <div align="center"><h3>Created & Maintained by <a href="https://github.com/Klon3r">Klon3r</a></h3></div>
