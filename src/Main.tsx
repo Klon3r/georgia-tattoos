@@ -12,6 +12,7 @@ import Homepage from "./pages/Homepage.tsx";
 import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 // import Booking from "./pages/Booking.tsx";
 
 const Layout = () => {
@@ -100,8 +101,17 @@ const router = createBrowserRouter([
   },
 ]);
 
+const App = () => {
+  return (
+    <>
+      <RouterProvider router={router} />
+      <SpeedInsights />
+    </>
+  );
+};
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
