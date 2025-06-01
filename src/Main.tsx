@@ -12,12 +12,13 @@ import Homepage from "./pages/Homepage.tsx";
 import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+// import Booking from "./pages/Booking.tsx";
 
 const Layout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/consent") {
+    if (location.pathname === "/consent" || location.pathname === "/booking") {
       document.body.style.backgroundColor = "#fcdef8";
       document.body.style.backgroundImage = "none";
     } else {
@@ -61,6 +62,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
+  // {
+  //   // Booking
+  //   path: "booking",
+  //   element: (
+  //     <div className={rootTailwindStyle}>
+  //       <Layout />
+  //       <Booking />
+  //     </div>
+  //   ),
+  // },
   {
     // Error
     path: "error",

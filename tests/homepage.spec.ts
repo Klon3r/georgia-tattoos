@@ -8,40 +8,52 @@ test("Check Title", async ({ page }) => {
   await expect(page).toHaveTitle("Georgia Tattoos");
 });
 
-// Booking Form
-test.skip("Check Booking Button", async ({ page }) => {
-  await page.goto(homepage);
-  await page
-    .getByRole("button", { name: "BOOKING FORM" })
-    .click({ force: true });
-  await expect(page).toHaveURL(/.*#booking/);
-});
-
-// Aftercare
-test("Check Aftercare Button", async ({ page }) => {
-  await page.goto(homepage);
-  await page.getByRole("button", { name: "AFTERCARE" }).click({ force: true });
-  await expect(page).toHaveURL(/.*aftercare/);
-});
-
-// Studio Guide
+// Studio Guide Button
 test("Check Studio Guide Button", async ({ page }) => {
   await page.goto(homepage);
-
-  const button = page.getByRole("button", { name: "STUDIO GUIDE" });
+  const button = page.getByTestId("studio-guide-button");
   await expect(button).toBeVisible();
   await expect(button).toBeEnabled();
 });
 
-// TIK TOK
-test("Check TikTok Button", async ({ page, context }) => {
+// Aftercare Button
+test("Check Aftercare Button", async ({ page }) => {
   await page.goto(homepage);
+  const button = page.getByTestId("aftercare-button");
+  await expect(button).toBeVisible();
+  await expect(button).toBeEnabled();
+  await button.click({ force: true });
+  await expect(page).toHaveURL(/.*aftercare/);
+});
+
+// Online Shop Button
+test("Check Online Shop Button", async ({ page }) => {
+  await page.goto(homepage);
+  const button = page.getByTestId("online-shop-button");
+  await expect(button).toBeVisible();
+  await expect(button).toBeEnabled();
 
   const [newPage] = await Promise.all([
-    context.waitForEvent("page"),
-    page.getByRole("button", { name: "TIKTOK" }).click({ force: true }),
+    page.context().waitForEvent("page"),
+    button.click({ force: true }),
   ]);
 
   await newPage.waitForLoadState();
-  await expect(newPage).toHaveURL(/.*@georgia.tattoos*/);
+  await expect(newPage).toHaveURL(/.*qwqr9e-6b.myshopify.com/);
+});
+
+// Review Button
+test("Check Review Button", async ({ page }) => {
+  await page.goto(homepage);
+  const button = page.getByTestId("review-button");
+  await expect(button).toBeVisible();
+  await expect(button).toBeEnabled();
+
+  const [newPage] = await Promise.all([
+    page.context().waitForEvent("page"),
+    button.click({ force: true }),
+  ]);
+
+  await newPage.waitForLoadState();
+  await expect(newPage).toHaveURL(/.*google.com\/search/);
 });
