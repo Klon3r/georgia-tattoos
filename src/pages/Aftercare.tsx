@@ -1,7 +1,7 @@
 import HeaderText from "./components/HeaderText/HeaderText";
 import { headerTailwindStyle } from "./components/HeaderText/HeaderTextTailwind";
 import AftercareButton from "./components/Aftercare/AftercareButton/AftercareButton";
-import downChevronIcon from "../assets/down-chevron.png";
+import downChevronIcon from "../assets/Icons/down-chevron.png";
 import { useEffect, useState } from "react";
 import ProductRecommendations from "./components/Aftercare/ProductRecommendations";
 import clsx from "clsx";

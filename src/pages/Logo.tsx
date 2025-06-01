@@ -1,4 +1,4 @@
-import georgiaTattoosLogo from "../assets/georgia-tattoos-logo.gif";
+import georgiaTattoosLogo from "../assets/Logo/georgia-tattoos.gif";
 
 function Logo() {
   return (

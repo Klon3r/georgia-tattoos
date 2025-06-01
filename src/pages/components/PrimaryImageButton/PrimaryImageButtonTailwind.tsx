@@ -1,1 +1,1 @@
-export const buttonTailwindStyle = "max-w-50 min-w-40 cursor-pointer";
+export const buttonTailwindStyle = "w-full max-w-[200px] cursor-pointer";

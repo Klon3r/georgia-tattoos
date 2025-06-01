@@ -57,6 +57,6 @@ const Homepage = () => {
   );
 };
 
-const buttonGroupTailwind = "flex flex-row gap-5 mb-15";
+const buttonGroupTailwind = "flex flex-row gap-5 p-5 mb-5";
 
 export default Homepage;

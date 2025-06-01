@@ -7,7 +7,7 @@ import {
 import ReactDOM from "react-dom/client";
 
 import "./Style.css";
-import pinkCheckBackground from "./assets/background-pink-checks.jpg";
+import pinkCheckBackground from "./assets/Background/pink-checks.jpg";
 import Homepage from "./pages/Homepage.tsx";
 import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
