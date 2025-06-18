@@ -15,5 +15,8 @@ type PrimaryButtonType = {
    * Default is `false` (open in the current tab).
    */
   openNewTab?: boolean;
+
+  /** Specify if you want a custom style class using tailwind */
+  styleClass?: string;
 };
 export default PrimaryButtonType;

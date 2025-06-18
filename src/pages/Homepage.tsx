@@ -1,4 +1,3 @@
-// import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import PrimaryImageButton from "./components/PrimaryImageButton/PrimaryImageButton";
 import StudioPDF from "/how-to-find-the-studio.pdf";
 

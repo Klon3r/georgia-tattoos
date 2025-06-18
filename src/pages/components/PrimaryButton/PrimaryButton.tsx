@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { changeURL } from "../../../utils/changeURL";
 import {
   buttonHoverTailwindStyle,
@@ -9,6 +10,7 @@ const PrimaryButton = ({
   location,
   name,
   openNewTab = false,
+  styleClass = "",
 }: PrimaryButtonType) => {
   const handleOnClick = () => {
     openNewTab ? changeURL(location, openNewTab) : changeURL(location);
@@ -17,7 +19,11 @@ const PrimaryButton = ({
   return (
     <div className="flex flex-col m-4">
       <button
-        className={`${buttonTailwindStyle} ${buttonHoverTailwindStyle}`}
+        className={clsx(
+          styleClass
+            ? styleClass
+            : `${buttonTailwindStyle} ${buttonHoverTailwindStyle}`,
+        )}
         onClick={handleOnClick}
       >
         {name}

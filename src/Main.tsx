@@ -13,7 +13,8 @@ import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-// import Booking from "./pages/Booking.tsx";
+import Booking from "./pages/Booking.tsx";
+import ThankYou from "./pages/ThankYou.tsx";
 
 const Layout = () => {
   const location = useLocation();
@@ -63,16 +64,26 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  // {
-  //   // Booking
-  //   path: "booking",
-  //   element: (
-  //     <div className={rootTailwindStyle}>
-  //       <Layout />
-  //       <Booking />
-  //     </div>
-  //   ),
-  // },
+  {
+    // Booking
+    path: "booking",
+    element: (
+      <div className={rootTailwindStyle}>
+        <Layout />
+        <Booking />
+      </div>
+    ),
+  },
+  {
+    // Thank You
+    path: "thank-you",
+    element: (
+      <div className={rootTailwindStyle}>
+        <Layout />
+        <ThankYou />
+      </div>
+    ),
+  },
   {
     // Error
     path: "error",
@@ -113,5 +124,5 @@ const App = () => {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
