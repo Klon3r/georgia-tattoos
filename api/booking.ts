@@ -61,15 +61,15 @@ type bookingDataType = {
   tattooColour: string;
   workAround: string;
   bookingPolicy: boolean;
-  availability: Record<string, string>;
+  availability: Record<string, boolean>;
 };
 
 async function sendBookingEmail(
   data: bookingDataType,
   files: formidable.Files,
 ) {
-  const instagramURL = convertInstagramToURL(data.instagram[0]);
-  const availability = getAvailability(JSON.parse(data.availability[0]));
+  const instagramURL = convertInstagramToURL(data.instagram);
+  const availability = getAvailability(data.availability);
   const htmlBody = getHTMLBody(data, instagramURL, availability);
 
   const fileFieldNames = Object.keys(files);
@@ -186,7 +186,7 @@ function getAvailability(availability: Record<string, boolean>) {
 }
 
 function normalizeBookingData(fields: Record<string, any>): bookingDataType {
-  let availabilityObj: Record<string, string> = {};
+  let availabilityObj: Record<string, boolean> = {};
   try {
     if (fields.availability?.[0]) {
       availabilityObj = JSON.parse(fields.availability[0]);
