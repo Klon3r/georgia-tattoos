@@ -105,6 +105,7 @@ async function sendBookingEmail(
     html: `${htmlBody}`,
     attachments: attachments,
   });
+  console.log("Resend Result:", result);
 }
 
 function getHTMLBody(
@@ -185,6 +186,15 @@ function getAvailability(availability: Record<string, boolean>) {
 }
 
 function normalizeBookingData(fields: Record<string, any>): bookingDataType {
+  let availabilityObj: Record<string, string> = {};
+  try {
+    if (fields.availability?.[0]) {
+      availabilityObj = JSON.parse(fields.availability[0]);
+    }
+  } catch {
+    availabilityObj = {};
+  }
+
   return {
     firstName: fields.firstName?.[0] ?? "",
     lastName: fields.lastName?.[0] ?? "",
@@ -199,6 +209,6 @@ function normalizeBookingData(fields: Record<string, any>): bookingDataType {
     tattooColour: fields.tattooColour?.[0] ?? "",
     workAround: fields.workAround?.[0] ?? "",
     bookingPolicy: fields.bookingPolicy?.[0] === "true",
-    availability: JSON.parse(fields.availability?.[0] ?? "{}"),
+    availability: availabilityObj,
   };
 }
