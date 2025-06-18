@@ -36,7 +36,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return;
     }
     if (req.method === "POST") {
-      await sendBookingEmail(fields, files);
+      const bookingData = normalizeBookingData(fields);
+      await sendBookingEmail(bookingData, files);
       res.status(201).json({ message: "Email sent!" });
 
       return;
@@ -63,7 +64,10 @@ type bookingDataType = {
   availability: Record<string, string>;
 };
 
-async function sendBookingEmail(data: bookingDataType, files: FileList) {
+async function sendBookingEmail(
+  data: bookingDataType,
+  files: formidable.Files,
+) {
   const instagramURL = convertInstagramToURL(data.instagram[0]);
   const availability = getAvailability(JSON.parse(data.availability[0]));
   const htmlBody = getHTMLBody(data, instagramURL, availability);
@@ -74,11 +78,13 @@ async function sendBookingEmail(data: bookingDataType, files: FileList) {
     return Array.isArray(fileOrArray) ? fileOrArray : [fileOrArray];
   });
   const attachments = await Promise.all(
-    fileArray.map(async (file) => ({
-      filename: file.originalFilename || file.newFilename,
-      content: fs.readFileSync(file.filepath),
-      contentType: file.mimetype,
-    })),
+    fileArray
+      .filter((file): file is formidable.File => !!file)
+      .map(async (file) => ({
+        filename: file.originalFilename || file.newFilename,
+        content: fs.readFileSync(file.filepath),
+        contentType: file.mimetype ?? undefined,
+      })),
   );
 
   const emailAddress = process.env.EMAIL;
@@ -92,7 +98,7 @@ async function sendBookingEmail(data: bookingDataType, files: FileList) {
   }
 
   const result = await resend.emails.send({
-    from: emailFromAddress,
+    from: `"Georgia Tattoos" <${emailFromAddress}>`,
     to: emailAddress,
     replyTo: `${data.email}`,
     subject: `Booking: ${data.firstName} ${data.lastName} (${data.instagram})`,
@@ -176,4 +182,23 @@ function getAvailability(availability: Record<string, boolean>) {
   }
 
   return availabilityList.join(", ");
+}
+
+function normalizeBookingData(fields: Record<string, any>): bookingDataType {
+  return {
+    firstName: fields.firstName?.[0] ?? "",
+    lastName: fields.lastName?.[0] ?? "",
+    preferredName: fields.preferredName?.[0] ?? "",
+    pronouns: fields.pronouns?.[0] ?? "",
+    email: fields.email?.[0] ?? "",
+    number: fields.number?.[0] ?? "",
+    instagram: fields.instagram?.[0] ?? "",
+    sizeTattoo: fields.sizeTattoo?.[0] ?? "",
+    locationOnBody: fields.locationOnBody?.[0] ?? "",
+    tattooDescription: fields.tattooDescription?.[0] ?? "",
+    tattooColour: fields.tattooColour?.[0] ?? "",
+    workAround: fields.workAround?.[0] ?? "",
+    bookingPolicy: fields.bookingPolicy?.[0] === "true",
+    availability: JSON.parse(fields.availability?.[0] ?? "{}"),
+  };
 }
