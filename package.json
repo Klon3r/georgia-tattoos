@@ -9,8 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "npx playwright test --ui",
-    "server": "vercel dev",
-    "consent-server": "nodemon ./api/consent.js"
+    "server": "vercel dev"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.4",
