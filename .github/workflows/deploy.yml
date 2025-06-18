@@ -24,6 +24,9 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Pull Vercel Project Settings
+        run: npx vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+
       - name: Install Depends
         run: npm ci
 
@@ -35,9 +38,6 @@ jobs:
 
       - name: Build Site
         run: npm run build
-
-      - name: Pull Vercel Project Settings
-        run: npx vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Build Project Locally for Production
         run: npx vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
