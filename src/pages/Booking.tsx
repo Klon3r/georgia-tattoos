@@ -86,11 +86,16 @@ const Booking = () => {
         // Upload each file and collect the URL from the blob
         fileUrls = await Promise.all(
           compressedFiles.map(async (file) => {
-            const { url } = await upload(file.name, file, {
-              access: "public",
-              handleUploadUrl: "/api/upload",
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const response = await fetch("/api/upload", {
+              method: "PUT",
+              body: formData,
             });
-            return url;
+
+            const blob = await response.json();
+            return blob.url;
           }),
         );
 
