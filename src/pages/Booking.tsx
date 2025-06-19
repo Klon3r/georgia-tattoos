@@ -8,6 +8,7 @@ import BookingPolicy from "./components/Booking/Components/BookingPolicy/Booking
 import { checkAvailability } from "../utils/bookingFormUtil";
 import imageCompression from "browser-image-compression";
 import { changeURL } from "../utils/changeURL";
+import { upload } from "@vercel/blob/client";
 
 const BOOKING_URL_VERCEL = "/api/booking";
 // const BOOKING_URL_LOCAL = "http://localhost:3000/api/booking";
@@ -70,6 +71,7 @@ const Booking = () => {
       formData.append("availability", JSON.stringify(availability));
 
       const inputFiles = fileInput.current?.files;
+      let fileUrls: string[] = [];
 
       if (inputFiles) {
         const compressedFiles = await Promise.all(
@@ -81,9 +83,18 @@ const Booking = () => {
           }),
         );
 
-        compressedFiles.forEach((compressedFile) => {
-          formData.append("files", compressedFile);
-        });
+        // Upload each file and collect the URL from the blob
+        fileUrls = await Promise.all(
+          compressedFiles.map(async (file) => {
+            const { url } = await upload(file.name, file, {
+              access: "public",
+              handleUploadUrl: "/api/upload",
+            });
+            return url;
+          }),
+        );
+
+        formData.append("fileUrls", JSON.stringify(fileUrls));
       }
 
       fetch(BOOKING_URL_VERCEL, {

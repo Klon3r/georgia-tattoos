@@ -1,7 +1,6 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
 import formidable from "formidable";
-import fs from "fs";
 
 const ALLOWED_ORIGINS = ["https://www.georgiatattoos.com.au"];
 
@@ -30,14 +29,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const form = formidable();
 
-  form.parse(req, async (err, fields, files) => {
+  form.parse(req, async (err, fields) => {
     if (err) {
       res.status(500).json({ error: "Error parsing form" });
       return;
     }
     if (req.method === "POST") {
       const bookingData = normalizeBookingData(fields);
-      await sendBookingEmail(bookingData, files);
+      await sendBookingEmail(bookingData);
       res.status(201).json({ message: "Email sent!" });
 
       return;
@@ -62,29 +61,24 @@ type bookingDataType = {
   workAround: string;
   bookingPolicy: boolean;
   availability: Record<string, boolean>;
+  fileUrls: string[];
 };
 
-async function sendBookingEmail(
-  data: bookingDataType,
-  files: formidable.Files,
-) {
+async function sendBookingEmail(data: bookingDataType) {
   const instagramURL = convertInstagramToURL(data.instagram);
   const availability = getAvailability(data.availability);
-  const htmlBody = getHTMLBody(data, instagramURL, availability);
 
-  const fileFieldNames = Object.keys(files);
-  const fileArray = fileFieldNames.flatMap((field) => {
-    const fileOrArray = files[field];
-    return Array.isArray(fileOrArray) ? fileOrArray : [fileOrArray];
-  });
-  const attachments = await Promise.all(
-    fileArray
-      .filter((file): file is formidable.File => !!file)
-      .map(async (file) => ({
-        filename: file.originalFilename || file.newFilename,
-        content: fs.readFileSync(file.filepath),
-        contentType: file.mimetype ?? undefined,
-      })),
+  const fileUrls = data.fileUrls;
+  const referencePhotosHTML = fileUrls.map(
+    (url) =>
+      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`,
+  );
+
+  const htmlBody = getHTMLBody(
+    data,
+    instagramURL,
+    availability,
+    referencePhotosHTML,
   );
 
   const emailAddress = process.env.EMAIL;
@@ -103,7 +97,6 @@ async function sendBookingEmail(
     replyTo: `${data.email}`,
     subject: `Booking: ${data.firstName} ${data.lastName} (${data.instagram})`,
     html: `${htmlBody}`,
-    attachments: attachments,
   });
   console.log("Resend Result:", result);
 }
@@ -112,6 +105,7 @@ function getHTMLBody(
   data: bookingDataType,
   instagramURL: string,
   availability: string,
+  fileUrls: string[],
 ) {
   const htmlBody = `
     <h3>Booking</h3>
@@ -163,6 +157,9 @@ function getHTMLBody(
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
       </tr>
     </table>
+
+    <h3>Reference Photos</h3>
+    ${fileUrls}
   `;
   return htmlBody;
 }
@@ -210,5 +207,6 @@ function normalizeBookingData(fields: Record<string, any>): bookingDataType {
     workAround: fields.workAround?.[0] ?? "",
     bookingPolicy: fields.bookingPolicy?.[0] === "true",
     availability: availabilityObj,
+    fileUrls: JSON.parse(fields.fileUrls?.[0] ?? "[]"),
   };
 }
