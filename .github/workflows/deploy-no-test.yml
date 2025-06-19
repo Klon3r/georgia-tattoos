@@ -1,0 +1,45 @@
+name: Build & Deploy to Vercel (No Test)
+
+on:
+  workflow_run:
+    workflows: ["Run Tests"]
+    types:
+      - completed
+
+env:
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+jobs:
+  build_website_files:
+    name: Build Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
+      - name: Pull Vercel Project Settings
+        run: npx vercel pull --yes --environment=production --token ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Install Depends
+        run: npm ci
+
+      - name: Clean .vercel cache
+        run: rm -rf .vercel/output
+
+      - name: Install Vercel CLI
+        run: npm install vercel
+
+      - name: Build Site
+        run: npm run build
+
+      - name: Build Project Locally for Production
+        run: npx vercel build --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Prebuilt Project to Vercel
+        run: npx vercel deploy --prebuilt --prod --token ${{ secrets.VERCEL_TOKEN }}
