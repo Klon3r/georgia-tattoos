@@ -32,6 +32,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   form.parse(req, async (err, fields) => {
     if (err) {
       res.status(500).json({ error: "Error parsing form" });
+      console.log("Error Parsing Form", err, fields); // For Vercel Logs
+
       return;
     }
     if (req.method === "POST") {
