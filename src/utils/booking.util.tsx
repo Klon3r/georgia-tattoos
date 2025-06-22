@@ -59,14 +59,20 @@ export const compressFiles = async (inputFiles: FileList) => {
  * @param {File[]} files - The array of files to upload.
  * @returns {Promise<string[]>} A promise that resolves to an array of URLs for the uploaded blobs.
  */
-export const uploadFile = async (files: File[]) => {
+export const uploadFile = async (
+  files: File[],
+  firstName: FormDataEntryValue,
+  lastName: FormDataEntryValue,
+) => {
   let fileUrls: string[] = [];
+  const fullName = `${firstName}-${lastName}`;
   const uploadApi = "/api/upload";
 
   fileUrls = await Promise.all(
     files.map(async (file) => {
       const formData = new FormData();
       formData.append("file", file);
+      formData.append("fullName", fullName);
 
       const response = await fetch(uploadApi, {
         method: "PUT",

@@ -54,7 +54,13 @@ const Booking = () => {
 
       if (inputFiles) {
         const compressedFiles = await compressFiles(inputFiles);
-        const fileUrls = await uploadFile(compressedFiles);
+        const firstName = formData.get("firstName");
+        const lastName = formData.get("lastName");
+        const fileUrls = await uploadFile(
+          compressedFiles,
+          firstName ?? "",
+          lastName ?? "",
+        );
 
         formData.append("fileUrls", JSON.stringify(fileUrls));
       }
