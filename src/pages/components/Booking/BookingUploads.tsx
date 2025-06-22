@@ -12,12 +12,22 @@ const BookingUploads = ({ inputRef }: BookingUploadsType) => {
 
   const handleChange = () => {
     if (inputRef.current?.files) {
+      if (!checkForImages(inputRef.current.files)) {
+        setErrorMessage("Please only select image files");
+        inputRef.current.value = "";
+        return;
+      }
+
       const fileSize = checkFiles(inputRef.current.files);
       if (fileSize >= 25) {
         setErrorMessage("Please select files that are under the total of 25mb");
-        inputRef.current.value = ""; // Clear the selected files
+        inputRef.current.value = "";
       }
     }
+  };
+
+  const checkForImages = (files: FileList) => {
+    return Array.from(files).every((file) => file.type.startsWith("image/"));
   };
 
   return (

@@ -20,6 +20,7 @@ const UploadInput = ({
         multiple={multiple}
         aria-label={ariaLabel}
         onChange={onChange}
+        accept="image/*"
       />
     </div>
   );
