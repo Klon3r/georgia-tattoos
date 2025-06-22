@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { inputStyle, inputStyleFocusBorder } from "../Tailwind";
-import { storeValue } from "../../../../utils/bookingFormUtil";
+import { storeValue } from "../../../../utils/bookingForm.util";
 
 const InstagramInput = () => {
   return (

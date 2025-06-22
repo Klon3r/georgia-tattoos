@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { changeURL } from "../../../utils/changeURL";
+import { changeURL } from "../../../utils/url.util";
 import {
   buttonHoverTailwindStyle,
   buttonTailwindStyle,

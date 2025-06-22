@@ -5,8 +5,8 @@ import BookingTattoo from "./components/Booking/BookingTattoo";
 import BookingUploads from "./components/Booking/BookingUploads";
 import BookingButtons from "./components/Booking/Components/BookingButtons";
 import BookingPolicy from "./components/Booking/Components/BookingPolicy/BookingPolicy";
-import { checkAvailability } from "../utils/bookingFormUtil";
-import { changeURL } from "../utils/changeURL";
+import { checkAvailability } from "../utils/bookingForm.util";
+import { changeURL } from "../utils/url.util";
 import {
   compressFiles,
   loadLocalStorage,

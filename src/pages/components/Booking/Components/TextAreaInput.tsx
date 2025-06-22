@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { storeValue } from "../../../../utils/bookingFormUtil";
+import { storeValue } from "../../../../utils/bookingForm.util";
 import { TextAreaInputType } from "./Types";
 import { textAreaInputStyle, inputStyleFocusBorder } from "../Tailwind";
 
@@ -16,7 +16,7 @@ const TextAreaInput = ({
       className={clsx(
         textAreaInputStyle,
         inputStyleFocusBorder,
-        resize ? "" : "resize-none"
+        resize ? "" : "resize-none",
       )}
       id={id}
       title={id}

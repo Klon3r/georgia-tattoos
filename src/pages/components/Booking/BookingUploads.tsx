@@ -1,7 +1,7 @@
 import { RefObject, useState } from "react";
 import TextHeader from "./Components/TextHeader";
 import UploadInput from "./Components/UploadInput";
-import { checkFiles } from "../../../utils/bookingFormUtil";
+import { checkFiles } from "../../../utils/bookingForm.util";
 
 type BookingUploadsType = {
   inputRef: RefObject<HTMLInputElement | null>;

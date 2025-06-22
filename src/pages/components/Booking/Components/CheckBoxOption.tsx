@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { checkboxOptionStyle, inputRowDivStyle } from "../Tailwind";
 import TextHeader from "./TextHeader";
 import { CheckBoxOptionType } from "./Types";
-import { storeValue } from "../../../../utils/bookingFormUtil";
+import { storeValue } from "../../../../utils/bookingForm.util";
 
 const CheckBoxOption = ({
   id,

@@ -1,4 +1,4 @@
-import { changeURL } from "../../../utils/changeURL";
+import { changeURL } from "../../../utils/url.util";
 import { buttonTailwindStyle } from "./PrimaryImageButtonTailwind";
 import PrimaryImageButtonType from "./PrimaryImageButtonType";
 

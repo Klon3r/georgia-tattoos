@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { storeValue } from "../../../../utils/bookingFormUtil";
+import { storeValue } from "../../../../utils/bookingForm.util";
 import { inputStyleFocusBorder, selectOptionInputStyle } from "../Tailwind";
 import { SelectOptionType } from "./Types";
 
