@@ -6,9 +6,12 @@ import BookingUploads from "./components/Booking/BookingUploads";
 import BookingButtons from "./components/Booking/Components/BookingButtons";
 import BookingPolicy from "./components/Booking/Components/BookingPolicy/BookingPolicy";
 import { checkAvailability } from "../utils/bookingFormUtil";
-import imageCompression from "browser-image-compression";
 import { changeURL } from "../utils/changeURL";
-import { upload } from "@vercel/blob/client";
+import {
+  compressFiles,
+  loadLocalStorage,
+  uploadFile,
+} from "../utils/booking.util";
 
 const BOOKING_URL_VERCEL = "/api/booking";
 // const BOOKING_URL_LOCAL = "http://localhost:3000/api/booking";
@@ -26,17 +29,6 @@ const Booking = () => {
     saturday: false,
   });
 
-  const loadLocalStorage = (): Record<string, string | number> => {
-    const data: Record<string, string | number> = {};
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key) {
-        data[key] = localStorage.getItem(key) ?? "";
-      }
-    }
-    return data;
-  };
-
   const onAvailableCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -44,17 +36,6 @@ const Booking = () => {
       ...availability,
       [e.target.id]: e.target.checked,
     });
-  };
-
-  const resizeImage = async (imageFile: File) => {
-    const options = {
-      maxSizeMB: 0.5,
-      maxWidthOrHeight: 1024,
-      useWebWorker: true,
-    };
-
-    const compressedImage = await imageCompression(imageFile, options);
-    return compressedImage;
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -65,39 +46,15 @@ const Booking = () => {
       const formData = new FormData();
       const localData = loadLocalStorage();
       Object.entries(localData).forEach(([key, value]) => {
-        formData.append(key, value as string);
+        formData.append(key, String(value));
       });
-
       formData.append("availability", JSON.stringify(availability));
 
       const inputFiles = fileInput.current?.files;
-      let fileUrls: string[] = [];
 
       if (inputFiles) {
-        const compressedFiles = await Promise.all(
-          Array.from(inputFiles).map(async (originalFile) => {
-            const compressedBlob = await resizeImage(originalFile);
-            return new File([compressedBlob], originalFile.name, {
-              type: compressedBlob.type,
-            });
-          }),
-        );
-
-        // Upload each file and collect the URL from the blob
-        fileUrls = await Promise.all(
-          compressedFiles.map(async (file) => {
-            const formData = new FormData();
-            formData.append("file", file);
-
-            const response = await fetch("/api/upload", {
-              method: "PUT",
-              body: formData,
-            });
-
-            const blob = await response.json();
-            return blob.url;
-          }),
-        );
+        const compressedFiles = await compressFiles(inputFiles);
+        const fileUrls = await uploadFile(compressedFiles);
 
         formData.append("fileUrls", JSON.stringify(fileUrls));
       }
