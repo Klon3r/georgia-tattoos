@@ -16,6 +16,8 @@ export type TextHeaderType = {
   required?: boolean;
   /** Add a custom classname */
   divClassName?: string;
+  // The sub heading text that will be displayed */
+  subHeaderText?: string;
 };
 
 export type SelectOptionType = {

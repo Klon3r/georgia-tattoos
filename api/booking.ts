@@ -61,6 +61,7 @@ type bookingDataType = {
   tattooDescription: string;
   tattooColour: string;
   workAround: string;
+  scarCoverup: string;
   bookingPolicy: boolean;
   availability: Record<string, boolean>;
   fileUrls: string[];
@@ -93,11 +94,19 @@ async function sendBookingEmail(data: bookingDataType) {
     throw new Error("EMAIL_FROM environment variable is not set");
   }
 
+  let emailSubject = "";
+
+  if (data.scarCoverup == "Yes") {
+    emailSubject = "Scar Coverup";
+  } else {
+    emailSubject = "Booking";
+  }
+
   const result = await resend.emails.send({
     from: `"Georgia Tattoos" <${emailFromAddress}>`,
     to: emailAddress,
     replyTo: `${data.email}`,
-    subject: `Booking: ${data.firstName} ${data.lastName} (${data.instagram})`,
+    subject: `${emailSubject}: ${data.firstName} ${data.lastName} (${data.instagram})`,
     html: `${htmlBody}`,
   });
   console.log("Resend Result:", result);
@@ -157,6 +166,10 @@ function getHTMLBody(
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
+      </tr>
+      <tr style="background-color: #fcdef8;">
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Scar Coverup:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.scarCoverup}</td>
       </tr>
     </table>
 

@@ -107,6 +107,16 @@ const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
         ariaLabel="Will I be working around other tattoos/filling a gap?"
         required
       />
+      <TextHeader
+        headerText="Is this tattoo a scar coverup?"
+        subHeaderText="If Yes, Please provide photos"
+      />
+      <SelectOption
+        id="scarCoverup"
+        placeholder="Select an option"
+        options={["Yes", "No"]}
+        ariaLabel="Is this tattoo a scar coverup"
+      />
     </div>
   );
 };
