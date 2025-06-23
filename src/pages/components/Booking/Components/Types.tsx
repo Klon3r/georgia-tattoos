@@ -7,6 +7,8 @@ export type TextInputType = {
   ariaLabel: string;
   /** Whether the input is required for form submission. */
   required?: boolean;
+  /** The maximum the amount of character allowed */
+  maxLength?: number;
 };
 
 export type TextHeaderType = {
@@ -46,6 +48,8 @@ export type TextAreaInputType = {
   required?: boolean;
   /** Weather the text area can be resized */
   resize?: boolean;
+  /** The maximum length allowed */
+  maxLength?: number;
 };
 
 export type CheckBoxOptionType = {

@@ -10,6 +10,7 @@ const TextAreaInput = ({
   rows,
   required = false,
   resize = true,
+  maxLength = 1000,
 }: TextAreaInputType) => {
   return (
     <textarea
@@ -27,6 +28,7 @@ const TextAreaInput = ({
       onChange={(e) => {
         storeValue(e);
       }}
+      maxLength={maxLength}
     />
   );
 };

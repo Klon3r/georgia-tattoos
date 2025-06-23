@@ -14,6 +14,7 @@ const EmailInput = () => {
       aria-label="Enter email"
       required
       onChange={(e) => storeValue(e)}
+      maxLength={254}
     />
   );
 };

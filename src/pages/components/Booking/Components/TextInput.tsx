@@ -8,6 +8,7 @@ const TextInput = ({
   placeholder,
   ariaLabel,
   required = false,
+  maxLength = 50,
 }: TextInputType) => {
   return (
     <input
@@ -20,6 +21,7 @@ const TextInput = ({
       aria-label={ariaLabel}
       required={required}
       onChange={(e) => storeValue(e)}
+      maxLength={maxLength}
     />
   );
 };

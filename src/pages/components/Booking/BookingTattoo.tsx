@@ -33,6 +33,7 @@ const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
         rows={2}
         required
         resize={false}
+        maxLength={200}
       />
       <div className={inputRowDivStyle}>
         <div className="flex-1">
