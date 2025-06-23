@@ -223,5 +223,6 @@ function normalizeBookingData(fields: Record<string, any>): bookingDataType {
     bookingPolicy: fields.bookingPolicy?.[0] === "true",
     availability: availabilityObj,
     fileUrls: JSON.parse(fields.fileUrls?.[0] ?? "[]"),
+    scarCoverup: fields.scarCoverup?.[0] ?? "No",
   };
 }
