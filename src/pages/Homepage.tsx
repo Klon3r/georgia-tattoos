@@ -9,7 +9,7 @@ import ImageReview from "../assets/Homepage/review.PNG";
 import ImageBookNow from "../assets/Homepage/book-now.PNG";
 
 const Homepage = () => {
-  const booksOpen = false;
+  const booksOpen = true;
 
   return (
     <div>

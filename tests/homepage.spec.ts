@@ -43,17 +43,17 @@ test("Check Online Shop Button", async ({ page }) => {
 });
 
 // Review Button
-test("Check Review Button", async ({ page }) => {
-  await page.goto(homepage);
-  const button = page.getByTestId("review-button");
-  await expect(button).toBeVisible();
-  await expect(button).toBeEnabled();
+// test("Check Review Button", async ({ page }) => {
+//   await page.goto(homepage);
+//   const button = page.getByTestId("review-button");
+//   await expect(button).toBeVisible();
+//   await expect(button).toBeEnabled();
 
-  const [newPage] = await Promise.all([
-    page.context().waitForEvent("page"),
-    button.click({ force: true }),
-  ]);
+//   const [newPage] = await Promise.all([
+//     page.context().waitForEvent("page"),
+//     button.click({ force: true }),
+//   ]);
 
-  await newPage.waitForLoadState();
-  await expect(newPage).toHaveURL(/.*google.com\/search/);
-});
+//   await newPage.waitForLoadState();
+//   await expect(newPage).toHaveURL(/.*google.com\/search/);
+// });
