@@ -14,13 +14,22 @@ const Homepage = () => {
   return (
     <div>
       <div className={buttonGroupTailwind}>
-        <PrimaryImageButton
-          imageSource={ImageOnlineShop}
-          url="https://qwqr9e-6b.myshopify.com/"
-          openNewTab
-          ariaLabel="Online shop button"
-          testId="online-shop-button"
-        />
+        {booksOpen ? (
+          <PrimaryImageButton
+            imageSource={ImageBookNow}
+            url="/booking"
+            ariaLabel="Book now button"
+            testId="book-now-button"
+          />
+        ) : (
+          <PrimaryImageButton
+            imageSource={ImageOnlineShop}
+            url="https://qwqr9e-6b.myshopify.com/"
+            openNewTab
+            ariaLabel="Online shop button"
+            testId="online-shop-button"
+          />
+        )}
         <PrimaryImageButton
           imageSource={ImageAftercare}
           url="/aftercare"
@@ -37,10 +46,11 @@ const Homepage = () => {
         />
         {booksOpen ? (
           <PrimaryImageButton
-            imageSource={ImageBookNow}
-            url="/booking"
-            ariaLabel="Book now button"
-            testId="book-now-button"
+            imageSource={ImageOnlineShop}
+            url="https://qwqr9e-6b.myshopify.com/"
+            openNewTab
+            ariaLabel="Online shop button"
+            testId="online-shop-button"
           />
         ) : (
           <PrimaryImageButton
