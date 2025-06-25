@@ -63,16 +63,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  {
-    // Booking
-    path: "booking",
-    element: (
-      <div className={rootTailwindStyle}>
-        <Layout />
-        <Booking />
-      </div>
-    ),
-  },
+  // {
+  //   // Booking
+  //   path: "booking",
+  //   element: (
+  //     <div className={rootTailwindStyle}>
+  //       <Layout />
+  //       <Booking />
+  //     </div>
+  //   ),
+  // },
   {
     // Thank You
     path: "thank-you",
