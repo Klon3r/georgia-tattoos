@@ -152,22 +152,26 @@ function getHTMLBody(
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.tattooDescription}</td>
       </tr>
       <tr style="background-color: #fcdef8;">
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Work Around:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.workAround}</td>
+      </tr>
+      <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Tattoo Colour:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.tattooColour}</td>
       </tr>
-      <tr>
+      <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Location on Body:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.locationOnBody}</td>
       </tr>
-      <tr style="background-color: #fcdef8;">
+      <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.sizeTattoo}</td>
       </tr>
-      <tr>
+      <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
       </tr>
-      <tr style="background-color: #fcdef8;">
+      <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Scar Coverup:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.scarCoverup}</td>
       </tr>
