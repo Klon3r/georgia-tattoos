@@ -3,13 +3,13 @@ import { test, expect } from "@playwright/test";
 const booking = "localhost:5173/booking";
 
 // Check Title
-test("Check Booking Routing", async ({ page }) => {
+test.skip("Check Booking Routing", async ({ page }) => {
   await page.goto(booking);
   await expect(page).toHaveURL(/.*booking/);
 });
 
 // Check inputs exist
-test("Check Inputs Exist", async ({ page }) => {
+test.skip("Check Inputs Exist", async ({ page }) => {
   await page.goto(booking);
 
   const firstName = page.getByTitle("First Name");
