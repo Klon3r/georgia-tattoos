@@ -68,7 +68,7 @@ type bookingDataType = {
 };
 
 async function sendBookingEmail(data: bookingDataType) {
-  const instagramURL = convertInstagramToURL(data.instagram);
+  const instagram = convertInstagramToURL(data.instagram);
   const availability = getAvailability(data.availability);
 
   const fileUrls = data.fileUrls;
@@ -79,7 +79,7 @@ async function sendBookingEmail(data: bookingDataType) {
 
   const htmlBody = getHTMLBody(
     data,
-    instagramURL,
+    instagram.url,
     availability,
     referencePhotosHTML,
   );
@@ -106,7 +106,7 @@ async function sendBookingEmail(data: bookingDataType) {
     from: `"Georgia Tattoos" <${emailFromAddress}>`,
     to: emailAddress,
     replyTo: `${data.email}`,
-    subject: `${emailSubject}: ${data.firstName} ${data.lastName} (${data.instagram})`,
+    subject: `${emailSubject}: ${data.firstName} ${data.lastName} (${instagram.handle})`,
     html: `${htmlBody}`,
   });
   console.log("Resend Result:", result);
@@ -180,9 +180,9 @@ function getHTMLBody(
 }
 
 function convertInstagramToURL(instagram: string) {
-  const convertedHandle = instagram.toLowerCase().replace("@", "");
-  const instagramURL = `https://www.instagram.com/${convertedHandle}/?hl=en`;
-  return instagramURL;
+  const handle = instagram.toLowerCase().replace("@", "");
+  const url = `https://www.instagram.com/${handle}/?hl=en`;
+  return { handle, url };
 }
 
 function getAvailability(availability: Record<string, boolean>) {
