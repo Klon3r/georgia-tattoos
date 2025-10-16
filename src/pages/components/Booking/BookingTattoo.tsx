@@ -1,19 +1,16 @@
-import CheckBoxOption from "./Components/CheckBoxOption";
 import SelectOption from "./Components/SelectOption";
 import TextAreaInput from "./Components/TextAreaInput";
 import TextHeader from "./Components/TextHeader";
 import TextInput from "./Components/TextInput";
-import {
-  inputContainerStyle,
-  checkboxOptionContainer,
-  inputRowDivStyle,
-} from "./Tailwind";
+import { inputContainerStyle, inputRowDivStyle } from "./Tailwind";
 
-type BookingTattooType = {
-  onAvailableCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+// type BookingTattooType = {
+//   onAvailableCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+// };
 
-const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
+// const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
+
+const BookingTattoo = () => {
   return (
     <div className={inputContainerStyle}>
       <TextHeader headerText="Description of Tattoo: " required />
@@ -56,9 +53,10 @@ const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
           />
         </div>
       </div>
-      <TextHeader headerText="Availability?: " required />
+
+      {/* <TextHeader headerText="Availability?: " required />
       <div className="flex flex-col gap-5">
-        <div className={checkboxOptionContainer}>
+         <div className={checkboxOptionContainer}>
           <CheckBoxOption
             id="monday"
             headerText="Monday:"
@@ -90,7 +88,8 @@ const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
             localStorage={false}
           />
         </div>
-      </div>
+      </div> */}
+
       <TextHeader
         headerText="Will I be working around other tattoos/filling a gap?: "
         divClassName="max-w-sm whitespace-normal"
@@ -108,7 +107,7 @@ const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
         ariaLabel="Will I be working around other tattoos/filling a gap?"
         required
       />
-      <TextHeader
+      {/* <TextHeader
         headerText="Is this tattoo a scar coverup?"
         subHeaderText="If Yes, Please provide photos"
       />
@@ -117,7 +116,7 @@ const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
         placeholder="Select an option"
         options={["Yes", "No"]}
         ariaLabel="Is this tattoo a scar coverup"
-      />
+      /> */}
     </div>
   );
 };

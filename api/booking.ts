@@ -61,15 +61,15 @@ type bookingDataType = {
   tattooDescription: string;
   tattooColour: string;
   workAround: string;
-  scarCoverup: string;
+  // scarCoverup: string;
   bookingPolicy: boolean;
-  availability: Record<string, boolean>;
+  // availability: Record<string, boolean>;
   fileUrls: string[];
 };
 
 async function sendBookingEmail(data: bookingDataType) {
   const instagram = convertInstagramToURL(data.instagram);
-  const availability = getAvailability(data.availability);
+  // const availability = getAvailability(data.availability);
 
   const fileUrls = data.fileUrls;
   const referencePhotosHTML = fileUrls.map(
@@ -80,7 +80,7 @@ async function sendBookingEmail(data: bookingDataType) {
   const htmlBody = getHTMLBody(
     data,
     instagram.url,
-    availability,
+    // availability
     referencePhotosHTML
   );
 
@@ -96,11 +96,13 @@ async function sendBookingEmail(data: bookingDataType) {
 
   let emailSubject = "";
 
-  if (data.scarCoverup == "Yes") {
-    emailSubject = "Scar Coverup";
-  } else {
-    emailSubject = "Halloween Booking";
-  }
+  // if (data.scarCoverup == "Yes") {
+  //   emailSubject = "Scar Coverup";
+  // } else {
+  //   emailSubject = "Booking";
+  // }
+
+  emailSubject = "Halloween";
 
   const result = await resend.emails.send({
     from: `"Georgia Tattoos" <${emailFromAddress}>`,
@@ -112,10 +114,81 @@ async function sendBookingEmail(data: bookingDataType) {
   console.log("Resend Result:", result);
 }
 
+// function getHTMLBody(
+//   data: bookingDataType,
+//   instagramURL: string,
+//   availability: string,
+//   fileUrls: string[]
+// ) {
+//   const htmlBody = `
+//     <h3>Booking</h3>
+//     <table>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.firstName + " " + data.lastName}</td>
+//       </tr>
+//       <tr style="background-color: #fcdef8;">
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Name:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.preferredName}</td>
+//       </tr>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Pronouns:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.pronouns}</td>
+//       </tr>
+//       <tr style="background-color: #fcdef8;">
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.email}</td>
+//       </tr>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.number}</td>
+//       </tr>
+//       <tr style="background-color: #fcdef8;">
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">
+//           <a href="${instagramURL}">${data.instagram}</a>
+//         </td>
+//       </tr>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Description of Tattoo:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.tattooDescription}</td>
+//       </tr>
+//       <tr style="background-color: #fcdef8;">
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Work Around:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.workAround}</td>
+//       </tr>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Tattoo Colour:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.tattooColour}</td>
+//       </tr>
+//       <tr style="background-color: #fcdef8;">
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Location on Body:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.locationOnBody}</td>
+//       </tr>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.sizeTattoo}</td>
+//       </tr>
+//       <tr style="background-color: #fcdef8;">
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
+//       </tr>
+//       <tr>
+//         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Scar Coverup:</strong></td>
+//         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.scarCoverup}</td>
+//       </tr>
+//     </table>
+
+//     <h3>Reference Photos</h3>
+//     ${fileUrls}
+//   `;
+//   return htmlBody;
+// }
+
 function getHTMLBody(
   data: bookingDataType,
   instagramURL: string,
-  availability: string,
+  // availability: string,
   fileUrls: string[]
 ) {
   const htmlBody = `
@@ -167,14 +240,6 @@ function getHTMLBody(
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.sizeTattoo}</td>
       </tr>
-      <tr style="background-color: #fcdef8;">
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${availability}</td>
-      </tr>
-      <tr>
-        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Scar Coverup:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.scarCoverup}</td>
-      </tr>
     </table>
 
     <h3>Reference Photos</h3>
@@ -189,27 +254,27 @@ function convertInstagramToURL(instagram: string) {
   return { handle, url };
 }
 
-function getAvailability(availability: Record<string, boolean>) {
-  const availabilityList: string[] = [];
+// function getAvailability(availability: Record<string, boolean>) {
+//   const availabilityList: string[] = [];
 
-  for (const [day, isAvailable] of Object.entries(availability)) {
-    if (isAvailable) {
-      availabilityList.push(day.charAt(0).toUpperCase() + day.slice(1));
-    }
-  }
+//   for (const [day, isAvailable] of Object.entries(availability)) {
+//     if (isAvailable) {
+//       availabilityList.push(day.charAt(0).toUpperCase() + day.slice(1));
+//     }
+//   }
 
-  return availabilityList.join(", ");
-}
+//   return availabilityList.join(", ");
+// }
 
 function normalizeBookingData(fields: Record<string, any>): bookingDataType {
-  let availabilityObj: Record<string, boolean> = {};
-  try {
-    if (fields.availability?.[0]) {
-      availabilityObj = JSON.parse(fields.availability[0]);
-    }
-  } catch {
-    availabilityObj = {};
-  }
+  // let availabilityObj: Record<string, boolean> = {};
+  // try {
+  //   if (fields.availability?.[0]) {
+  //     availabilityObj = JSON.parse(fields.availability[0]);
+  //   }
+  // } catch {
+  //   availabilityObj = {};
+  // }
 
   return {
     firstName: fields.firstName?.[0] ?? "",
@@ -225,8 +290,8 @@ function normalizeBookingData(fields: Record<string, any>): bookingDataType {
     tattooColour: fields.tattooColour?.[0] ?? "",
     workAround: fields.workAround?.[0] ?? "",
     bookingPolicy: fields.bookingPolicy?.[0] === "true",
-    availability: availabilityObj,
+    // availability: availabilityObj,
     fileUrls: JSON.parse(fields.fileUrls?.[0] ?? "[]"),
-    scarCoverup: fields.scarCoverup?.[0] ?? "No",
+    // scarCoverup: fields.scarCoverup?.[0] ?? "No",
   };
 }
