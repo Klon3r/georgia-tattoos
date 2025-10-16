@@ -63,16 +63,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  // {
-  //   // Booking
-  //   path: "booking",
-  //   element: (
-  //     <div className={rootTailwindStyle}>
-  //       <Layout />
-  //       <Booking />
-  //     </div>
-  //   ),
-  // },
+  {
+    // Booking
+    path: "booking",
+    element: (
+      <div className={rootTailwindStyle}>
+        <Layout />
+        <Booking />
+      </div>
+    ),
+  },
   {
     // Thank You
     path: "thank-you",
@@ -122,5 +122,5 @@ const App = () => {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 );

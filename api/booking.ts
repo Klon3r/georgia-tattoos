@@ -74,14 +74,14 @@ async function sendBookingEmail(data: bookingDataType) {
   const fileUrls = data.fileUrls;
   const referencePhotosHTML = fileUrls.map(
     (url) =>
-      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`,
+      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`
   );
 
   const htmlBody = getHTMLBody(
     data,
     instagram.url,
     availability,
-    referencePhotosHTML,
+    referencePhotosHTML
   );
 
   const emailAddress = process.env.EMAIL;
@@ -116,7 +116,7 @@ function getHTMLBody(
   data: bookingDataType,
   instagramURL: string,
   availability: string,
-  fileUrls: string[],
+  fileUrls: string[]
 ) {
   const htmlBody = `
     <h3>Booking</h3>
