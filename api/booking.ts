@@ -99,7 +99,7 @@ async function sendBookingEmail(data: bookingDataType) {
   if (data.scarCoverup == "Yes") {
     emailSubject = "Scar Coverup";
   } else {
-    emailSubject = "Booking";
+    emailSubject = "Halloween Booking";
   }
 
   const result = await resend.emails.send({
