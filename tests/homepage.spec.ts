@@ -39,7 +39,7 @@ test("Check Online Shop Button", async ({ page }) => {
   ]);
 
   await newPage.waitForLoadState();
-  await expect(newPage).toHaveURL(/.*qwqr9e-6b.myshopify.com/);
+  await expect(newPage).toHaveURL(/.*georgiatattoos.store/);
 });
 
 // Review Button
