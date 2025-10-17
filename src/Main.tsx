@@ -12,7 +12,6 @@ import Homepage from "./pages/Homepage.tsx";
 import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import Booking from "./pages/Booking.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
 
 const Layout = () => {
@@ -63,16 +62,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  {
-    // Booking
-    path: "booking",
-    element: (
-      <div className={rootTailwindStyle}>
-        <Layout />
-        <Booking />
-      </div>
-    ),
-  },
+  // {
+  //   // Booking
+  //   path: "booking",
+  //   element: (
+  //     <div className={rootTailwindStyle}>
+  //       <Layout />
+  //       <Booking />
+  //     </div>
+  //   ),
+  // },
   {
     // Thank You
     path: "thank-you",
