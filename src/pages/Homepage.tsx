@@ -1,12 +1,11 @@
 import PrimaryImageButton from "./components/PrimaryImageButton/PrimaryImageButton";
 import StudioPDF from "/how-to-find-the-studio.pdf";
 
-// Buttons
 import ImageOnlineShop from "../assets/Homepage/online-shop.PNG";
 import ImageAftercare from "../assets/Homepage/aftercare.PNG";
 import ImageStudioGuide from "../assets/Homepage/studio-guide.PNG";
-import ImageReview from "../assets/Homepage/review.PNG";
 import ImageBookNow from "../assets/Homepage/book-now.PNG";
+import waitListImage from "../assets/Homepage/waitlist.PNG";
 
 const Homepage = () => {
   const booksOpen = false;
@@ -54,11 +53,11 @@ const Homepage = () => {
           />
         ) : (
           <PrimaryImageButton
-            imageSource={ImageReview}
-            url="https://www.google.com/search?q=Esoteric+Tattoo+Everton+Park+QLD+4053&ludocid=13533067620571183157#lrd=0x6b91574e9dc6310f:0xbb685c7fa8c17fb5,1,,,"
+            imageSource={waitListImage}
+            url="https://georgiatattoos.store/pages/newsletter"
             openNewTab
-            ariaLabel="Review button"
-            testId="review-button"
+            ariaLabel="Waitlist button"
+            testId="waitlist-button"
           />
         )}
       </div>
