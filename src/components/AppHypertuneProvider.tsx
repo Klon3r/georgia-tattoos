@@ -8,7 +8,7 @@ export default function AppHypertuneProvider({
   return (
     <HypertuneProvider
       createSourceOptions={{
-        token: import.meta.env.VITE_HYPERTUNE_TOKEN!,
+        token: import.meta.env.HYPERTUNE_TOKEN!,
       }}
       rootArgs={{
         context: {

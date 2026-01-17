@@ -12,8 +12,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
-      HYPERTUNE_TOKEN: ${{ secrets.VITE_HYPERTUNE_TOKEN }}
-      VITE_HYPERTUNE_TOKEN: ${{ secrets.VITE_HYPERTUNE_TOKEN}}
+      HYPERTUNE_TOKEN: ${{ secrets.HYPERTUNE_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

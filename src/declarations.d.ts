@@ -36,7 +36,7 @@ declare module "*.avif" {
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_HYPERTUNE_TOKEN: string;
+  readonly HYPERTUNE_TOKEN: string;
 }
 
 interface ImportMeta {
