@@ -9,6 +9,10 @@ on:
 env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  HYPERTUNE_API_KEY: ${{ secrets.HYPERTUNE_ADMIN_TOKEN }}
+  VITE_HYPERTUNE_TOKEN: ${{ secrets.HYPERTUNE_MAIN_TOKEN }}
+  HYPERTUNE_FRAMEWORK: react 
+  HYPERTUNE_OUTPUT_DIRECTORY_PATH: src/generated
 
 jobs:
   build_website_files:
