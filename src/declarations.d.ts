@@ -32,3 +32,13 @@ declare module "*.avif" {
   const src: string;
   export default src;
 }
+
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_HYPERTUNE_TOKEN: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}

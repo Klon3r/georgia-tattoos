@@ -12,6 +12,9 @@ import {
   loadLocalStorage,
   uploadFile,
 } from "../utils/booking.util";
+import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
+import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
+import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 
 const BOOKING_URL_VERCEL = "/api/booking";
 // const BOOKING_URL_LOCAL = "http://localhost:3000/api/booking";
@@ -21,6 +24,8 @@ const Booking = () => {
   const [isSending, setIsSending] = useState(false);
   const [firstTimeLoad, setFirstTimeLoad] = useState(true);
   const fileInput = useRef<HTMLInputElement>(null);
+
+  const bookingFormFlag = getBookingFormEnabledFlag();
 
   // const [availability, setAvailability] = useState({
   //   monday: false,
@@ -88,22 +93,44 @@ const Booking = () => {
   }
 
   return (
-    <form encType="multipart/form-data" onSubmit={onSubmit}>
-      <div className="flex flex-col gap-10 pb-20 px-3">
-        <BookingNames />
-        <BookingContact />
-        {/* <BookingTattoo onAvailableCheckboxChange={onAvailableCheckboxChange} /> */}
-        <BookingTattoo />
-        <BookingPolicy />
-        <BookingUploads inputRef={fileInput} />
-        <div>
-          <p className="flex justify-center text-red-600 mb-10">
-            {/* {errorMessage} */}
-          </p>
-          <BookingButtons isSending={isSending} />
-        </div>
+    <div>
+      {bookingFormFlag ? (
+        <form encType="multipart/form-data" onSubmit={onSubmit}>
+          <div className="flex flex-col gap-10 pb-20 px-3">
+            <BookingNames />
+            <BookingContact />
+            {/* <BookingTattoo onAvailableCheckboxChange={onAvailableCheckboxChange} /> */}
+            <BookingTattoo />
+            <BookingPolicy />
+            <BookingUploads inputRef={fileInput} />
+            <div>
+              <p className="flex justify-center text-red-600 mb-10">
+                {/* {errorMessage} */}
+              </p>
+              <BookingButtons isSending={isSending} />
+            </div>
+          </div>
+        </form>
+      ) : (
+        <BookingClosed />
+      )}
+    </div>
+  );
+};
+
+const BookingClosed = () => {
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <p>Booking not available</p>
+      <p>Please go back to the homepage</p>
+      <div className="flex justify-center mt-4">
+        <PrimaryButton
+          name="Homepage"
+          location={"/"}
+          styleClass={bookingPolicyCloseButtonStyle}
+        />
       </div>
-    </form>
+    </div>
   );
 };
 

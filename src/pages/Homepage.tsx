@@ -6,14 +6,15 @@ import ImageAftercare from "../assets/Homepage/aftercare.PNG";
 import ImageStudioGuide from "../assets/Homepage/studio-guide.PNG";
 import ImageBookNow from "../assets/Homepage/book-now.PNG";
 import waitListImage from "../assets/Homepage/waitlist.PNG";
+import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 
 const Homepage = () => {
-  const booksOpen = false;
+  const bookingFormFlag = getBookingFormEnabledFlag();
 
   return (
     <div>
       <div className={buttonGroupTailwind}>
-        {booksOpen ? (
+        {bookingFormFlag ? (
           <PrimaryImageButton
             imageSource={ImageBookNow}
             url="/booking"
@@ -43,7 +44,7 @@ const Homepage = () => {
           ariaLabel="Studio guide button"
           testId="studio-guide-button"
         />
-        {booksOpen ? (
+        {bookingFormFlag ? (
           <PrimaryImageButton
             imageSource={ImageOnlineShop}
             url="https://qwqr9e-6b.myshopify.com/"

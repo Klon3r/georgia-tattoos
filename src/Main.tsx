@@ -13,12 +13,14 @@ import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
+import AppHypertuneProvider from "./components/AppHypertuneProvider.tsx";
+import Booking from "./pages/Booking.tsx";
 
 const Layout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/consent" || location.pathname === "/booking") {
+    if (location.pathname === "/consent") {
       document.body.style.backgroundColor = "#fcdef8";
       document.body.style.backgroundImage = "none";
     } else {
@@ -62,16 +64,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  // {
-  //   // Booking
-  //   path: "booking",
-  //   element: (
-  //     <div className={rootTailwindStyle}>
-  //       <Layout />
-  //       <Booking />
-  //     </div>
-  //   ),
-  // },
+  {
+    // Booking
+    path: "booking",
+    element: (
+      <div className={rootTailwindStyle}>
+        <Layout />
+        <Booking />
+      </div>
+    ),
+  },
   {
     // Thank You
     path: "thank-you",
@@ -120,6 +122,8 @@ const App = () => {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <AppHypertuneProvider>
+      <App />
+    </AppHypertuneProvider>
   </React.StrictMode>
 );
