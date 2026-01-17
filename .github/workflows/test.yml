@@ -14,6 +14,7 @@ jobs:
     env:
       HYPERTUNE_API_KEY: ${{ secrets.HYPERTUNE_ADMIN_TOKEN }}
       VITE_HYPERTUNE_TOKEN: ${{ secrets.HYPERTUNE_MAIN_TOKEN }}
+      HYPERTUNE_FRAMEWORK: react 
       HYPERTUNE_OUTPUT_DIRECTORY_PATH: src/generated
     steps:
       - uses: actions/checkout@v4
