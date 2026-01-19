@@ -7,6 +7,9 @@ import {
   inputRowDivStyle,
 } from "./Tailwind";
 
+/**
+ * Contains: First Name, Last Name, Preferred Name, Pronouns
+ */
 const BookingNames = () => {
   return (
     <div className={inputContainerStyle}>

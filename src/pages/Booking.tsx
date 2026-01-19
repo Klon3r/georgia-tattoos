@@ -16,8 +16,10 @@ import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
 import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 
-const BOOKING_URL_VERCEL = "/api/booking";
-// const BOOKING_URL_LOCAL = "http://localhost:3000/api/booking";
+const BOOKING_URL = 
+  window.location.hostname === "localhost"
+  ? "http://localhost:3000/api/booking"
+  : "/api/booking"
 
 const Booking = () => {
   // const [errorMessage, setErrorMessage] = useState("");
@@ -25,23 +27,24 @@ const Booking = () => {
   const [firstTimeLoad, setFirstTimeLoad] = useState(true);
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const bookingFormFlag = getBookingFormEnabledFlag();
+  // const bookingFormFlag = getBookingFormEnabledFlag();
+  const bookingFormFlag = true;
 
-  // const [availability, setAvailability] = useState({
-  //   monday: false,
-  //   tuesday: false,
-  //   friday: false,
-  //   saturday: false,
-  // });
+  const [availability, setAvailability] = useState({
+    monday: false,
+    tuesday: false,
+    friday: false,
+    saturday: false,
+  });
 
-  // const onAvailableCheckboxChange = (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   setAvailability({
-  //     ...availability,
-  //     [e.target.id]: e.target.checked,
-  //   });
-  // };
+  const onAvailableCheckboxChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setAvailability({
+      ...availability,
+      [e.target.id]: e.target.checked,
+    });
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -70,7 +73,7 @@ const Booking = () => {
       formData.append("fileUrls", JSON.stringify(fileUrls));
     }
 
-    fetch(BOOKING_URL_VERCEL, {
+    fetch(BOOKING_URL, {
       method: "POST",
       body: formData,
     }).then((response) => {
@@ -99,8 +102,7 @@ const Booking = () => {
           <div className="flex flex-col gap-10 pb-20 px-3">
             <BookingNames />
             <BookingContact />
-            {/* <BookingTattoo onAvailableCheckboxChange={onAvailableCheckboxChange} /> */}
-            <BookingTattoo />
+            <BookingTattoo onAvailableCheckboxChange={onAvailableCheckboxChange} />
             <BookingPolicy />
             <BookingUploads inputRef={fileInput} />
             <div>

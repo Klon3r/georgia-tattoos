@@ -8,6 +8,9 @@ type BookingUploadsType = {
   inputRef: RefObject<HTMLInputElement | null>;
 };
 
+/** 
+ * Contains: Image Upload
+ */
 const BookingUploads = ({ inputRef }: BookingUploadsType) => {
   const [errorMessage, setErrorMessage] = useState("");
 

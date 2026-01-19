@@ -4,6 +4,9 @@ import PhoneInput from "./Components/PhoneInput";
 import TextHeader from "./Components/TextHeader";
 import { inputContainerStyle, inputRowDivStyle } from "./Tailwind";
 
+/**
+ * Contains: Email, Mobile, Instagram 
+ */
 const BookingContact = () => {
   return (
     <div className={inputContainerStyle}>

@@ -1,16 +1,19 @@
+import CheckBoxOption from "./Components/CheckBoxOption";
 import SelectOption from "./Components/SelectOption";
 import TextAreaInput from "./Components/TextAreaInput";
 import TextHeader from "./Components/TextHeader";
 import TextInput from "./Components/TextInput";
-import { inputContainerStyle, inputRowDivStyle } from "./Tailwind";
+import { checkboxOptionContainer, inputContainerStyle, inputRowDivStyle } from "./Tailwind";
 
-// type BookingTattooType = {
-//   onAvailableCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-// };
+type BookingTattooType = {
+  onAvailableCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-// const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
+/**
+ * Contains: Description of Tattoo, Location of Tattoo, Tattoo Size, Colour Option, Availability, Working Around Tattoo/Gap 
+ */
+const BookingTattoo = ({ onAvailableCheckboxChange }: BookingTattooType) => {
 
-const BookingTattoo = () => {
   return (
     <div className={inputContainerStyle}>
       <TextHeader headerText="Description of Tattoo: " required />
@@ -54,7 +57,7 @@ const BookingTattoo = () => {
         </div>
       </div>
 
-      {/* <TextHeader headerText="Availability?: " required />
+      <TextHeader headerText="Availability?: " required />
       <div className="flex flex-col gap-5">
          <div className={checkboxOptionContainer}>
           <CheckBoxOption
@@ -88,7 +91,7 @@ const BookingTattoo = () => {
             localStorage={false}
           />
         </div>
-      </div> */}
+      </div>
 
       <TextHeader
         headerText="Will I be working around other tattoos/filling a gap?: "

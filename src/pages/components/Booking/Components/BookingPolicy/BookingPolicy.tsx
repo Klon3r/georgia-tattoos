@@ -5,6 +5,9 @@ import { useState } from "react";
 import CheckBoxOption from "../CheckBoxOption";
 import { bookingParagraphStyle, textLinkStyle } from "./Tailwind";
 
+/**
+ * Contains: Booking Terms & Conditions 
+ */
 const BookingPolicy = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

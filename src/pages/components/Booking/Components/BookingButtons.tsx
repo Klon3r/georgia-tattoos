@@ -3,6 +3,9 @@ import { BookingButtonType } from "./Types";
 
 import spinner from "../../../../assets/Icons/spinner.gif";
 
+/**
+ * Contains: Reset & Submit 
+ */
 const BookingButtons = ({ isSending }: BookingButtonType) => {
   return (
     <div className="flex justify-between mx-5">
