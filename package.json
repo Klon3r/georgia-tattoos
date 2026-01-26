@@ -12,20 +12,20 @@
     "server": "vercel dev"
   },
   "dependencies": {
-    "@vercel/blob": "^2.0.0",
+    "@vercel/blob": "^2.0.1",
     "browser-image-compression": "^2.0.2",
     "formidable": "^3.5.4",
     "hypertune": "^2.10.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "vercel": "^50.4.5"
+    "vercel": "^50.5.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.57.0",
+    "@playwright/test": "^1.58.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/formidable": "^3.4.6",
-    "@types/node": "^25.0.9",
-    "@types/react": "^19.2.8",
+    "@types/node": "^25.0.10",
+    "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "clsx": "^2.1.1",
@@ -35,7 +35,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.26",
     "react-router-dom": "^7.12.0",
-    "resend": "^6.7.0",
+    "resend": "^6.8.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
