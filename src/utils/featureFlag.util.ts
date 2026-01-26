@@ -8,7 +8,12 @@ import { useHypertune } from "../generated/hypertune.react";
  */
 export const getBookingFormEnabledFlag = () => {
   const hypertune = useHypertune();
-  return hypertune.bookingFormEnabled({
+  const hypertuneEnabled = hypertune.bookingFormEnabled({
     fallback: false,
   });
+  const isLocalhostOverride =
+    import.meta.env.VITE_BOOKING_LOCALHOST === "true" &&
+    window.location.hostname === "localhost";
+
+  return isLocalhostOverride || hypertuneEnabled;
 };
