@@ -4,13 +4,14 @@ import { BookingButtonType } from "./Types";
 import spinner from "../../../../assets/Icons/spinner.gif";
 
 /**
- * Contains: Reset & Submit 
+ * Contains: Reset & Submit
  */
 const BookingButtons = ({ isSending }: BookingButtonType) => {
   return (
     <div className="flex justify-between mx-5">
       <button
         onClick={() => {
+          window.scrollTo(0, 0);
           window.location.reload();
         }}
         className={bookingResetButtonStyle}

@@ -37,6 +37,7 @@ declare module "*.avif" {
 
 interface ImportMetaEnv {
   readonly VITE_HYPERTUNE_TOKEN: string;
+  readonly VITE_BOOKING_LOCALHOST: string;
 }
 
 interface ImportMeta {

@@ -14,6 +14,7 @@ import {
 import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
 import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
+import { checkAvailability } from "../utils/bookingForm.util";
 
 const BOOKING_URL =
   window.location.hostname === "localhost"
@@ -21,12 +22,11 @@ const BOOKING_URL =
     : "/api/booking";
 
 const Booking = () => {
-  // const [errorMessage, setErrorMessage] = useState("");
-  const [isSending, setIsSending] = useState(false);
-  const [firstTimeLoad, setFirstTimeLoad] = useState(true);
-  const fileInput = useRef<HTMLInputElement>(null);
-
   const bookingFormFlag = getBookingFormEnabledFlag();
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
 
   const [availability, setAvailability] = useState({
     monday: false,
@@ -46,52 +46,46 @@ const Booking = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // if (checkAvailability(availability)) {
-    setIsSending(true);
+    if (!checkAvailability(availability)) {
+      setErrorMessage("Please select at least one available day");
+      return;
+    } else {
+      setIsSending(true);
 
-    const formData = new FormData();
-    const localData = loadLocalStorage();
-    Object.entries(localData).forEach(([key, value]) => {
-      formData.append(key, String(value));
-    });
-    // formData.append("availability", JSON.stringify(availability));
+      const formData = new FormData();
+      const localData = loadLocalStorage();
+      Object.entries(localData).forEach(([key, value]) => {
+        formData.append(key, String(value));
+      });
+      formData.append("availability", JSON.stringify(availability));
 
-    const inputFiles = fileInput.current?.files;
+      const inputFiles = fileInput.current?.files;
 
-    if (inputFiles) {
-      const compressedFiles = await compressFiles(inputFiles);
-      const firstName = formData.get("firstName");
-      const lastName = formData.get("lastName");
-      const fileUrls = await uploadFile(
-        compressedFiles,
-        firstName ?? "",
-        lastName ?? "",
-      );
+      if (inputFiles) {
+        const compressedFiles = await compressFiles(inputFiles);
+        const firstName = formData.get("firstName");
+        const lastName = formData.get("lastName");
+        const fileUrls = await uploadFile(
+          compressedFiles,
+          firstName ?? "unknown",
+          lastName ?? "unknown",
+        );
 
-      formData.append("fileUrls", JSON.stringify(fileUrls));
-    }
-
-    fetch(BOOKING_URL, {
-      method: "POST",
-      body: formData,
-    }).then((response) => {
-      if (response.ok) {
-        setIsSending(false);
-        localStorage.clear();
-        setFirstTimeLoad(false);
-        changeURL("thank-you");
+        formData.append("fileUrls", JSON.stringify(fileUrls));
       }
-    });
-    // } else {
-    //   setErrorMessage("Please select at least one available day");
-    //   return;
-    // }
-  };
 
-  if (firstTimeLoad) {
-    localStorage.clear();
-    setFirstTimeLoad(false);
-  }
+      fetch(BOOKING_URL, {
+        method: "POST",
+        body: formData,
+      }).then((response) => {
+        if (response.ok) {
+          setIsSending(false);
+          localStorage.clear();
+          changeURL("thank-you");
+        }
+      });
+    }
+  };
 
   return (
     <div>
@@ -107,7 +101,7 @@ const Booking = () => {
             <BookingUploads inputRef={fileInput} />
             <div>
               <p className="flex justify-center text-red-600 mb-10">
-                {/* {errorMessage} */}
+                {errorMessage}
               </p>
               <BookingButtons isSending={isSending} />
             </div>
