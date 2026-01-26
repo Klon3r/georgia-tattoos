@@ -5,7 +5,6 @@ import BookingTattoo from "./components/Booking/BookingTattoo";
 import BookingUploads from "./components/Booking/BookingUploads";
 import BookingButtons from "./components/Booking/Components/BookingButtons";
 import BookingPolicy from "./components/Booking/Components/BookingPolicy/BookingPolicy";
-// import { checkAvailability } from "../utils/bookingForm.util";
 import { changeURL } from "../utils/url.util";
 import {
   compressFiles,
@@ -16,10 +15,10 @@ import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
 import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 
-const BOOKING_URL = 
+const BOOKING_URL =
   window.location.hostname === "localhost"
-  ? "http://localhost:3000/api/booking"
-  : "/api/booking"
+    ? "http://localhost:3000/api/booking"
+    : "/api/booking";
 
 const Booking = () => {
   // const [errorMessage, setErrorMessage] = useState("");
@@ -27,8 +26,7 @@ const Booking = () => {
   const [firstTimeLoad, setFirstTimeLoad] = useState(true);
   const fileInput = useRef<HTMLInputElement>(null);
 
-  // const bookingFormFlag = getBookingFormEnabledFlag();
-  const bookingFormFlag = true;
+  const bookingFormFlag = getBookingFormEnabledFlag();
 
   const [availability, setAvailability] = useState({
     monday: false,
@@ -38,7 +36,7 @@ const Booking = () => {
   });
 
   const onAvailableCheckboxChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setAvailability({
       ...availability,
@@ -67,7 +65,7 @@ const Booking = () => {
       const fileUrls = await uploadFile(
         compressedFiles,
         firstName ?? "",
-        lastName ?? ""
+        lastName ?? "",
       );
 
       formData.append("fileUrls", JSON.stringify(fileUrls));
@@ -102,7 +100,9 @@ const Booking = () => {
           <div className="flex flex-col gap-10 pb-20 px-3">
             <BookingNames />
             <BookingContact />
-            <BookingTattoo onAvailableCheckboxChange={onAvailableCheckboxChange} />
+            <BookingTattoo
+              onAvailableCheckboxChange={onAvailableCheckboxChange}
+            />
             <BookingPolicy />
             <BookingUploads inputRef={fileInput} />
             <div>

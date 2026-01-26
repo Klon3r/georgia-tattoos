@@ -9,6 +9,8 @@ export default function AppHypertuneProvider({
     <HypertuneProvider
       createSourceOptions={{
         token: import.meta.env.VITE_HYPERTUNE_TOKEN!,
+        remoteLogging: { mode: "off" },
+        localLogger: () => {},
       }}
       rootArgs={{
         context: {
