@@ -16,10 +16,7 @@ import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/B
 import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 import { checkAvailability } from "../utils/bookingForm.util";
 
-const BOOKING_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:3000/api/booking"
-    : "/api/booking";
+const BOOKING_URL = "/api/booking";
 
 const Booking = () => {
   const bookingFormFlag = getBookingFormEnabledFlag();

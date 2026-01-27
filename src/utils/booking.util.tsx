@@ -66,10 +66,7 @@ export const uploadFile = async (
 ) => {
   let fileUrls: string[] = [];
   const fullName = `${firstName}-${lastName}`;
-  const uploadApi =
-    window.location.hostname === "localhost"
-      ? "http://localhost:3000/api/upload"
-      : "/api/upload";
+  const uploadApi = "/api/upload";
 
   fileUrls = await Promise.all(
     files.map(async (file) => {
