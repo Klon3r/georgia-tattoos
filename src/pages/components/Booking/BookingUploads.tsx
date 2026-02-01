@@ -8,7 +8,7 @@ type BookingUploadsType = {
   inputRef: RefObject<HTMLInputElement | null>;
 };
 
-/** 
+/**
  * Contains: Image Upload
  */
 const BookingUploads = ({ inputRef }: BookingUploadsType) => {
@@ -42,7 +42,7 @@ const BookingUploads = ({ inputRef }: BookingUploadsType) => {
 
   return (
     <div>
-      <TextHeader headerText="Upload a reference photos: " required />
+      <TextHeader headerText="Upload reference images: " required />
       <UploadInput
         id="referenceFiles"
         ref={inputRef}
@@ -51,6 +51,9 @@ const BookingUploads = ({ inputRef }: BookingUploadsType) => {
         required
         onChange={handleChange}
       />
+      <h3 className="ml-2">
+        Please don't use <b>AI</b> to generate reference images
+      </h3>
       <div className="flex justify-end">
         <button onClick={(e) => resetFileInput(e)} className={clearButtonStyle}>
           Clear Files
