@@ -1,7 +1,8 @@
 import { bookingButtonStyle, bookingResetButtonStyle } from "../Tailwind";
 import { BookingButtonType } from "./Types";
 
-import spinner from "../../../../assets/Icons/spinner.gif";
+import { createPortal } from "react-dom";
+import SubmitModal from "./SubmitModal";
 
 /**
  * Contains: Reset & Submit
@@ -19,18 +20,9 @@ const BookingButtons = ({ isSending }: BookingButtonType) => {
         RESET
       </button>
       <button className={bookingButtonStyle} type="submit">
-        {isSending ? (
-          <div className="flex gap-2 items-center justify-center">
-            <img className="w-8 h-8" src={spinner} alt="Loading..." />{" "}
-            <div>
-              <p>Sending...</p>
-              <p>Please wait</p>
-            </div>
-          </div>
-        ) : (
-          "SUBMIT"
-        )}
+        SUBMIT
       </button>
+      {isSending && createPortal(<SubmitModal />, document.body)}
     </div>
   );
 };

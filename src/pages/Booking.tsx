@@ -33,7 +33,7 @@ const Booking = () => {
   });
 
   const onAvailableCheckboxChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setAvailability({
       ...availability,
@@ -65,7 +65,7 @@ const Booking = () => {
         const fileUrls = await uploadFile(
           compressedFiles,
           firstName ?? "unknown",
-          lastName ?? "unknown",
+          lastName ?? "unknown"
         );
 
         formData.append("fileUrls", JSON.stringify(fileUrls));

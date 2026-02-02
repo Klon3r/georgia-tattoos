@@ -74,6 +74,11 @@ export type BookingPolicyModalType = {
   onClose: () => void;
 };
 
+export type SubmitModalType = {
+  /** What happens when the close button is pressed? */
+  onClose: () => void;
+};
+
 export type UploadInputType = {
   /** The unique identifier for the input element. */
   id: string;
