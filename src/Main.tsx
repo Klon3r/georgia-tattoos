@@ -92,7 +92,7 @@ const router = createBrowserRouter([
         <Layout />
         <ErrorPage
           headerText="Error"
-          errorMessage="There has been an error please try again."
+          errorMessage="Something went wrong! Please try again later"
         />
       </div>
     ),

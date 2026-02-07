@@ -39,15 +39,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       return;
     }
-    if (req.method === "POST") {
-      const bookingData = normalizeBookingData(fields);
-      await sendBookingEmail(bookingData);
-      res.status(201).json({ message: "Email sent!" });
 
+    try {
+      if (req.method === "POST") {
+        const bookingData = normalizeBookingData(fields);
+        await sendBookingEmail(bookingData);
+        res.status(201).json({ message: "Email sent!" });
+
+        return;
+      }
+      res.status(405).json({ message: "Method Not Allowed" });
+      return;
+    } catch (error) {
+      console.log("Booking error:", error); // For Vercel Logs
+      res
+        .status(500)
+        .json({ message: "Something went wrong! Please try again later." });
       return;
     }
-    res.status(405).json({ message: "Method Not Allowed" });
-    return;
   });
 }
 
@@ -77,14 +86,14 @@ async function sendBookingEmail(data: bookingDataType) {
   const fileUrls = data.fileUrls;
   const referencePhotosHTML = fileUrls.map(
     (url) =>
-      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`,
+      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`
   );
 
   const htmlBody = getHTMLBody(
     data,
     instagram.url,
     availability,
-    referencePhotosHTML,
+    referencePhotosHTML
   );
 
   const emailAddress = process.env.EMAIL;
@@ -121,30 +130,40 @@ function getHTMLBody(
   data: bookingDataType,
   instagramURL: string,
   availability: string,
-  fileUrls: string[],
+  fileUrls: string[]
 ) {
   const htmlBody = `
     <h3>Booking</h3>
     <table>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.firstName + " " + data.lastName}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.firstName + " " + data.lastName
+        }</td>
       </tr>
       <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Name:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.preferredName}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.preferredName
+        }</td>
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Preferred Pronouns:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.pronouns}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.pronouns
+        }</td>
       </tr>
       <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Email:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.email}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.email
+        }</td>
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Phone:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.number}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.number
+        }</td>
       </tr>
       <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Instagram:</strong></td>
@@ -154,23 +173,33 @@ function getHTMLBody(
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Description of Tattoo:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.tattooDescription}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.tattooDescription
+        }</td>
       </tr>
       <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Work Around:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.workAround}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.workAround
+        }</td>
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Tattoo Colour:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.tattooColour}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.tattooColour
+        }</td>
       </tr>
       <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Location on Body:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.locationOnBody}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.locationOnBody
+        }</td>
       </tr>
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Size in Centimeters:</strong></td>
-        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${data.sizeTattoo}</td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.sizeTattoo
+        }</td>
       </tr>
       <tr style="background-color: #fcdef8;">
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Availability:</strong></td>

@@ -79,6 +79,9 @@ const Booking = () => {
           setIsSending(false);
           localStorage.clear();
           changeURL("thank-you");
+        } else {
+          localStorage.clear();
+          changeURL("error");
         }
       });
     }
