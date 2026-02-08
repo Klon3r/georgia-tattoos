@@ -18,7 +18,7 @@ test("Check error title", async ({ page }) => {
 test("Check error text", async ({ page }) => {
   await page.goto(errorPage);
   await expect(
-    page.getByText("There has been an error please try again.")
+    page.getByText("Something went wrong! Please try again later")
   ).toBeVisible();
 });
 
