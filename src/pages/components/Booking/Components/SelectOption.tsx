@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { storeValue } from "../../../../utils/bookingForm.util";
 import { inputStyleFocusBorder, selectOptionInputStyle } from "../Tailwind";
 import { SelectOptionType } from "./Types";
+import { ChangeEvent } from "react";
 
 const SelectOption = ({
   id,
@@ -9,7 +10,15 @@ const SelectOption = ({
   options,
   ariaLabel,
   required = false,
+  onChange,
 }: SelectOptionType) => {
+  const handleOnChange = (
+    value: ChangeEvent<HTMLSelectElement, HTMLSelectElement>,
+  ) => {
+    storeValue(value);
+    if (onChange) onChange(value.target.value);
+  };
+
   return (
     <div className="w-full">
       <select
@@ -18,7 +27,7 @@ const SelectOption = ({
         title={id}
         name={id}
         aria-label={ariaLabel}
-        onChange={(e) => storeValue(e)}
+        onChange={(e) => handleOnChange(e)}
         required={required}
       >
         <option hidden value="">

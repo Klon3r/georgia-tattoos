@@ -15,6 +15,7 @@ import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
 import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 import { checkAvailability } from "../utils/bookingForm.util";
+import BookingScarCoverup from "./components/Booking/BookingScarCoverup";
 
 const BOOKING_URL = "/api/booking";
 
@@ -33,7 +34,7 @@ const Booking = () => {
   });
 
   const onAvailableCheckboxChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setAvailability({
       ...availability,
@@ -65,7 +66,7 @@ const Booking = () => {
         const fileUrls = await uploadFile(
           compressedFiles,
           firstName ?? "unknown",
-          lastName ?? "unknown"
+          lastName ?? "unknown",
         );
 
         formData.append("fileUrls", JSON.stringify(fileUrls));
@@ -97,6 +98,7 @@ const Booking = () => {
             <BookingTattoo
               onAvailableCheckboxChange={onAvailableCheckboxChange}
             />
+            <BookingScarCoverup />
             <BookingPolicy />
             <BookingUploads inputRef={fileInput} />
             <div>

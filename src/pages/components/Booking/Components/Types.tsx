@@ -33,6 +33,7 @@ export type SelectOptionType = {
   required?: boolean;
 
   options: string[];
+  onChange?: (value: string) => void;
 };
 
 export type TextAreaInputType = {
