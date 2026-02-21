@@ -76,7 +76,9 @@ type bookingDataType = {
   bookingPolicy: boolean;
   availability: Record<string, boolean>;
   fileUrls: string[];
-  // scarCoverup: string;
+  scarCoverup: string;
+  scarMetalPlating: string;
+  scarAge: string;
 };
 
 async function sendBookingEmail(data: bookingDataType) {
@@ -86,14 +88,14 @@ async function sendBookingEmail(data: bookingDataType) {
   const fileUrls = data.fileUrls;
   const referencePhotosHTML = fileUrls.map(
     (url) =>
-      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`
+      `<div><a href="${url}"><img src="${url}" alt="Reference Photo" style="max-width:200px;"/></a></div>`,
   );
 
   const htmlBody = getHTMLBody(
     data,
     instagram.url,
     availability,
-    referencePhotosHTML
+    referencePhotosHTML,
   );
 
   const emailAddress = process.env.EMAIL;
@@ -130,11 +132,32 @@ function getHTMLBody(
   data: bookingDataType,
   instagramURL: string,
   availability: string,
-  fileUrls: string[]
+  fileUrls: string[],
 ) {
+  let scarHtml = "";
+
+  if (data.scarCoverup == "Yes") {
+    scarHtml = `  
+    <h3 style="margin-bottom: 5px; text-decoration: underline;">Scar Info</h3>
+    <table style="margin-left: 20px;">
+      <tr>
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Scar Age:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.scarAge
+        }</td>
+      </tr>
+      <tr style="background-color: #fcdef8;">
+        <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Scar Metal Plating:</strong></td>
+        <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
+          data.scarMetalPlating
+        }</td>
+      </tr>
+    </table>`;
+  }
+
   const htmlBody = `
-    <h3>Booking</h3>
-    <table>
+    <h3 style="margin-bottom: 5px; text-decoration: underline;">Booking</h3>
+    <table style="margin-left: 20px;">
       <tr>
         <td style="width: 200px; padding-bottom: 5px; padding-top: 5px;"><strong>Name:</strong></td>
         <td style="width: 300px; padding-bottom: 5px; padding-top: 5px;">${
@@ -207,9 +230,12 @@ function getHTMLBody(
       </tr>
     </table>
 
-    <h3>Reference Photos</h3>
+    ${scarHtml}
+
+    <h3 style="margin-bottom: 5px; text-decoration: underline;">Reference Photos</h3>
     ${fileUrls}
   `;
+
   return htmlBody;
 }
 
@@ -257,6 +283,8 @@ function normalizeBookingData(fields: Record<string, any>): bookingDataType {
     bookingPolicy: fields.bookingPolicy?.[0] === "true",
     availability: availabilityObj,
     fileUrls: JSON.parse(fields.fileUrls?.[0] ?? "[]"),
-    // scarCoverup: fields.scarCoverup?.[0] ?? "No",
+    scarCoverup: fields.scarCoverup?.[0] ?? "No",
+    scarMetalPlating: fields.scarMetalPlating?.[0] ?? "",
+    scarAge: fields.scarAge?.[0] ?? "",
   };
 }

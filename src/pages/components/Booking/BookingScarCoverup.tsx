@@ -26,6 +26,7 @@ const BookingScarCoverup = () => {
           options={["Yes", "No"]}
           ariaLabel="Is this a scar coverup?"
           onChange={handleScarCoverupOption}
+          required
         />
       </div>
       {scarCoverup && (
@@ -40,6 +41,7 @@ const BookingScarCoverup = () => {
               placeholder="Select an option"
               options={["Yes", "No"]}
               ariaLabel="Is your scar over metal plating?"
+              required
             />
           </div>
           <div className="flex flex-row gap-5 max-w-100 mt-2">
