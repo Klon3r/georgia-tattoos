@@ -17,6 +17,7 @@ export const config = {
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const origin = req.headers.origin;
+
   if (origin && ALLOWED_ORIGINS.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
@@ -109,12 +110,6 @@ async function sendBookingEmail(data: bookingDataType) {
   }
 
   let emailSubject = "";
-
-  // if (data.scarCoverup == "Yes") {
-  //   emailSubject = "Scar Coverup";
-  // } else {
-  //   emailSubject = "Booking";
-  // }
 
   emailSubject = "Booking";
 
@@ -259,6 +254,7 @@ function getAvailability(availability: Record<string, boolean>) {
 
 function normalizeBookingData(fields: Record<string, any>): bookingDataType {
   let availabilityObj: Record<string, boolean> = {};
+
   try {
     if (fields.availability?.[0]) {
       availabilityObj = JSON.parse(fields.availability[0]);
