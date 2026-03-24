@@ -14,7 +14,8 @@ jobs:
     env:
       HYPERTUNE_API_KEY: ${{ secrets.HYPERTUNE_ADMIN_TOKEN }}
       VITE_HYPERTUNE_TOKEN: ${{ secrets.HYPERTUNE_MAIN_TOKEN }}
-      HYPERTUNE_FRAMEWORK: react 
+      VITE_BOOKING_LOCALHOST: "true" # This is so we can test the booking functionality regardless of feature flag
+      HYPERTUNE_FRAMEWORK: react
       HYPERTUNE_OUTPUT_DIRECTORY_PATH: src/generated
     steps:
       - uses: actions/checkout@v4
