@@ -11,8 +11,28 @@ export const getBookingFormEnabledFlag = () => {
   const hypertuneEnabled = hypertune.bookingFormEnabled({
     fallback: false,
   });
+
   const isLocalhostOverride =
     import.meta.env.VITE_BOOKING_LOCALHOST === "true" &&
+    window.location.hostname === "localhost";
+
+  return isLocalhostOverride || hypertuneEnabled;
+};
+
+/**
+ * Gets the current state of the booking form early access feature flag from Hypertune.
+ *
+ * @returns {boolean} True if the booking form early access is enabled, false otherwise.
+ *                    Defaults to false if Hypertune is unavailable.
+ */
+export const getBookingFormEarlyAccessFlag = () => {
+  const hypertune = useHypertune();
+  const hypertuneEnabled = hypertune.bookingFormEarlyAccess({
+    fallback: false,
+  });
+
+  const isLocalhostOverride =
+    import.meta.env.VITE_BOOKING_EARLY_ACCESS_LOCALHOST === "true" &&
     window.location.hostname === "localhost";
 
   return isLocalhostOverride || hypertuneEnabled;
