@@ -13,8 +13,9 @@ export const getBookingFormEnabledFlag = () => {
   });
 
   const isLocalhostOverride =
-    import.meta.env.VITE_BOOKING_LOCALHOST === "true" &&
-    window.location.hostname === "localhost";
+    (import.meta.env.VITE_BOOKING_LOCALHOST === "true" &&
+      window.location.hostname === "localhost") ||
+    window.location.hostname.includes("192.168");
 
   return isLocalhostOverride || hypertuneEnabled;
 };
@@ -32,8 +33,9 @@ export const getBookingFormEarlyAccessFlag = () => {
   });
 
   const isLocalhostOverride =
-    import.meta.env.VITE_BOOKING_EARLY_ACCESS_LOCALHOST === "true" &&
-    window.location.hostname === "localhost";
+    (import.meta.env.VITE_BOOKING_EARLY_ACCESS_LOCALHOST === "true" &&
+      window.location.hostname === "localhost") ||
+    window.location.hostname.includes("192.168");
 
   return isLocalhostOverride || hypertuneEnabled;
 };
