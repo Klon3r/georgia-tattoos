@@ -15,7 +15,6 @@ jobs:
       HYPERTUNE_API_KEY: ${{ secrets.HYPERTUNE_ADMIN_TOKEN }}
       VITE_HYPERTUNE_TOKEN: ${{ secrets.HYPERTUNE_MAIN_TOKEN }}
       VITE_BOOKING_LOCALHOST: "true" # This is so we can test the booking functionality regardless of feature flag
-      VITE_BOOKING_EARLY_ACCESS_CODE: "true" # This is so we can test the early access functionality
       HYPERTUNE_FRAMEWORK: react
       HYPERTUNE_OUTPUT_DIRECTORY_PATH: src/generated
     steps:
