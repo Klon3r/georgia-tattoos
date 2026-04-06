@@ -60,6 +60,7 @@ const EarlyAccessModal = ({ setShowModal }: EarlyAccessModalType) => {
               value={earlyAccessInput}
               onChange={(e) => handleEarlyAccessInput(e)}
               onKeyDown={(e) => handleEarlyAccessButtonKeyPress(e)}
+              data-testid="early-access-input"
             />
             {showError && (
               <div className="flex justify-center">

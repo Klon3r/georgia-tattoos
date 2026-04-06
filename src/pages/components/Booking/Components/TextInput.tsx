@@ -9,6 +9,7 @@ const TextInput = ({
   ariaLabel,
   required = false,
   maxLength = 50,
+  testId = "",
 }: TextInputType) => {
   return (
     <input
@@ -22,6 +23,7 @@ const TextInput = ({
       required={required}
       onChange={(e) => storeValue(e)}
       maxLength={maxLength}
+      data-testid={testId}
     />
   );
 };

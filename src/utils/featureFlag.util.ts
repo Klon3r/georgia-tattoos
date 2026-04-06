@@ -37,5 +37,9 @@ export const getBookingFormEarlyAccessFlag = () => {
       window.location.hostname === "localhost") ||
     window.location.hostname.includes("192.168");
 
+  // If Playwright is active skip early access flag
+  const isPlaywright = navigator.webdriver === true;
+  if (isPlaywright) return false;
+
   return isLocalhostOverride || hypertuneEnabled;
 };

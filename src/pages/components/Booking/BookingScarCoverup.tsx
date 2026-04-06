@@ -51,6 +51,7 @@ const BookingScarCoverup = () => {
                 id="scarAge"
                 ariaLabel="How old is the scar/s?"
                 placeholder="eg. 3 Years"
+                testId="scarAge"
                 required
               />
             </div>

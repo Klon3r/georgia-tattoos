@@ -9,6 +9,7 @@ export type TextInputType = {
   required?: boolean;
   /** The maximum the amount of character allowed */
   maxLength?: number;
+  testId?: string;
 };
 
 export type TextHeaderType = {
