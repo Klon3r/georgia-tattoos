@@ -28,4 +28,4 @@
 - ![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=for-the-badge)
 - ![TailwindCSS Badge](https://img.shields.io/badge/Tailwind_CSS-grey?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC)
 
-<div align="center"><h3>Created & Maintained by <a href="https://github.com/Klon3r">Klon3r</a></h3></div>
+<div align="center"><h3>Created & Maintained by <a href="https://github.com/keiranbun">Keiran</a></h3></div>
