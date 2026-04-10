@@ -21,7 +21,7 @@ const EarlyAccessModal = ({ setShowModal }: EarlyAccessModalType) => {
   const handleEarlyAccessInput = (
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
   ) => {
-    setEarlyAccessInput(e.target.value.toLowerCase());
+    setEarlyAccessInput(e.target.value);
   };
 
   const handleEarlyAccessButton = () => {

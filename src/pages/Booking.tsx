@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BookingContact from "./components/Booking/BookingContact";
 import BookingNames from "./components/Booking/BookingNames";
 import BookingTattoo from "./components/Booking/BookingTattoo";
@@ -97,6 +97,10 @@ const Booking = () => {
       });
     }
   };
+
+  useEffect(() => {
+    setShowEarlyAccessModal(bookingFormEarlyAccessFlag);
+  }, [bookingFormEarlyAccessFlag]);
 
   return (
     <div>
