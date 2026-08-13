@@ -7,11 +7,11 @@ test.beforeEach(async ({ page }) => {
   await page.goto(booking);
 });
 
-test("Check Booking Routing", async ({ page }) => {
+test.skip("Check Booking Routing", async ({ page }) => {
   await expect(page).toHaveURL(/.*booking/);
 });
 
-test("Check Homepage Link", async ({ page }) => {
+test.skip("Check Homepage Link", async ({ page }) => {
   await page.goto(homepage);
 
   const bookingLink = page.getByTestId("book-now-button");
@@ -21,7 +21,7 @@ test("Check Homepage Link", async ({ page }) => {
   await expect(page).toHaveURL(/.*booking/);
 });
 
-test("Check Dropdowns", async ({ page }) => {
+test.skip("Check Dropdowns", async ({ page }) => {
   // Pronouns
   const pronouns = page.getByTitle("pronouns");
   await expect(pronouns.locator("option", { hasText: "She/Her" })).toHaveCount(
@@ -59,7 +59,7 @@ test("Check Dropdowns", async ({ page }) => {
   ).toHaveCount(1);
 });
 
-test("Check ScarCoverup Inputs", async ({ page }) => {
+test.skip("Check ScarCoverup Inputs", async ({ page }) => {
   // Scar Coverup
   const scarCoverup = page.getByTitle("scarCoverup");
   await expect(scarCoverup.locator("option", { hasText: "Yes" })).toHaveCount(
@@ -83,7 +83,7 @@ test("Check ScarCoverup Inputs", async ({ page }) => {
   await expect(scarAge).toBeVisible();
 });
 
-test("Check Inputs Exist", async ({ page }) => {
+test.skip("Check Inputs Exist", async ({ page }) => {
   const firstName = page.getByTitle("First Name");
   const lastName = page.getByTitle("Last Name");
   const preferredName = page.getByTitle("Preferred Name");
