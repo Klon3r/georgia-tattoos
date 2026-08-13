@@ -6,10 +6,10 @@ import ImageAftercare from "../assets/Homepage/aftercare.PNG";
 import ImageStudioGuide from "../assets/Homepage/studio-guide.PNG";
 import ImageBookNow from "../assets/Homepage/book-now.PNG";
 import waitListImage from "../assets/Homepage/waitlist.PNG";
-import { getBookingFormEnabledFlag } from "../utils/featureFlag.util";
 
 const Homepage = () => {
-  const bookingFormFlag = getBookingFormEnabledFlag();
+  // TODO: Implement GlobalConfig via Vercel
+  const bookingFormFlag = false;
 
   return (
     <div>

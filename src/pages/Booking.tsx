@@ -13,10 +13,6 @@ import {
 } from "../utils/booking.util";
 import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
-import {
-  getBookingFormEarlyAccessFlag,
-  getBookingFormEnabledFlag,
-} from "../utils/featureFlag.util";
 import { checkAvailability } from "../utils/bookingForm.util";
 import BookingScarCoverup from "./components/Booking/BookingScarCoverup";
 import EarlyAccessModal from "./components/Booking/Components/EarlyAccessModal";
@@ -25,8 +21,8 @@ import { createPortal } from "react-dom";
 const BOOKING_URL = "/api/booking";
 
 const Booking = () => {
-  const bookingFormFlag = getBookingFormEnabledFlag();
-  const bookingFormEarlyAccessFlag = getBookingFormEarlyAccessFlag();
+  const bookingFormFlag = false;
+  const bookingFormEarlyAccessFlag = false;
 
   const [showEarlyAccessModal, setShowEarlyAccessModal] = useState(
     bookingFormEarlyAccessFlag,

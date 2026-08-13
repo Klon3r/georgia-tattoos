@@ -36,7 +36,6 @@ declare module "*.avif" {
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_HYPERTUNE_TOKEN: string;
   readonly VITE_BOOKING_LOCALHOST: string;
   readonly VITE_BOOKING_EARLY_ACCESS_LOCALHOST: string;
   readonly VITE_BOOKING_EARLY_ACCESS_CODE: string;

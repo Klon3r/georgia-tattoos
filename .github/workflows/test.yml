@@ -12,11 +12,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
-      HYPERTUNE_API_KEY: ${{ secrets.HYPERTUNE_ADMIN_TOKEN }}
-      VITE_HYPERTUNE_TOKEN: ${{ secrets.HYPERTUNE_MAIN_TOKEN }}
       VITE_BOOKING_LOCALHOST: "true" # This is so we can test the booking functionality regardless of feature flag
-      HYPERTUNE_FRAMEWORK: react
-      HYPERTUNE_OUTPUT_DIRECTORY_PATH: src/generated
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,9 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Generate Hypertune Client
-        run: npx hypertune --output-dir src/generated
 
       - name: Install Playwright Chromium Browser
         run: npx playwright install --with-deps chromium

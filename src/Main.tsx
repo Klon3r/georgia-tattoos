@@ -13,7 +13,6 @@ import Logo from "./pages/Logo.tsx";
 import Aftercare from "./pages/Aftercare.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
-import AppHypertuneProvider from "./components/AppHypertuneProvider.tsx";
 import Booking from "./pages/Booking.tsx";
 
 const Layout = () => {
@@ -122,8 +121,6 @@ const App = () => {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AppHypertuneProvider>
-      <App />
-    </AppHypertuneProvider>
-  </React.StrictMode>
+    <App />
+  </React.StrictMode>,
 );
