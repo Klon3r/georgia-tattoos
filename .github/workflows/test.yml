@@ -15,9 +15,16 @@ jobs:
       VITE_BOOKING_LOCALHOST: "true" # This is so we can test the booking functionality regardless of feature flag
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: "24"
+          version: 11.21.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
           cache: pnpm
 
       - name: Install dependencies
