@@ -1,11 +1,11 @@
 import PrimaryImageButton from "./components/PrimaryImageButton/PrimaryImageButton";
 import StudioPDF from "/how-to-find-the-studio.pdf";
 
-import ImageOnlineShop from "../assets/Homepage/online-shop.PNG";
-import ImageAftercare from "../assets/Homepage/aftercare.PNG";
-import ImageStudioGuide from "../assets/Homepage/studio-guide.PNG";
-import ImageBookNow from "../assets/Homepage/book-now.PNG";
-import waitListImage from "../assets/Homepage/waitlist.PNG";
+import ImageOnlineShop from "../assets/Homepage/online-shop.png";
+import ImageAftercare from "../assets/Homepage/aftercare.png";
+import ImageStudioGuide from "../assets/Homepage/studio-guide.png";
+import ImageBookNow from "../assets/Homepage/book-now.png";
+import waitListImage from "../assets/Homepage/waitlist.png";
 
 const Homepage = () => {
   // TODO: Implement GlobalConfig via Vercel
