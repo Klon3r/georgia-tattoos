@@ -1,6 +1,13 @@
-import { changeURL } from "../../../utils/url.util";
+import { changeURL } from "../../utils/url.util";
 import { buttonTailwindStyle } from "./PrimaryImageButtonTailwind";
-import PrimaryImageButtonType from "./PrimaryImageButtonType";
+
+type PrimaryImageButtonType = {
+  imageSource: string;
+  url: string;
+  openNewTab?: boolean;
+  ariaLabel?: string;
+  testId: string;
+};
 
 const PrimaryImageButton = ({
   imageSource,

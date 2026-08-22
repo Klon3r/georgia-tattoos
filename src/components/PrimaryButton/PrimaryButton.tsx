@@ -1,10 +1,16 @@
 import clsx from "clsx";
-import { changeURL } from "../../../utils/url.util";
+import { changeURL } from "../../utils/url.util";
 import {
   buttonHoverTailwindStyle,
   buttonTailwindStyle,
 } from "./PrimaryButtonTailwind";
-import PrimaryButtonType from "./PrimaryButtonType";
+
+type PrimaryButtonType = {
+  location: string;
+  name: string;
+  openNewTab?: boolean;
+  styleClass?: string;
+};
 
 const PrimaryButton = ({
   location,

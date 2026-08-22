@@ -11,7 +11,7 @@ import {
   loadLocalStorage,
   uploadFile,
 } from "../utils/booking.util";
-import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
 import { checkAvailability } from "../utils/bookingForm.util";
 import BookingScarCoverup from "./components/Booking/BookingScarCoverup";

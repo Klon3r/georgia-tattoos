@@ -1,7 +1,7 @@
-import dettolImage from "../../../assets/Aftercare/dettol-hand-wash.webp";
-import picklesImage from "../../../assets/Aftercare/dr-pickles-tattoo-balm.jpg";
-import aveenoImage from "../../../assets/Aftercare/aveeno-moisturizer.avif";
-import opsiteImage from "../../../assets/Aftercare/opsite-flex.jpg";
+import dettolImage from "../../assets/Aftercare/dettol-hand-wash.webp";
+import picklesImage from "../../assets/Aftercare/dr-pickles-tattoo-balm.jpg";
+import aveenoImage from "../../assets/Aftercare/aveeno-moisturizer.avif";
+import opsiteImage from "../../assets/Aftercare/opsite-flex.jpg";
 import { divContainer, linkStyle } from "./Tailwind";
 
 const ProductRecommendations = () => {
