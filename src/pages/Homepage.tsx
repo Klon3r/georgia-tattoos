@@ -1,4 +1,4 @@
-import PrimaryImageButton from "./components/PrimaryImageButton/PrimaryImageButton";
+import PrimaryImageButton from "../components/PrimaryImageButton/PrimaryImageButton";
 import StudioPDF from "/how-to-find-the-studio.pdf";
 
 import ImageOnlineShop from "../assets/Homepage/online-shop.png";

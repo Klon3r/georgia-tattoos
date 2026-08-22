@@ -130,9 +130,8 @@ const HealingWithCream = () => {
           If you would like to, you may wrap your tattoo in cling wrap for the
           first 2 nights to protect it while you sleep but please make sure your
           tattoo is clean and has no cream on it before wrapping it in cling
-          wrap. Be prepared for it to be slimey and gross in the morning when
-          you take it off and be sure to give it a good clean in the shower
-          after.
+          wrap. Be prepared for it to be slimy and gross in the morning when you
+          take it off and be sure to give it a good clean in the shower after.
         </p>
       </div>
     </div>

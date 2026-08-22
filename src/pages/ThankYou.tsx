@@ -1,5 +1,5 @@
 import { bookingPolicyCloseButtonStyle } from "./components/Booking/Components/BookingPolicy/Tailwind";
-import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
 
 const ThankYou = () => {
   return (

@@ -1,13 +1,13 @@
-import HeaderText from "./components/HeaderText/HeaderText";
-import { headerTailwindStyle } from "./components/HeaderText/HeaderTextTailwind";
-import AftercareButton from "./components/Aftercare/AftercareButton/AftercareButton";
+import HeaderText from "../components/HeaderText/HeaderText";
+import { headerTailwindStyle } from "../components/HeaderText/HeaderTextTailwind";
+import AftercareButton from "../components/Aftercare/AftercareButton/AftercareButton";
 import downChevronIcon from "../assets/Icons/down-chevron.png";
 import { useEffect, useState } from "react";
-import ProductRecommendations from "./components/Aftercare/ProductRecommendations";
+import ProductRecommendations from "../components/Aftercare/ProductRecommendations";
 import clsx from "clsx";
-import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
-import HealingWithSecondSkin from "./components/Aftercare/HealingWithSecondSkin";
-import HealingWithCream from "./components/Aftercare/HealingWithCream";
+import PrimaryButton from "../components/PrimaryButton/PrimaryButton";
+import HealingWithSecondSkin from "../components/Aftercare/HealingWithSecondSkin";
+import HealingWithCream from "../components/Aftercare/HealingWithCream";
 
 const Aftercare = () => {
   const [isProductRecommendationsClicked, setIsProductRecommendationsClicked] =
@@ -51,7 +51,7 @@ const Aftercare = () => {
 
       <div
         className={clsx(
-          desktopMode ? mainContainerStyleDesktop : mainContainerStyle
+          desktopMode ? mainContainerStyleDesktop : mainContainerStyle,
         )}
       >
         <div>
@@ -67,7 +67,7 @@ const Aftercare = () => {
             clickFunction={(val) => setIsHealingWithCreamClicked(val)}
             className={clsx(
               buttonStyle,
-              isHealingWithCreamClicked ? "rounded-t-xl" : "rounded-xl"
+              isHealingWithCreamClicked ? "rounded-t-xl" : "rounded-xl",
             )}
           />
           {isHealingWithCreamClicked && <HealingWithCream />}
@@ -84,7 +84,7 @@ const Aftercare = () => {
             }
             className={clsx(
               buttonStyle,
-              isHealingWithSecondSkinClicked ? "rounded-t-xl" : "rounded-xl"
+              isHealingWithSecondSkinClicked ? "rounded-t-xl" : "rounded-xl",
             )}
             clickFunction={(val) => setIsHealingWithSecondSkinClicked(val)}
           />
@@ -102,7 +102,7 @@ const Aftercare = () => {
             }
             className={clsx(
               buttonStyle,
-              isProductRecommendationsClicked ? "rounded-t-xl" : "rounded-xl"
+              isProductRecommendationsClicked ? "rounded-t-xl" : "rounded-xl",
             )}
             clickFunction={(val: boolean) =>
               setIsProductRecommendationsClicked(val)
