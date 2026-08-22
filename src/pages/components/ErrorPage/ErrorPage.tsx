@@ -1,4 +1,4 @@
-import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 type ErrorPageProps = {
   headerText: string;

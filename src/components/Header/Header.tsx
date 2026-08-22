@@ -1,6 +1,6 @@
-import georgiaTattoosLogo from "../assets/Logo/georgia-tattoos.gif";
+import georgiaTattoosLogo from "../../assets/Logo/georgia-tattoos.gif";
 
-function Logo() {
+const Header = () => {
   return (
     <>
       <div className="w-75 mt-8">
@@ -8,6 +8,6 @@ function Logo() {
       </div>
     </>
   );
-}
+};
 
-export default Logo;
+export default Header;
