@@ -5,6 +5,15 @@ import opsiteImage from "../../assets/Aftercare/opsite-flex.jpg";
 import { divContainer, linkStyle } from "./Tailwind";
 
 const ProductRecommendations = () => {
+  const handwashLink =
+    "https://www.woolworths.com.au/shop/productdetails/724612";
+  const tattooBalmLink =
+    "https://www.woolworths.com.au/shop/productdetails/440479";
+  const moisturizerLink =
+    "https://www.chemistwarehouse.com.au/buy/50349/aveeno-daily-moisturising-fragrance-free-body-lotion-225ml";
+  const opsiteLink =
+    "https://www.chemistwarehouse.com.au/buy/64566/opsite-flexfix-10cmx1m-roll";
+
   return (
     <div className={divContainer}>
       <p>
@@ -15,7 +24,7 @@ const ProductRecommendations = () => {
         I recommend picking up this{" "}
         <a
           className={linkStyle}
-          href="https://www.woolworths.com.au/shop/productdetails/724612"
+          href={handwashLink}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -25,11 +34,7 @@ const ProductRecommendations = () => {
         you use it, unlike a bar of soap which is very drying and often harbors
         bad bacteria
       </p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.woolworths.com.au/shop/productdetails/724612"
-      >
+      <a target="_blank" rel="noopener noreferrer" href={handwashLink}>
         <img
           src={dettolImage}
           alt="Dettol Hand Wash"
@@ -43,18 +48,14 @@ const ProductRecommendations = () => {
           className={linkStyle}
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.woolworths.com.au/shop/productdetails/440479"
+          href={tattooBalmLink}
         >
           Dr Pickles Tattoo Balm
         </a>{" "}
         from your local Woolworths and using this as your primary aftercare
         cream, until your tattoo has finished healing.
       </p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.woolworths.com.au/shop/productdetails/440479"
-      >
+      <a target="_blank" rel="noopener noreferrer" href={tattooBalmLink}>
         <img
           src={picklesImage}
           alt="Doctor Pickles Tattoo Balm"
@@ -63,20 +64,13 @@ const ProductRecommendations = () => {
       </a>
       <p>
         Once your tattoo has finished healing, I recommend using a good daily{" "}
-        <a
-          className={linkStyle}
-          href="https://www.woolworths.com.au/shop/productdetails/276040/aveeno-daily-moisturising-lotion-for-normal-to-dry-skin"
-        >
+        <a className={linkStyle} href={moisturizerLink}>
           moisturizer
         </a>
         , to keep your tattoo looking good well into the future. This is just an
         example, but whatever is suited to your needs will work fine.
       </p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.woolworths.com.au/shop/productdetails/276040/aveeno-daily-moisturising-lotion-for-normal-to-dry-skin"
-      >
+      <a target="_blank" rel="noopener noreferrer" href={moisturizerLink}>
         <img
           src={aveenoImage}
           alt="Aveeno moisturizer"
@@ -90,7 +84,7 @@ const ProductRecommendations = () => {
           target="_blank"
           rel="noopener noreferrer"
           className={linkStyle}
-          href="https://www.chemistwarehouse.com.au/buy/64566/opsite-flexfix-10cmx1m-roll"
+          href={opsiteLink}
         >
           this
         </a>{" "}
@@ -98,11 +92,7 @@ const ProductRecommendations = () => {
         sure your tattoo is clean and dry and whoever reapplies the second skin
         has clean and dry hands.
       </p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.chemistwarehouse.com.au/buy/64566/opsite-flexfix-10cmx1m-roll"
-      >
+      <a target="_blank" rel="noopener noreferrer" href={opsiteLink}>
         <img
           src={opsiteImage}
           alt="Opsite Flexfix"
