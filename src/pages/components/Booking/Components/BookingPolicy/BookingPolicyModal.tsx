@@ -6,8 +6,8 @@ const BookingPolicyModal = ({ onClose }: BookingPolicyModalType) => {
   return (
     <div>
       <div className={backdropStyle} onClick={onClose} />
-      <div className="fixed top-30 left-1/2 transform -translate-x-1/2 max-h-4/5 overflow-y-auto">
-        <div className="bg-white justify-center w-100 m-auto dark:text-white shadow-2xl rounded-lg p-3 flex flex-col gap-2">
+      <div className="fixed top-30 left-1/2 transform -translate-x-1/2 max-h-4/5 overflow-y-auto scrollbar-thumb-pink-500">
+        <div className="bg-white justify-center w-100 m-auto dark:text-white shadow-2xl p-3 flex flex-col gap-2">
           <TextHeader
             divClassName="flex justify-center pb-5"
             headerText="Booking Policy"
