@@ -13,9 +13,40 @@
   <p align="left">Welcome to the official website of <a href="http://www.georgiatattoos.com.au"><strong>Georgia Tattoos</strong></a>, a Brisbane-based tattoo artist renowned for her vibrant color work, neo-traditional, and traditional tattoo styles.</p> 
 </div>
 
-## Screenshot
+# Contents
+
+### Booking Form
+
+A hand built booking form using custom components
+
+- **Front End:** React + Tailwind CSS
+- **Back End:** Serverless NodeJS via Vercel
+- **Storage:** Blob via Vercel (user uploaded images)
+
+**user flow**
+
+- User fills their information into the booking form
+- User uploads photos which get stored into a Vercel Blob Storage
+- Once submitted data gets sent to the backend parsed and sent to Resend (Email API)
+- Users booking information gets sent to Georgia's email where they correspond with each other.
+
+### Aftercare
+
+A tattoo aftercare guide with attached photos of products
+
+## Screenshots
+
+#### Homepage
 
 ![Georgia Tattoos Website Screenshot](./screenshot/website.png)
+
+#### Booking Form
+
+![Booking Form Screenshot](./screenshot/booking-form.png)
+
+#### Aftercare
+
+![Aftercare Screenshot](./screenshot/aftercare.png)
 
 ## Created using
 
