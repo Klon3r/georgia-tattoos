@@ -6,12 +6,13 @@ import Booking from "./pages/Booking";
 import ThankYou from "./pages/ThankYou";
 import Error from "./pages/Error";
 import Error403 from "./pages/Error403";
+import { fetchFeatureFlag } from "./utils/featureFlag.util";
 
 export const Router = createBrowserRouter([
   {
     Component: AppLayout,
     children: [
-      { path: "/", Component: Homepage },
+      { path: "/", loader: () => fetchFeatureFlag(), Component: Homepage },
       { path: "aftercare", Component: Aftercare },
       { path: "booking", Component: Booking },
       { path: "thank-you", Component: ThankYou },

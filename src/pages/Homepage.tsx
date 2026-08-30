@@ -6,10 +6,11 @@ import ImageAftercare from "../assets/Homepage/aftercare.png";
 import ImageStudioGuide from "../assets/Homepage/studio-guide.png";
 import ImageBookNow from "../assets/Homepage/book-now.png";
 import waitListImage from "../assets/Homepage/waitlist.png";
+import { useLoaderData } from "react-router-dom";
 
 const Homepage = () => {
-  // TODO: Implement GlobalConfig via Vercel
-  const bookingFormFlag = false;
+  const featureFlags = useLoaderData();
+  const bookingFormFlag = featureFlags.booking_form;
 
   return (
     <div>
