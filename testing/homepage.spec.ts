@@ -6,22 +6,7 @@ test.describe("Checks", () => {
   test("Check Title", async ({ page }) => {
     await page.goto(homepage);
     await expect(page).toHaveTitle("Georgia Tattoos");
-  });
-
-  test("Check Studio Guide Button", async ({ page }) => {
-    await page.goto(homepage);
-    const button = page.getByTestId("studio-guide-button");
-    await expect(button).toBeVisible();
-    await expect(button).toBeEnabled();
-  });
-
-  test("Check Aftercare Button", async ({ page }) => {
-    await page.goto(homepage);
-    const button = page.getByTestId("aftercare-button");
-    await expect(button).toBeVisible();
-    await expect(button).toBeEnabled();
-    await button.click({ force: true });
-    await expect(page).toHaveURL(/.*aftercare/);
+    await expect(page).toHaveURL("http://localhost:5173");
   });
 
   test("Check Online Shop Button", async ({ page }) => {
@@ -37,6 +22,22 @@ test.describe("Checks", () => {
 
     await newPage.waitForLoadState();
     await expect(newPage).toHaveURL(/.*georgiatattoos.store/);
+  });
+
+  test("Check Aftercare Button", async ({ page }) => {
+    await page.goto(homepage);
+    const button = page.getByTestId("aftercare-button");
+    await expect(button).toBeVisible();
+    await expect(button).toBeEnabled();
+    await button.click({ force: true });
+    await expect(page).toHaveURL(/.*aftercare/);
+  });
+
+  test("Check Studio Guide Button", async ({ page }) => {
+    await page.goto(homepage);
+    const button = page.getByTestId("studio-guide-button");
+    await expect(button).toBeVisible();
+    await expect(button).toBeEnabled();
   });
 });
 

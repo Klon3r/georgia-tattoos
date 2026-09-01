@@ -13,6 +13,7 @@ const ThankYou = () => {
           name="Homepage"
           location={"/"}
           styleClass={bookingPolicyCloseButtonStyle}
+          testId="homepage-button"
         />
       </div>
     </div>

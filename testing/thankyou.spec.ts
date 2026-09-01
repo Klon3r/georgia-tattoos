@@ -15,3 +15,12 @@ test("Check 'thank you' text", async ({ page }) => {
     ),
   ).toBeVisible();
 });
+
+test("Check Homepage button", async ({ page }) => {
+  await page.goto(thankYouPage);
+  const homepageButton = page.getByTestId("homepage-button");
+  await expect(homepageButton).toBeVisible();
+
+  await homepageButton.click({ force: true });
+  await expect(page).toHaveURL("http://localhost:5173");
+});

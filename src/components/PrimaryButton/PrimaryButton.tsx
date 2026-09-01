@@ -10,6 +10,7 @@ type PrimaryButtonType = {
   name: string;
   openNewTab?: boolean;
   styleClass?: string;
+  testId?: string;
 };
 
 const PrimaryButton = ({
@@ -17,6 +18,7 @@ const PrimaryButton = ({
   name,
   openNewTab = false,
   styleClass = "",
+  testId,
 }: PrimaryButtonType) => {
   const handleOnClick = () => {
     openNewTab ? changeURL(location, openNewTab) : changeURL(location);
@@ -31,6 +33,7 @@ const PrimaryButton = ({
             : `${buttonTailwindStyle} ${buttonHoverTailwindStyle}`,
         )}
         onClick={handleOnClick}
+        data-testid={testId}
       >
         {name}
       </button>
