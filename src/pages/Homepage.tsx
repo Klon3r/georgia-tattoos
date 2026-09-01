@@ -7,9 +7,10 @@ import ImageStudioGuide from "../assets/Homepage/studio-guide.png";
 import ImageBookNow from "../assets/Homepage/book-now.png";
 import waitListImage from "../assets/Homepage/waitlist.png";
 import { useLoaderData } from "react-router-dom";
+import { FeatureFlagType } from "../utils/featureFlag.util";
 
 const Homepage = () => {
-  const featureFlags = useLoaderData();
+  const featureFlags = useLoaderData() as FeatureFlagType;
   const bookingFormFlag = featureFlags.booking_form;
 
   return (
