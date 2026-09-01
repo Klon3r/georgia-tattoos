@@ -3,6 +3,17 @@ import { test, expect } from "@playwright/test";
 const homepage = "localhost:5173";
 
 test.describe("Checks", () => {
+  test.beforeEach(async ({ page }) => {
+    // Mock FeatureFlag API
+    await page.route("**/api/featureFlag", async (route) => {
+      const json = {
+        booking_form: false,
+        early_access: false,
+      };
+      await route.fulfill({ json });
+    });
+  });
+
   test("Check Title", async ({ page }) => {
     await page.goto(homepage);
     await expect(page).toHaveTitle("Georgia Tattoos");
