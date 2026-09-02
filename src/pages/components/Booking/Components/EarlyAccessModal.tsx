@@ -44,7 +44,7 @@ const EarlyAccessModal = ({ setShowModal }: EarlyAccessModalType) => {
   };
 
   return (
-    <div>
+    <div data-testid="early-access-modal">
       <div className={backdropStyle}>
         <div className={modalInitStyle}>
           <div className={modalStyle}>
@@ -71,6 +71,7 @@ const EarlyAccessModal = ({ setShowModal }: EarlyAccessModalType) => {
               <button
                 className={clsx(modalButtonStyle, modalButtonHoverStyle)}
                 onClick={handleEarlyAccessButton}
+                data-testid="enter-button"
               >
                 ENTER
               </button>

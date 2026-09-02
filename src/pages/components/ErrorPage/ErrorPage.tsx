@@ -10,7 +10,7 @@ const ErrorPage = ({ headerText, errorMessage }: ErrorPageProps) => {
     <div className="flex flex-col items-center">
       <h1 className="text-2xl">{headerText}</h1>
       <p className="pt-15">{errorMessage}</p>
-      <PrimaryButton name="Homepage" location={"/"} />
+      <PrimaryButton name="Homepage" location={"/"} testId="homepage-button" />
     </div>
   );
 };

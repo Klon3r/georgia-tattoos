@@ -14,7 +14,7 @@ export const Router = createBrowserRouter([
     children: [
       { path: "/", loader: () => fetchFeatureFlag(), Component: Homepage },
       { path: "aftercare", Component: Aftercare },
-      { path: "booking", Component: Booking },
+      { path: "booking", loader: () => fetchFeatureFlag(), Component: Booking },
       { path: "thank-you", Component: ThankYou },
       { path: "error", Component: Error },
       { path: "*", Component: Error403 },

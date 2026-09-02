@@ -17,12 +17,15 @@ import { checkAvailability } from "../utils/bookingForm.util";
 import BookingScarCoverup from "./components/Booking/BookingScarCoverup";
 import EarlyAccessModal from "./components/Booking/Components/EarlyAccessModal";
 import { createPortal } from "react-dom";
+import { useLoaderData } from "react-router-dom";
+import { FeatureFlagType } from "../utils/featureFlag.util";
 
 const BOOKING_URL = "/api/booking";
 
 const Booking = () => {
-  const bookingFormFlag = false;
-  const bookingFormEarlyAccessFlag = false;
+  const featureFlags = useLoaderData() as FeatureFlagType;
+  const bookingFormFlag = featureFlags.booking_form;
+  const bookingFormEarlyAccessFlag = featureFlags.early_access;
 
   const [showEarlyAccessModal, setShowEarlyAccessModal] = useState(
     bookingFormEarlyAccessFlag,
@@ -109,7 +112,11 @@ const Booking = () => {
               document.body,
             )}
 
-          <form encType="multipart/form-data" onSubmit={onSubmit}>
+          <form
+            encType="multipart/form-data"
+            onSubmit={onSubmit}
+            data-testid="booking-form-data"
+          >
             <div className="flex flex-col gap-10 pb-20 px-3">
               <BookingNames />
               <BookingContact />

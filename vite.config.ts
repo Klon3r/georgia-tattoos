@@ -9,7 +9,6 @@ export default defineConfig({
     sourcemap: false, // Ensure source maps are disabled
   },
   server: {
-    sourcemap: false,
     proxy: {
       "/api": {
         target: "http://localhost:3000",
