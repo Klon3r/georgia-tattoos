@@ -12,10 +12,8 @@ export async function GET(req: VercelRequest, res: VercelResponse) {
   const isProduction = process.env.NODE_ENV === "production";
   const origin = req.headers.origin;
 
-  if (isProduction) {
-    if (!origin || !ALLOWED_ORIGINS.includes(origin)) {
-      return new Response("CORS not allowed", { status: 403 });
-    }
+  if (isProduction && origin && origin !== ALLOWED_ORIGINS) {
+    return new Response("CORS not allowed", { status: 403 });
   }
 
   const featureFlags = await configClient.get("feature_flags");
